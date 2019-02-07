@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         var horizontal = Input.GetAxis(PlayerAxes[0]);
+        Debug.Log(horizontal);
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
         { 
             Vector2 movement = new Vector2(Speed * horizontal, JumpHeight);
