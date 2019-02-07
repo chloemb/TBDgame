@@ -42,14 +42,15 @@ public class PlayerController : MonoBehaviour
         
         if (jump > 0 && IsGrounded)
         { 
-            Vector2 movement = new Vector2(Speed * horizontal, JumpHeight);
+            Vector2 errorVector2 = new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
             // _rb.velocity = new Vector2(0, 0);
-            _rb.AddForce(movement, ForceMode2D.Impulse);
+            _rb.AddForce(errorVector2, ForceMode2D.Impulse);
             IsGrounded = false;
         }
         else
         {
-            _rb.velocity = new Vector2(Speed * horizontal, _rb.velocity.y);
+            // _rb.velocity = new Vector2(Speed * horizontal, _rb.velocity.y);
+            _rb.AddForce(new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0), ForceMode2D.Impulse);
         }
     }
 
