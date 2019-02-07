@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float Speed;
     public float JumpHeight;
     private bool IsGrounded;
+
+    public string[] PlayerAxes = new string[5];
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        var horizontal = Input.GetAxis("Horizontal");
+        var horizontal = Input.GetAxis("P1Horizontal");
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
         { 
             Vector2 movement = new Vector2(Speed * horizontal, JumpHeight);
