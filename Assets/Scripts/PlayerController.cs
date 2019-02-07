@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D _rb;
+    public Rigidbody2D _rb;
     public float Speed;
     public float JumpHeight;
     private bool IsGrounded;
@@ -17,28 +17,33 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _rb = gameObject.GetComponent<Rigidbody2D>();
+        
         switch (gameObject.name)
         {
             case "Player 1":
                 PlayerAxes[0] = "P1Horizontal";
+                PlayerAxes[1] = "P1Jump";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2Horizontal";
+                PlayerAxes[1] = "P2Jump";
                 break;
         }
-        _rb = GetComponent<Rigidbody2D>();
+
         IsGrounded = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         var horizontal = Input.GetAxis(PlayerAxes[0]);
-        Debug.Log(horizontal);
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+        var jump = Input.GetAxis(PlayerAxes[1]);
+        
+        if (jump > 0 && IsGrounded)
         { 
             Vector2 movement = new Vector2(Speed * horizontal, JumpHeight);
-            _rb.velocity = new Vector2(0, 0);
+            // _rb.velocity = new Vector2(0, 0);
             _rb.AddForce(movement, ForceMode2D.Impulse);
             IsGrounded = false;
         }
