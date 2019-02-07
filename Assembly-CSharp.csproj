@@ -124,7 +124,6 @@
     <Compile Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\PennyPixel\Scripts\PlayerPlatformerController.cs" />
     <Compile Include="Assets\Scripts\Bounds_Manager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\PlayerController2.cs" />
     <None Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\Add-Ons\Cinemachine\ReleaseNotes.txt" />
     <None Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\Add-Ons\2D Extras\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />

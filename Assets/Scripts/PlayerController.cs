@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +12,20 @@ public class PlayerController : MonoBehaviour
     public float JumpHeight;
     private bool IsGrounded;
 
-    public string[] PlayerAxes = new string[5];
+    public string[] PlayerAxes;
     
     // Start is called before the first frame update
     void Start()
     {
+        switch (gameObject.name)
+        {
+            case "Player 1":
+                PlayerAxes[0] = "P1Horizontal";
+                break;
+            case "Player 2":
+                PlayerAxes[0] = "P2Horizontal";
+                break;
+        }
         _rb = GetComponent<Rigidbody2D>();
         IsGrounded = false;
     }
@@ -23,8 +33,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        var horizontal = Input.GetAxis("P1Horizontal");
+        var horizontal = Input.GetAxis(PlayerAxes[0]);
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
         { 
             Vector2 movement = new Vector2(Speed * horizontal, JumpHeight);
