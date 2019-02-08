@@ -7,18 +7,21 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D _rb;
+    private Rigidbody2D _rb;
     public float Speed;
     public float JumpHeight;
-    private bool IsGrounded;
+
+    public bool IsGrounded;
+    public bool StuckOnWall;
+    public bool IgnoreHorizontal;
 
     public string[] PlayerAxes;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        
+
         switch (gameObject.name)
         {
             case "Player 1":
@@ -39,34 +42,62 @@ public class PlayerController : MonoBehaviour
     {
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
-        
-        if (jump > 0 && IsGrounded)
-        { 
-            Vector2 errorVector2 = new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
-            // _rb.velocity = new Vector2(0, 0);
-            _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-            IsGrounded = false;
-        }
-        else
+
+        if (IsGrounded)
         {
-            // _rb.velocity = new Vector2(Speed * horizontal, _rb.velocity.y);
+            if (jump > 0)
+            {
+                Vector2 errorVector2 = new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
+                // _rb.velocity = new Vector2(0, 0);
+                _rb.AddForce(errorVector2, ForceMode2D.Impulse);
+                IsGrounded = false;
+            }
+        }
+
+        if (StuckOnWall)
+        {
+            if (jump > 0)
+            {
+                Vector2 errorVector2 = new Vector2(0, JumpHeight);
+                _rb.AddForce(errorVector2, ForceMode2D.Impulse);
+                
+                IgnoreHorizontal = true;
+                StuckOnWall = false;
+            }
+        }
+
+        // _rb.velocity = new Vector2(Speed * horizontal, _rb.velocity.y);
+        if (!IgnoreHorizontal)
+        {
             _rb.AddForce(new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0), ForceMode2D.Impulse);
         }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Surface")
+        Debug.Log("collision detected " + col.gameObject.tag);
+        if (col.gameObject.tag == "Floors")
         {
             IsGrounded = true;
+        }
+
+        if (col.gameObject.tag == "Walls")
+        {
+            StuckOnWall = true;
         }
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Surface")
+        if (col.gameObject.tag == "Floors")
         {
             IsGrounded = false;
+        }
+
+        if (col.gameObject.tag == "Walls")
+        {
+            IgnoreHorizontal = false;
+            StuckOnWall = false;
         }
     }
 }
