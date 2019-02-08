@@ -3718,9 +3718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   JumpHeight: 5
-  IsGrounded: 0
-  StuckOnWall: 0
-  IgnoreHorizontal: 0
   PlayerAxes:
   - 
   - 
@@ -3918,9 +3915,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   JumpHeight: 5
-  IsGrounded: 0
-  StuckOnWall: 0
-  IgnoreHorizontal: 0
   PlayerAxes:
   - 
   - 
