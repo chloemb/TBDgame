@@ -12,18 +12,20 @@ public class PlayerController : MonoBehaviour
     public float JumpHeight;
     public float WallJumpStrength;
     public float MaxVelocity;
-
-    // variables for managing movement and walls
-    private bool IsGrounded;
-    private bool TouchWallToRight;
-    private bool TouchWallToLeft;
-    private bool IgnoreLeft;
-    private bool IgnoreRight;
-    private Vector2 _prevVelocity;
-    private bool UsedWallJump;
-
+    public Vector2 CurrentVelocity;
+    
     // player axes array. Currently: [Horizontal, Jump]
     public string[] PlayerAxes;
+    
+    // variables for managing movement and walls
+    // [HideInInspector]
+    public bool IsGrounded;
+    private bool TouchWallToRight;
+    private bool TouchWallToLeft;
+    public bool IgnoreLeft;
+    public bool IgnoreRight;
+    public Vector2 _prevVelocity;
+    private bool UsedWallJump;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        CurrentVelocity = _rb.velocity;
+        
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
 
@@ -83,12 +87,15 @@ public class PlayerController : MonoBehaviour
                 
                 _rb.AddForce(errorVector2, ForceMode2D.Impulse);
                 UsedWallJump = true;
+                
+                _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, MaxVelocity);
             }
         }
 
         Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
         if (IgnoreLeft && forcetoapply.x < 0 || IgnoreRight && forcetoapply.x > 0)
         {
+            Debug.Log("set x forcetoapply to 0");
             forcetoapply.x = 0;
         }
 
@@ -98,13 +105,10 @@ public class PlayerController : MonoBehaviour
         {
             _prevVelocity = _rb.velocity;
         }
-
-        _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, MaxVelocity);
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("collision detected " + col.gameObject.tag);
         if (col.gameObject.tag == "Floors")
         {
             IsGrounded = true;

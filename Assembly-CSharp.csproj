@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{74F4BA5B-C5FA-E45D-00F3-08403FFBA24B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -123,7 +124,9 @@
     <Compile Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\PennyPixel\Scripts\PhysicsObject.cs" />
     <Compile Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\PennyPixel\Scripts\PlayerPlatformerController.cs" />
     <Compile Include="Assets\Scripts\Bounds_Manager.cs" />
+    <Compile Include="Assets\Scripts\HealthManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\RespawnManager.cs" />
     <None Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\Add-Ons\Cinemachine\ReleaseNotes.txt" />
     <None Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\Add-Ons\2D Extras\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
