@@ -3697,7 +3697,7 @@ GameObject:
   - component: {fileID: 1406866332}
   - component: {fileID: 1406866334}
   - component: {fileID: 1406866333}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3718,6 +3718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   JumpHeight: 5
+  WallJumpStrength: 0
+  MaxVelocity: 8
   PlayerAxes:
   - 
   - 
@@ -3856,7 +3858,7 @@ GameObject:
   - component: {fileID: 1889484543}
   - component: {fileID: 1889484541}
   - component: {fileID: 1889484540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player 2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3915,6 +3917,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   JumpHeight: 5
+  WallJumpStrength: 0
+  MaxVelocity: 8
   PlayerAxes:
   - 
   - 

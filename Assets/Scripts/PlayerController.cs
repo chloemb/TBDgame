@@ -10,7 +10,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     public float Speed;
     public float JumpHeight;
+    public float WallJumpStrength;
+    public float MaxVelocity;
 
+    // variables for managing movement and walls
     private bool IsGrounded;
     private bool TouchWallToRight;
     private bool TouchWallToLeft;
@@ -19,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _prevVelocity;
     private bool UsedWallJump;
 
+    // player axes array. Currently: [Horizontal, Jump]
     public string[] PlayerAxes;
 
     // Start is called before the first frame update
@@ -69,18 +73,21 @@ public class PlayerController : MonoBehaviour
                 if (TouchWallToLeft)
                 {
                     IgnoreLeft = true;
+                    errorVector2 = errorVector2 + new Vector2(WallJumpStrength * Speed, 0);
                 }
                 else
                 {
                     IgnoreRight = true;
+                    errorVector2 = errorVector2 - new Vector2(WallJumpStrength * Speed, 0);
                 }
-
+                
+                _rb.AddForce(errorVector2, ForceMode2D.Impulse);
                 UsedWallJump = true;
             }
         }
 
         Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
-        if ((IgnoreLeft && forcetoapply.x < 0) || (IgnoreRight && forcetoapply.x > 0))
+        if (IgnoreLeft && forcetoapply.x < 0 || IgnoreRight && forcetoapply.x > 0)
         {
             forcetoapply.x = 0;
         }
@@ -91,6 +98,8 @@ public class PlayerController : MonoBehaviour
         {
             _prevVelocity = _rb.velocity;
         }
+
+        _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, MaxVelocity);
     }
 
     void OnCollisionEnter2D(Collision2D col)
