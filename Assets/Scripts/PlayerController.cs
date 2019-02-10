@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     public string[] PlayerAxes;
     
     // variables for managing movement and walls
-    [HideInInspector]
+    // [HideInInspector]
     public bool IsGrounded, IgnoreLeft, IgnoreRight;
-    [HideInInspector]
+    // [HideInInspector]
     public Vector2 PrevVelocity; // The most recent non-zero velocity
 
     private bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping;
@@ -87,11 +87,13 @@ public class PlayerController : MonoBehaviour
                 if (TouchWallToLeft)
                 {
                     IgnoreLeft = true;
+                    IgnoreRight = true;
                     errorVector2 = errorVector2 + new Vector2(WallJumpStrength.x * Speed, 0);
                 }
                 else
                 {
                     IgnoreRight = true;
+                    IgnoreLeft = true;
                     errorVector2 = errorVector2 - new Vector2(WallJumpStrength.x * Speed, 0);
                 }
                 
