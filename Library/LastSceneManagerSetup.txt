@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/DeveloperScene.unity
+- path: Assets/Scenes/Environnment Experiments.unity
   isLoaded: 1
   isActive: 1

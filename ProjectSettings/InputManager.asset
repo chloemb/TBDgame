@@ -9,8 +9,8 @@ InputManager:
     m_Name: P1Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
+    negativeButton: a
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -43,7 +43,7 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: joystick 1 button 16
     positiveButton: 
-    altNegativeButton: 
+    altNegativeButton: space
     altPositiveButton: 
     gravity: 1000
     dead: 0.2
