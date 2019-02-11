@@ -6,8 +6,10 @@ public class Knockback : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private PlayerController controller;
-
+    
+    // customizable in inspecotr
     public float KnockbackStrength;
+    public float KnockbackLength;
 
     private Vector2 LastKnocked;
     private bool KnockingBack;
@@ -19,31 +21,25 @@ public class Knockback : MonoBehaviour
         controller = GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        // Give horizontal input back if done knocking back
-        if (_rb.velocity.x == 0 && KnockingBack)
-        {
-            controller.IgnoreLeft = false;
-            controller.IgnoreRight = false;
-            KnockingBack = false;
-        }
-    }
-
     public void KnockPlayer()
     {
         // Calculate velocity and magnitude of knockback
         LastKnocked = -KnockbackStrength * controller.PrevVelocity.normalized;
         LastKnocked.y = 2f * LastKnocked.y;
         
-        // Disallow horizontal movement while knocking back
-        controller.IgnoreLeft = true;
-        controller.IgnoreRight = true;
         KnockingBack = true;
         
         // Apply knockback force
         _rb.velocity = LastKnocked;
+        
+        // Disable control while knocking back; give it back after KnockbackLength
+        controller.DisableControl();
+        Invoke("StopKnocking", KnockbackLength);
+    }
 
+    private void StopKnocking()
+    {
+        controller.GiveBackControl();
+        KnockingBack = false;
     }
 }

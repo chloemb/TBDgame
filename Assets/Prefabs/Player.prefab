@@ -129,7 +129,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4111441477871771406}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5225952, y: -2.3963451, z: 0.0634743}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children:
@@ -199,14 +199,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   JumpHeight: 5
-  MaxVelocity: 8
-  WallJumpStrength: {x: 0.5, y: 0.5}
+  WallJumpStrength: {x: 0.5, y: 1}
+  WallJumpLength: 0.15
   PlayerAxes:
   - 
   - 
   IsGrounded: 0
-  IgnoreLeft: 0
-  IgnoreRight: 0
+  ControlDisabled: 0
   PrevVelocity: {x: 0, y: 0}
 --- !u!50 &4111441477871771402
 Rigidbody2D:
@@ -295,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KnockbackStrength: 2.5
+  KnockbackLength: 0.3
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

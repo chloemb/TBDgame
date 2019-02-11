@@ -10,22 +10,27 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb;
+    
+    // Customizable in inspector
     public float Speed;
     public float JumpHeight;
-    public float MaxVelocity;
     public Vector2 WallJumpStrength;
-    
-    // player axes array. Currently: [Horizontal, Jump]
-    public string[] PlayerAxes;
-    
-    // variables for managing movement and walls
-    // [HideInInspector]
-    public bool IsGrounded, IgnoreLeft, IgnoreRight;
-    // [HideInInspector]
-    public Vector2 PrevVelocity; // The most recent non-zero velocity
+    public float WallJumpLength;
 
-    private bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping;
+    // player axes array. Currently: [Horizontal, Jump]
+    [HideInInspector]
+    public string[] PlayerAxes;
+
+    // variables for managing movement and walls
+    [HideInInspector]
+    public bool IsGrounded, ControlDisabled;
+
+    [HideInInspector]
+    public Vector2 PrevVelocity; // The most recent non-zero velocity
     
+    // various info about object
+    private bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,13 +54,14 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {   
-        // Name control axes
+    {
+        // Get Input
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
 
-        // Jump from ground
-        if (IsGrounded)
+
+        // Jump from ground if control isn't disabled
+        if (IsGrounded && !ControlDisabled)
         {
             if (jump > 0)
             {
@@ -64,58 +70,43 @@ public class PlayerController : MonoBehaviour
                 IsGrounded = false;
             }
         }
-        
-        // Release IgnoreLeft or IgnoreRight after wall jumping
-        if (_rb.velocity.magnitude <= (WallJumpStrength.x + WallJumpStrength.y)/2 * MaxVelocity && WallJumping)
-        {
-            IgnoreLeft = false;
-            IgnoreRight = false;
-            WallJumping = false;
-        }
-        
+
         // Be able to jump off of walls
         if (TouchWallToLeft || TouchWallToRight)
         {
             if (jump > 0 && !UsedWallJump)
             {
-                WallJumping = true;
-                
                 Vector2 errorVector2 = new Vector2(0, WallJumpStrength.y * JumpHeight);
                 _rb.velocity = new Vector2(0, 0);
-                _rb.AddForce(errorVector2, ForceMode2D.Impulse);
 
                 if (TouchWallToLeft)
                 {
-                    IgnoreLeft = true;
-                    IgnoreRight = true;
                     errorVector2 = errorVector2 + new Vector2(WallJumpStrength.x * Speed, 0);
                 }
                 else
                 {
-                    IgnoreRight = true;
-                    IgnoreLeft = true;
                     errorVector2 = errorVector2 - new Vector2(WallJumpStrength.x * Speed, 0);
                 }
-                
+
                 _rb.AddForce(errorVector2, ForceMode2D.Impulse);
+                WallJumping = true;
                 UsedWallJump = true;
                 
-                _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, MaxVelocity);
+                DisableControl();
+                Invoke("StopWallJumping", WallJumpLength);
             }
         }
-        
-        // Calculate horizontal movement
-        Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
-        
-        // If needed, ignore either right or left inputs to prevent getting stuck on walls
-        if (IgnoreLeft && forcetoapply.x < 0 || IgnoreRight && forcetoapply.x > 0)
+
+
+        if (!ControlDisabled)
         {
-            forcetoapply.x = 0;
+            // Calculate horizontal movement
+            Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
+
+            // Apply horizontal movement
+            _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
         }
-        
-        // Apply horizontal movement
-        _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
-        
+
         // Set PrevVelocity
         if (_rb.velocity != Vector2.zero)
         {
@@ -130,7 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             IsGrounded = true;
         }
-        
+
         if (col.gameObject.tag == "Walls")
         {
             // Detect which side the wall is on
@@ -158,16 +149,31 @@ public class PlayerController : MonoBehaviour
             // No longer touching wall
             TouchWallToLeft = false;
             TouchWallToRight = false;
-            
+
             // Give control back if not wall jumping (i.e. if falling)
             if (!WallJumping)
             {
-                IgnoreLeft = false;
-                IgnoreRight = false;
+                GiveBackControl();
             }
-            
+
             // Can only wall jump once (only relevant if WallJumpStrength.x is 0)
             UsedWallJump = false;
         }
+    }
+
+    private void StopWallJumping()
+    {
+        GiveBackControl();
+        WallJumping = false;
+    }
+
+    public void DisableControl()
+    {
+        ControlDisabled = true;
+    }
+
+    public void GiveBackControl()
+    {
+        ControlDisabled = false;
     }
 }
