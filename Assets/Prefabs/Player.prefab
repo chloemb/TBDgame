@@ -200,7 +200,7 @@ MonoBehaviour:
   Speed: 5
   JumpHeight: 5
   WallJumpStrength: {x: 0.5, y: 1}
-  WallJumpLength: 0.15
+  WallJumpLength: 0.2
   PlayerAxes:
   - 
   - 
