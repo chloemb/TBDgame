@@ -261,10 +261,17 @@ MonoBehaviour:
   WallJumpStrength: {x: 0.5, y: 1}
   WallJumpLength: 0.2
   ClingTime: 0.75
+  DashStrength: {x: 15, y: 5}
+  DashLength: 0.01
+  DashOnCooldown: 0
+  DashCooldown: 2
+  LastDashed: {x: 0, y: 0}
   PlayerAxes:
   - 
   - 
+  - 
   IsGrounded: 0
+  CurrentlyDashing: 0
   ControlDisabled: 0
   PrevVelocity: {x: 0, y: 0}
 --- !u!114 &4111441477871771446

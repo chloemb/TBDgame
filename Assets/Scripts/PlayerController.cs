@@ -17,14 +17,21 @@ public class PlayerController : MonoBehaviour
     public Vector2 WallJumpStrength;
     public float WallJumpLength;
     public float ClingTime;
+    public Vector2 DashStrength;
+    public float DashLength;
+
+    public bool DashOnCooldown;
+    public float DashCooldown;
+
+    public Vector2 LastDashed;
 
     // player axes array. Currently: [Horizontal, Jump]
-    [HideInInspector]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector] 
-    public bool IsGrounded;
+    [HideInInspector] public bool IsGrounded;
+    
+    public bool CurrentlyDashing;
         
     public bool ControlDisabled;
 
@@ -46,10 +53,12 @@ public class PlayerController : MonoBehaviour
             case "Player 1":
                 PlayerAxes[0] = "P1Horizontal";
                 PlayerAxes[1] = "P1Jump";
+                PlayerAxes[2] = "P1Dash";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2Horizontal";
                 PlayerAxes[1] = "P2Jump";
+                PlayerAxes[2] = "P2Dash";
                 break;
         }
 
@@ -63,7 +72,7 @@ public class PlayerController : MonoBehaviour
         // Get Input
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
-
+        var dash = Input.GetAxis(PlayerAxes[2]);
 
         // Jump from ground if control isn't disabled
         if (IsGrounded && !ControlDisabled)
@@ -117,6 +126,23 @@ public class PlayerController : MonoBehaviour
             // Apply horizontal movement
             _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
         }
+        
+        // Dash
+        if (!TouchWallToLeft && !TouchWallToRight && dash > 0 && !CurrentlyDashing && !ControlDisabled && !DashOnCooldown)
+        {
+            Debug.Log("called dash");
+            Vector2 dashvel = DashStrength * _rb.velocity.normalized;
+            _rb.AddForce(dashvel, ForceMode2D.Impulse);
+
+            CurrentlyDashing = true;
+            LastDashed = dashvel;
+            DisableControl();
+            _rb.gravityScale = 0;
+            Invoke("StopDash", DashLength);
+            
+            DashOnCooldown = true;
+            Invoke("RefreshCooldown", DashCooldown);
+        }
 
         // Set PrevVelocity
         if (_rb.velocity != Vector2.zero)
@@ -131,10 +157,12 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Floors")
         {
             IsGrounded = true;
+            CurrentlyDashing = false;
         }
 
         if (col.gameObject.tag == "Walls")
         {
+            CurrentlyDashing = false;
             // Detect which side the wall is on
             if (PrevVelocity.x < 0)
             {
@@ -176,6 +204,21 @@ public class PlayerController : MonoBehaviour
     {
         GiveBackControl();
         WallJumping = false;
+    }
+
+    private void StopDash()
+    {
+        GiveBackControl();
+        _rb.gravityScale = 2;
+        if (IsGrounded)
+        {
+            CurrentlyDashing = false;
+        }
+    }
+
+    private void RefreshCooldown()
+    {
+        DashOnCooldown = false;
     }
 
     private void WallSlide()
