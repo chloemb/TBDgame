@@ -109,12 +109,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4111441477871771405}
   - component: {fileID: 4111441477871771404}
-  - component: {fileID: 4111441477871771407}
   - component: {fileID: 4111441477871771402}
   - component: {fileID: 4111441477871771400}
   - component: {fileID: 4111441477871771403}
-  - component: {fileID: 4111441477871771401}
+  - component: {fileID: 4111441477871771407}
   - component: {fileID: 4111441477871771446}
+  - component: {fileID: 4111441477871771401}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -185,28 +185,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4111441477871771407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad0995214d94884da72fb146e149249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 5
-  JumpHeight: 5
-  WallJumpStrength: {x: 0.5, y: 1}
-  WallJumpLength: 0.2
-  PlayerAxes:
-  - 
-  - 
-  IsGrounded: 0
-  ControlDisabled: 0
-  PrevVelocity: {x: 0, y: 0}
 --- !u!50 &4111441477871771402
 Rigidbody2D:
   serializedVersion: 4
@@ -222,7 +200,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -266,6 +244,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &4111441477871771407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad0995214d94884da72fb146e149249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  JumpHeight: 7
+  WallJumpStrength: {x: 0.5, y: 1}
+  WallJumpLength: 0.2
+  ClingTime: 0.75
+  PlayerAxes:
+  - 
+  - 
+  IsGrounded: 0
+  ControlDisabled: 0
+  PrevVelocity: {x: 0, y: 0}
+--- !u!114 &4111441477871771446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnockbackStrength: 2.5
+  KnockbackLength: 0.3
 --- !u!114 &4111441477871771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,20 +296,6 @@ MonoBehaviour:
   InitialHealth: 6
   Health: 0
   HealthDisplay: {fileID: 4111441478038856029}
---- !u!114 &4111441477871771446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KnockbackStrength: 2.5
-  KnockbackLength: 0.3
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

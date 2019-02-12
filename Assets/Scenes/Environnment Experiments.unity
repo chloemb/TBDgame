@@ -4423,11 +4423,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4111441477871771406, guid: 683380832928549b4b03aafc61e50359,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4111441477871771405, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4485,7 +4480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4111441477871771407, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
-      propertyPath: MaxVelocity
+      propertyPath: JumpHeight
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4111441478038856029, guid: 683380832928549b4b03aafc61e50359,
@@ -4497,6 +4492,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111441477871771404, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 932bfbb102946e04796ee9ade9385119, type: 2}
+    - target: {fileID: 4111441477871771402, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 683380832928549b4b03aafc61e50359, type: 3}

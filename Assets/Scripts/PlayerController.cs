@@ -16,17 +16,22 @@ public class PlayerController : MonoBehaviour
     public float JumpHeight;
     public Vector2 WallJumpStrength;
     public float WallJumpLength;
+    public float ClingTime;
 
     // player axes array. Currently: [Horizontal, Jump]
     [HideInInspector]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector]
-    public bool IsGrounded, ControlDisabled;
+    [HideInInspector] 
+    public bool IsGrounded;
+        
+    public bool ControlDisabled;
 
     [HideInInspector]
     public Vector2 PrevVelocity; // The most recent non-zero velocity
+
+    private Vector2 ClingPosition;
     
     // various info about object
     private bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping;
@@ -71,7 +76,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Be able to jump off of walls
+        // Be able to jump off of walls & time amount allowed to cling to wall
         if (TouchWallToLeft || TouchWallToRight)
         {
             if (jump > 0 && !UsedWallJump)
@@ -94,6 +99,12 @@ public class PlayerController : MonoBehaviour
                 
                 DisableControl();
                 Invoke("StopWallJumping", WallJumpLength);
+            }
+
+            if (_rb.velocity.magnitude == 0)
+            {
+                ClingPosition = _rb.position;
+                Invoke("WallSlide", ClingTime);
             }
         }
 
@@ -165,6 +176,14 @@ public class PlayerController : MonoBehaviour
     {
         GiveBackControl();
         WallJumping = false;
+    }
+
+    private void WallSlide()
+    {
+        if (_rb.position == ClingPosition)
+        {
+            DisableControl();
+        }
     }
 
     public void DisableControl()
