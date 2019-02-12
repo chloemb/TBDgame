@@ -16,11 +16,9 @@ public class PlayerController : MonoBehaviour
     public float JumpHeight;
     public Vector2 WallJumpStrength;
     public float WallJumpLength;
-    public float DashStrength;
-    public float DashLength;
-    public Vector2 LastDashed;
 
     // player axes array. Currently: [Horizontal, Jump]
+    [HideInInspector]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
@@ -43,12 +41,10 @@ public class PlayerController : MonoBehaviour
             case "Player 1":
                 PlayerAxes[0] = "P1Horizontal";
                 PlayerAxes[1] = "P1Jump";
-                PlayerAxes[2] = "P1Dash";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2Horizontal";
                 PlayerAxes[1] = "P2Jump";
-                PlayerAxes[2] = "P2Dash";
                 break;
         }
 
@@ -62,7 +58,7 @@ public class PlayerController : MonoBehaviour
         // Get Input
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
-        var dash = Input.GetAxis(PlayerAxes[2]);
+
 
         // Jump from ground if control isn't disabled
         if (IsGrounded && !ControlDisabled)
@@ -109,17 +105,6 @@ public class PlayerController : MonoBehaviour
 
             // Apply horizontal movement
             _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
-        }
-
-        if (!IsGrounded && !TouchWallToLeft && !TouchWallToRight && dash > 0)
-        {
-            Vector2 dashvel = DashStrength * _rb.velocity.normalized;
-            _rb.velocity = dashvel;
-
-            _rb.AddForce(dashvel, ForceMode2D.Impulse);
-            
-            DisableControl();
-            Invoke("GiveBackControl", DashLength);
         }
 
         // Set PrevVelocity
