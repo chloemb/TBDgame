@@ -122,7 +122,8 @@
     <Compile Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\CollectableGem\Scripts\Rotate.cs" />
     <Compile Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\PennyPixel\Scripts\PhysicsObject.cs" />
     <Compile Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\PennyPixel\Scripts\PlayerPlatformerController.cs" />
-    <Compile Include="Assets\Scripts\Bounds_Manager.cs" />
+    <Compile Include="Assets\Scripts\AnimationController.cs" />
+    <Compile Include="Assets\Scripts\BoundsManager.cs" />
     <Compile Include="Assets\Scripts\Damager.cs" />
     <Compile Include="Assets\Scripts\HealthManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

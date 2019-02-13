@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bounds_Manager : MonoBehaviour
+public class BoundsManager : MonoBehaviour
 {
 
     private static Vector4 _bounds;
@@ -24,7 +24,7 @@ public class Bounds_Manager : MonoBehaviour
         }
 
     // Update is called once per frame
-        internal void Update()
+        internal void FixedUpdate()
         {
             var pos = _rb.position;
 

@@ -275,8 +275,8 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Bounds_Manager.cs" t="Include" />
+          <e p="Damager.cs" t="Include" />
           <e p="HealthManager.cs" t="Include" />
-          <e p="Knockback.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="RespawnManager.cs" t="Include" />
         </e>
