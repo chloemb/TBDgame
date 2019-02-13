@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.21, y: -0.034}
-  m_SizeDelta: {x: 1234, y: 694}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 69.845, y: 70.1443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4111441477352368780
 Canvas:
@@ -58,7 +58,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 556802533
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &4111441477352368783
 MonoBehaviour:
@@ -109,12 +109,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4111441477871771405}
   - component: {fileID: 4111441477871771404}
-  - component: {fileID: 4111441477871771407}
   - component: {fileID: 4111441477871771402}
   - component: {fileID: 4111441477871771400}
   - component: {fileID: 4111441477871771403}
+  - component: {fileID: 4111441477871771407}
   - component: {fileID: 4111441477871771401}
-  - component: {fileID: 4111441477871771446}
+  - component: {fileID: 1355224554406733610}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -130,8 +130,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4111441477871771406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5225952, y: -2.3963451, z: 0.0634743}
-  m_LocalScale: {x: 5, y: 5, z: 0}
+  m_LocalPosition: {x: -4.692, y: -4.55, z: 0.0634743}
+  m_LocalScale: {x: 0.77, y: 0.77, z: 0}
   m_Children:
   - {fileID: 4111441477352368769}
   m_Father: {fileID: 0}
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,7 +174,7 @@ SpriteRenderer:
   m_SortingLayerID: 556802533
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 83f3ef6f5b41d4eb4bd2b353bfeade81, type: 3}
   m_Color: {r: 1, g: 0.3066038, b: 0.3066038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -185,28 +185,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4111441477871771407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad0995214d94884da72fb146e149249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 5
-  JumpHeight: 5
-  WallJumpStrength: {x: 0.5, y: 1}
-  WallJumpLength: 0.2
-  PlayerAxes:
-  - 
-  - 
-  IsGrounded: 0
-  ControlDisabled: 0
-  PrevVelocity: {x: 0, y: 0}
 --- !u!50 &4111441477871771402
 Rigidbody2D:
   serializedVersion: 4
@@ -222,7 +200,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -255,17 +233,45 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.01, y: 10.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4111441477871771407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad0995214d94884da72fb146e149249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GravityScale: 2
+  Speed: 5
+  JumpHeight: 7
+  WallJumpStrength: {x: 0.5, y: 1}
+  WallJumpLength: 0.2
+  ClingTime: 0.75
+  DashStrength: {x: 15, y: 5}
+  DashLength: 0.01
+  DashCooldown: 2
+  PlayerAxes:
+  - 
+  - 
+  - 
+  IsGrounded: 0
+  KnockingBack: 0
+  PrevVelocity: {x: 0, y: 0}
 --- !u!114 &4111441477871771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +287,7 @@ MonoBehaviour:
   InitialHealth: 6
   Health: 0
   HealthDisplay: {fileID: 4111441478038856029}
---- !u!114 &4111441477871771446
+--- !u!114 &1355224554406733610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,8 +299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2.5
-  KnockbackLength: 0.3
+  KnockbackStrength: 2
+  KnockbackLength: 0.5
+  Damage: 0
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,8 +336,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.7, y: 1.8}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -0.074357}
+  m_SizeDelta: {x: 568, y: 569.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4111441478038856026
 CanvasRenderer:
@@ -388,10 +395,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
-  m_fontSizeBase: 36
+  m_fontSize: 600
+  m_fontSizeBase: 600
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -406,7 +413,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -426,7 +433,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 55.668488, y: -24.367172, z: 54.047997, w: -14.998223}
+  m_margin: {x: 3.462787, y: 567.63293, z: 3.9307344, w: 566.8537}
   m_textInfo:
     textComponent: {fileID: 4111441478038856029}
     characterCount: 1

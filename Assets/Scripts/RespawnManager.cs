@@ -47,5 +47,8 @@ public class RespawnManager : MonoBehaviour
         player.ResetHealth();
         Rigidbody2D playerRB = player.gameObject.GetComponent<Rigidbody2D>();
         playerRB.velocity = new Vector2(0f, 0f);
+        PlayerController playerController = player.gameObject.GetComponent<PlayerController>();
+        playerController.RefreshCooldown();
+        playerController.GiveBackControl();
     }
 }

@@ -17,16 +17,10 @@ public class HealthManager : MonoBehaviour
         UpdateHealthDisplay();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void DamagePlayer(int dmg)
     {
-        if (other.gameObject.tag == "Hazards")
-        {
-            Health -= 1;
-        }
-        
+        Health -= dmg;
         UpdateHealthDisplay();
-        Knockback kb = gameObject.GetComponent<Knockback>();
-        kb.KnockPlayer();
     }
 
     public void UpdateHealthDisplay()

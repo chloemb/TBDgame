@@ -10,41 +10,51 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    
+
     // Customizable in inspector
+    public float GravityScale;
     public float Speed;
     public float JumpHeight;
     public Vector2 WallJumpStrength;
     public float WallJumpLength;
+    public float ClingTime;
+    public Vector2 DashStrength;
+    public float DashLength;
+    public float DashCooldown;
 
     // player axes array. Currently: [Horizontal, Jump]
-    [HideInInspector]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector]
-    public bool IsGrounded, ControlDisabled;
+    [HideInInspector] public bool IsGrounded, KnockingBack;
+    [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
-    [HideInInspector]
-    public Vector2 PrevVelocity; // The most recent non-zero velocity
-    
+    private Vector2 ClingPosition, LastDashed;
+
     // various info about object
-    private bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping;
+    private bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping, 
+        UsedDash, CurrentlyDashing, ControlDisabled, DashOnCooldown;
+
+    private Color SpriteColor;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
+        _rb.gravityScale = GravityScale;
+        SpriteColor = GetComponent<SpriteRenderer>().color;
 
         switch (gameObject.name)
         {
             case "Player 1":
                 PlayerAxes[0] = "P1Horizontal";
                 PlayerAxes[1] = "P1Jump";
+                PlayerAxes[2] = "P1Dash";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2Horizontal";
                 PlayerAxes[1] = "P2Jump";
+                PlayerAxes[2] = "P2Dash";
                 break;
         }
 
@@ -58,7 +68,7 @@ public class PlayerController : MonoBehaviour
         // Get Input
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
-
+        var dash = Input.GetAxis(PlayerAxes[2]);
 
         // Jump from ground if control isn't disabled
         if (IsGrounded && !ControlDisabled)
@@ -71,7 +81,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Be able to jump off of walls
+        // Be able to jump off of walls & time amount allowed to cling to wall
         if (TouchWallToLeft || TouchWallToRight)
         {
             if (jump > 0 && !UsedWallJump)
@@ -81,30 +91,68 @@ public class PlayerController : MonoBehaviour
 
                 if (TouchWallToLeft)
                 {
-                    errorVector2 = errorVector2 + new Vector2(WallJumpStrength.x * Speed, 0);
+                    errorVector2 += new Vector2(WallJumpStrength.x * Speed, 0);
                 }
                 else
                 {
-                    errorVector2 = errorVector2 - new Vector2(WallJumpStrength.x * Speed, 0);
+                    errorVector2 -= new Vector2(WallJumpStrength.x * Speed, 0);
                 }
 
                 _rb.AddForce(errorVector2, ForceMode2D.Impulse);
                 WallJumping = true;
                 UsedWallJump = true;
-                
+
                 DisableControl();
                 Invoke("StopWallJumping", WallJumpLength);
             }
+
+            if (_rb.velocity.magnitude == 0)
+            {
+                ClingPosition = _rb.position;
+                Invoke("WallSlide", ClingTime);
+            }
         }
 
-
+        // Horizontal movement
         if (!ControlDisabled)
         {
-            // Calculate horizontal movement
             Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
-
-            // Apply horizontal movement
             _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
+        }
+
+        // Dash
+        if (dash > 0 && !DashOnCooldown && !UsedDash && !TouchWallToLeft && !TouchWallToRight)
+        {
+            Vector2 dashvel = DashStrength * _rb.velocity.normalized;
+            CurrentlyDashing = true;
+            UsedDash = true;
+
+            if (TouchWallToLeft || TouchWallToRight)
+            {
+                if (TouchWallToLeft)
+                {
+                    dashvel = DashStrength * WallJumpStrength;
+                }
+                else if (TouchWallToRight)
+                {
+                    dashvel = new Vector2(-(DashStrength * WallJumpStrength).x,
+                        (DashStrength * WallJumpStrength).y);
+                }
+                Invoke("StopDash", WallJumpLength);
+            }
+            else
+            {
+                Invoke("StopDash", DashLength);
+            }
+            
+            _rb.AddForce(dashvel, ForceMode2D.Impulse);
+            
+            DisableControl();
+            PutDashOnCooldown();
+            Invoke("RefreshCooldown", DashCooldown);
+            
+            LastDashed = dashvel;
+            _rb.gravityScale = 0;
         }
 
         // Set PrevVelocity
@@ -120,6 +168,7 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Floors")
         {
             IsGrounded = true;
+            UsedDash = false;
         }
 
         if (col.gameObject.tag == "Walls")
@@ -151,7 +200,7 @@ public class PlayerController : MonoBehaviour
             TouchWallToRight = false;
 
             // Give control back if not wall jumping (i.e. if falling)
-            if (!WallJumping)
+            if (!WallJumping && !CurrentlyDashing)
             {
                 GiveBackControl();
             }
@@ -165,6 +214,38 @@ public class PlayerController : MonoBehaviour
     {
         GiveBackControl();
         WallJumping = false;
+    }
+
+    private void StopDash()
+    {
+        GiveBackControl();
+        _rb.gravityScale = GravityScale;
+        CurrentlyDashing = false;
+        if (IsGrounded)
+        {
+            UsedDash = false;
+        }
+    }
+
+    private void PutDashOnCooldown()
+    {
+        DashOnCooldown = true;
+        gameObject.GetComponent<SpriteRenderer>().color = 
+            new Color(2f*SpriteColor.r, 2f*SpriteColor.g, 2f*SpriteColor.b);
+    }
+    
+    public void RefreshCooldown()
+    {
+        DashOnCooldown = false;
+        gameObject.GetComponent<SpriteRenderer>().color = SpriteColor;
+    }
+
+    private void WallSlide()
+    {
+        if (_rb.position == ClingPosition)
+        {
+            DisableControl();
+        }
     }
 
     public void DisableControl()
