@@ -7,7 +7,6 @@ public class AnimationController : MonoBehaviour
     private Animator _anim;
     private PlayerController _pc;
     private Rigidbody2D _rb;
-    private Color SpriteColor;
 
     private const int STATE_IDLE = 0;
     private const int STATE_RUNNING = 1;
@@ -26,7 +25,6 @@ public class AnimationController : MonoBehaviour
         _anim = GetComponent<Animator>();
         _pc = gameObject.GetComponent<PlayerController>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        SpriteColor = GetComponent<SpriteRenderer>().color;
     }
 
     void FixedUpdate()

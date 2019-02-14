@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     public Vector2 DashStrength;
     public float DashLength;
     public float DashCooldown;
-    public float ShootCooldown;
 
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
         CurrentlyDashing,
         ControlDisabled,
         DashOnCooldown,
-        ShootOnCooldown,
         FacingRight;
 
     // Start is called before the first frame update
@@ -135,11 +133,9 @@ public class PlayerController : MonoBehaviour
             LeftStickAngle = FacingRight ? new Vector2(1f, 0f): new Vector2(-1f, 0f);
 
         // Fire Weapon
-        if (shoot > 0 && !ShootOnCooldown)
+        if (shoot > 0)
         {
             GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
-            ShootOnCooldown = true;
-            Invoke("RefreshShootCooldown", ShootCooldown);
             LastFired = LeftStickAngle;
         }
 
@@ -242,11 +238,6 @@ public class PlayerController : MonoBehaviour
     public void RefreshCooldown()
     {
         DashOnCooldown = false;
-    }
-
-    public void RefreshShootCooldown()
-    {
-        ShootOnCooldown = false;
     }
 
     private void WallSlide()

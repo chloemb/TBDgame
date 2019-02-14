@@ -254,10 +254,9 @@ MonoBehaviour:
   WallJumpStrength: {x: 0.5, y: 1}
   WallJumpLength: 0.2
   ClingTime: 0.75
-  DashStrength: {x: 10, y: 5}
+  DashStrength: {x: 10, y: 7}
   DashLength: 0.15
   DashCooldown: 2
-  ShootCooldown: 1
   PlayerAxes:
   - 
   - 
@@ -275,7 +274,6 @@ MonoBehaviour:
   CurrentlyDashing: 0
   ControlDisabled: 0
   DashOnCooldown: 0
-  ShootOnCooldown: 0
   FacingRight: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:
@@ -341,6 +339,7 @@ MonoBehaviour:
   Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
   Speed: 10
   BulletPos: {x: 1.01, y: 0.2}
+  Cooldown: 1
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

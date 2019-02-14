@@ -270,16 +270,15 @@
             </e>
           </e>
         </e>
-        <e p="Pixel Font - Tripfive" t="Include">
-          <e p="_README.txt" t="Include" />
-        </e>
         <e p="Scripts" t="Include">
           <e p="AnimationController.cs" t="Include" />
           <e p="BoundsManager.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
+          <e p="ButtonManager.cs" t="Include" />
           <e p="Damager.cs" t="Include" />
           <e p="FireWeapon.cs" t="Include" />
           <e p="HealthManager.cs" t="Include" />
+          <e p="Platform.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="RespawnManager.cs" t="Include" />
         </e>
@@ -318,6 +317,6 @@
       </e>
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2018.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_TBDgame.-655309510.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_TBDgame.760899367.00" t="ExcludeRecursive" />
   </component>
 </project>

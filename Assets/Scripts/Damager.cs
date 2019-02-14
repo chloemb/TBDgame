@@ -34,7 +34,6 @@ public class Damager : MonoBehaviour
 
     public void KnockPlayer()
     {
-        Debug.Log("knock player called");
         // Calculate velocity and magnitude of knockback
         if (AppliedDamage)
         {
@@ -43,7 +42,6 @@ public class Damager : MonoBehaviour
         }
         else
         {
-            Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity);
             _lastKnocked.x = gameObject.GetComponent<Rigidbody2D>().velocity.x;
         }
 
@@ -56,7 +54,6 @@ public class Damager : MonoBehaviour
         _playerController.DisableControl();
 
         Invoke("StopKnocking", KnockbackLength);
-        Debug.Log(KnockbackLength);
     }
 
     private void StopKnocking()
