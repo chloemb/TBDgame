@@ -14,7 +14,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
-    dead: 0.3
+    dead: 0.2
     sensitivity: 3
     snap: 0
     invert: 0
@@ -30,7 +30,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
-    dead: 0.3
+    dead: 0.2
     sensitivity: 3
     snap: 0
     invert: 0
@@ -114,8 +114,8 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 0
-    axis: 1
+    type: 2
+    axis: 5
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2Shoot
@@ -131,5 +131,37 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 17
+    axis: 5
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: P1Vertical
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 2 button 18
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: P2Vertical
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 2 button 18
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.2
+    sensitivity: 3
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
     joyNum: 2

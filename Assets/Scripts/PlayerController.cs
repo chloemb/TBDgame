@@ -22,8 +22,11 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
     public bool FacingRight;
+    public float ShootCooldown;
 
-    // player axes array. Currently: [Horizontal, Jump, Dash, Shoot]
+    public Vector2 LastFired;
+
+    // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
@@ -34,8 +37,15 @@ public class PlayerController : MonoBehaviour
     private Vector2 ClingPosition, LastDashed, PreDashVel;
 
     // various info about object
-    [HideInInspector] public bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping, 
-        UsedDash, CurrentlyDashing, ControlDisabled, DashOnCooldown;
+    [HideInInspector] public bool TouchWallToRight,
+        TouchWallToLeft,
+        UsedWallJump,
+        WallJumping,
+        UsedDash,
+        CurrentlyDashing,
+        ControlDisabled,
+        DashOnCooldown,
+        ShootOnCooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -50,12 +60,14 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[1] = "P1Jump";
                 PlayerAxes[2] = "P1Dash";
                 PlayerAxes[3] = "P1Shoot";
+                PlayerAxes[4] = "P1Vertical";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2Horizontal";
                 PlayerAxes[1] = "P2Jump";
                 PlayerAxes[2] = "P2Dash";
                 PlayerAxes[3] = "P2Shoot";
+                PlayerAxes[4] = "P2Vertical";
                 break;
         }
 
@@ -71,7 +83,8 @@ public class PlayerController : MonoBehaviour
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
         var dash = Input.GetAxis(PlayerAxes[2]);
-        var shoot = Input.GetButtonDown(PlayerAxes[3]);
+        var shoot = Input.GetAxis(PlayerAxes[3]);
+        var vertical = Input.GetAxis(PlayerAxes[4]);
 
         // Jump from ground if control isn't disabled
         if (IsGrounded && !ControlDisabled)
@@ -127,18 +140,35 @@ public class PlayerController : MonoBehaviour
             else if (horizontal < 0)
                 FacingRight = false;
         }
-        
-        // Fire Weapon
-        if (shoot)
+
+        // Determine left stick angle; if none, the direction the player is facing. Magnitude is 1.
+        Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
+        if (LeftStickAngle.magnitude == 0)
         {
-            GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, gameObject);
+            if (FacingRight)
+            {
+                LeftStickAngle = new Vector2(1f, 0f);
+            }
+            else
+            {
+                LeftStickAngle = new Vector2(-1f, 0f);
+            }
+        }
+
+        // Fire Weapon
+        if (shoot > 0 && !ShootOnCooldown)
+        {
+            GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
+            ShootOnCooldown = true;
+            Invoke("RefreshShootCooldown", ShootCooldown);
+            LastFired = LeftStickAngle;
         }
 
         // Dash
         if (dash > 0 && !DashOnCooldown && !UsedDash && !TouchWallToLeft && !TouchWallToRight)
         {
             PreDashVel = _rb.velocity;
-            Vector2 dashvel = DashStrength * _rb.velocity.normalized;
+            Vector2 dashvel = DashStrength * LeftStickAngle;
             CurrentlyDashing = true;
             UsedDash = true;
 
@@ -153,19 +183,20 @@ public class PlayerController : MonoBehaviour
                     dashvel = new Vector2(-(DashStrength * WallJumpStrength).x,
                         (DashStrength * WallJumpStrength).y);
                 }
+
                 Invoke("StopDash", WallJumpLength);
             }
             else
             {
                 Invoke("StopDash", DashLength);
             }
-            
+
             _rb.AddForce(dashvel, ForceMode2D.Impulse);
-            
+
             DisableControl();
             PutDashOnCooldown();
             Invoke("RefreshCooldown", DashCooldown);
-            
+
             LastDashed = dashvel;
             _rb.gravityScale = 0;
         }
@@ -191,7 +222,7 @@ public class PlayerController : MonoBehaviour
                 TouchWallToRight = true;
             }
         }
-        
+
         // Ground object if on floor
         if (col.gameObject.tag == "Floors")
         {
@@ -249,10 +280,15 @@ public class PlayerController : MonoBehaviour
     {
         DashOnCooldown = true;
     }
-    
+
     public void RefreshCooldown()
     {
         DashOnCooldown = false;
+    }
+
+    public void RefreshShootCooldown()
+    {
+        ShootOnCooldown = false;
     }
 
     private void WallSlide()
