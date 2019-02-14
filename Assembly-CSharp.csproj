@@ -130,8 +130,8 @@
     <Compile Include="Assets\PennyPixel Sprites\PennyPixel_2DTilemapProject\Assets\PennyPixel\Scripts\PlayerPlatformerController.cs" />
     <Compile Include="Assets\Scripts\AnimationController.cs" />
     <Compile Include="Assets\Scripts\BoundsManager.cs" />
-    <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\Damager.cs" />
     <Compile Include="Assets\Scripts\FireWeapon.cs" />
     <Compile Include="Assets\Scripts\HealthManager.cs" />
