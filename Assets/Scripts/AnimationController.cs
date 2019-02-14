@@ -71,26 +71,36 @@ public class AnimationController : MonoBehaviour
             changeState(2);
             AnimationState = STATE_FLYING;
         }
-
+        
+        // Manages dash cooldown indicator
         if (GrayedOut != _pc.DashOnCooldown)
         {
             GrayedOut = _pc.DashOnCooldown;
             if (GrayedOut)
             {
-                gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-            }
-            else
-            {
-                gameObject.GetComponent<SpriteRenderer>().color = SpriteColor;
-            }
+                IEnumerator ColorLerper = DashRefresh(_pc.DashCooldown);
+                StartCoroutine(ColorLerper);
+            }    
         }
-
+        
+        // Dash trail
         if (_pc.CurrentlyDashing && !TrailOn)
         {
             CurTrail = Instantiate(DashTrail, _rb.transform);
             CurTrail.GetComponent<TrailRenderer>().time = _pc.DashLength;
             Invoke("DestroyTrail", _pc.DashLength);
             TrailOn = true;
+        }
+    }
+
+    private IEnumerator DashRefresh(float cooldown)
+    {
+        float cdpassed = 0;
+        while (cdpassed <= cooldown)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(Color.gray, Color.white, cdpassed/cooldown);
+            cdpassed += Time.deltaTime;
+            yield return null;
         }
     }
 
