@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector]
+    //[HideInInspector]
     public bool IsGrounded, KnockingBack;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 

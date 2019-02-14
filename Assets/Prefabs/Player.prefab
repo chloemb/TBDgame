@@ -206,7 +206,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &4111441477871771400
 MonoBehaviour:
@@ -257,7 +257,6 @@ MonoBehaviour:
   DashStrength: {x: 10, y: 5}
   DashLength: 0.15
   DashCooldown: 2
-  FacingRight: 0
   ShootCooldown: 1
   PlayerAxes:
   - 
@@ -277,6 +276,7 @@ MonoBehaviour:
   ControlDisabled: 0
   DashOnCooldown: 0
   ShootOnCooldown: 0
+  FacingRight: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
-  Speed: 5
+  Speed: 10
   BulletPos: {x: 1.01, y: 0.2}
 --- !u!1 &4111441478038856031
 GameObject:

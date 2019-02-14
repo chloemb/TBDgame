@@ -32,13 +32,13 @@ public class AnimationController : MonoBehaviour
     void FixedUpdate()
     {
         // flipping
-        if (_rb.velocity.x > 0 && FacingLeft)
+        if (!_pc.KnockingBack && _rb.velocity.x > 0 && FacingLeft)
         {
             transform.Rotate(0, 180, 0);
             gameObject.GetComponent<HealthManager>().HealthDisplay.transform.Rotate(0, 180, 0);
             FacingLeft = false;
         }
-        else if (_rb.velocity.x < 0 && !FacingLeft)
+        else if (!_pc.KnockingBack && _rb.velocity.x < 0 && !FacingLeft)
         {
             transform.Rotate(0, 180, 0);
             gameObject.GetComponent<HealthManager>().HealthDisplay.transform.Rotate(0, 180, 0);
@@ -47,7 +47,12 @@ public class AnimationController : MonoBehaviour
 
         if (_pc.IsGrounded)
         {
-            if (_rb.velocity.x == 0)
+            if (_pc.KnockingBack)
+            {
+                changeState(0);
+                AnimationState = STATE_IDLE;
+            }
+            else if (_rb.velocity.x == 0)
             {
                 if (_pc.TouchWallToLeft || _pc.TouchWallToRight)
                 {
