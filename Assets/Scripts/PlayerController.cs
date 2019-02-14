@@ -21,20 +21,17 @@ public class PlayerController : MonoBehaviour
     public Vector2 DashStrength;
     public float DashLength;
     public float DashCooldown;
-    public bool FacingRight;
     public float ShootCooldown;
-
-    public Vector2 LastFired;
 
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    //[HideInInspector]
+    [HideInInspector]
     public bool IsGrounded, KnockingBack;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
-    private Vector2 ClingPosition, LastDashed, PreDashVel;
+    private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
 
     // various info about object
     [HideInInspector] public bool TouchWallToRight,
@@ -45,7 +42,8 @@ public class PlayerController : MonoBehaviour
         CurrentlyDashing,
         ControlDisabled,
         DashOnCooldown,
-        ShootOnCooldown;
+        ShootOnCooldown,
+        FacingRight;
 
     // Start is called before the first frame update
     void Start()
