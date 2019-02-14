@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Be able to jump off of walls & time amount allowed to cling to wall
-        if (TouchWallToLeft || TouchWallToRight)
+        if (TouchWallToLeft || TouchWallToRight && !IsGrounded)
         {
             if (jump > 0 && !UsedWallJump)
             {
@@ -179,10 +179,7 @@ public class PlayerController : MonoBehaviour
         // Ground object if on floor
         if (col.gameObject.tag == "Floors")
         {
-            if (!TouchWallToLeft && !TouchWallToRight)
-            {
-                IsGrounded = true;
-            }
+            IsGrounded = true;
 
             UsedDash = false;
         }

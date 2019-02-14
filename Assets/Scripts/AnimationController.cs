@@ -17,6 +17,10 @@ public class AnimationController : MonoBehaviour
     public int AnimationState = STATE_IDLE;
     private bool GrayedOut;
 
+    public GameObject DashTrail;
+    private GameObject CurTrail;
+    private bool TrailOn;
+
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -80,6 +84,20 @@ public class AnimationController : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().color = SpriteColor;
             }
         }
+
+        if (_pc.CurrentlyDashing && !TrailOn)
+        {
+            CurTrail = Instantiate(DashTrail, _rb.transform);
+            CurTrail.GetComponent<TrailRenderer>().time = _pc.DashLength;
+            Invoke("DestroyTrail", _pc.DashLength);
+            TrailOn = true;
+        }
+    }
+
+    private void DestroyTrail()
+    {
+        TrailOn = false;
+        Destroy(CurTrail);
     }
 
     private void changeState(int n)
