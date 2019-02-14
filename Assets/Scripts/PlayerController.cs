@@ -27,23 +27,21 @@ public class PlayerController : MonoBehaviour
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector] public bool IsGrounded, KnockingBack;
+    //[HideInInspector]
+    public bool IsGrounded, KnockingBack;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
-    private Vector2 ClingPosition, LastDashed;
+    private Vector2 ClingPosition, LastDashed, PreDashVel;
 
     // various info about object
-    private bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping, 
+    [HideInInspector] public bool TouchWallToRight, TouchWallToLeft, UsedWallJump, WallJumping, 
         UsedDash, CurrentlyDashing, ControlDisabled, DashOnCooldown;
-
-    private Color SpriteColor;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.gravityScale = GravityScale;
-        SpriteColor = GetComponent<SpriteRenderer>().color;
 
         switch (gameObject.name)
         {
@@ -87,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Be able to jump off of walls & time amount allowed to cling to wall
-        if (TouchWallToLeft || TouchWallToRight)
+        if (TouchWallToLeft || TouchWallToRight && !IsGrounded)
         {
             if (jump > 0 && !UsedWallJump)
             {
@@ -139,6 +137,7 @@ public class PlayerController : MonoBehaviour
         // Dash
         if (dash > 0 && !DashOnCooldown && !UsedDash && !TouchWallToLeft && !TouchWallToRight)
         {
+            PreDashVel = _rb.velocity;
             Vector2 dashvel = DashStrength * _rb.velocity.normalized;
             CurrentlyDashing = true;
             UsedDash = true;
@@ -180,13 +179,6 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        // Ground object if on floor
-        if (col.gameObject.tag == "Floors")
-        {
-            IsGrounded = true;
-            UsedDash = false;
-        }
-
         if (col.gameObject.tag == "Walls")
         {
             // Detect which side the wall is on
@@ -198,6 +190,14 @@ public class PlayerController : MonoBehaviour
             {
                 TouchWallToRight = true;
             }
+        }
+        
+        // Ground object if on floor
+        if (col.gameObject.tag == "Floors")
+        {
+            IsGrounded = true;
+
+            UsedDash = false;
         }
     }
 
@@ -241,19 +241,18 @@ public class PlayerController : MonoBehaviour
         {
             UsedDash = false;
         }
+
+        _rb.velocity = PreDashVel;
     }
 
     private void PutDashOnCooldown()
     {
         DashOnCooldown = true;
-        gameObject.GetComponent<SpriteRenderer>().color = 
-            new Color(2f*SpriteColor.r, 2f*SpriteColor.g, 2f*SpriteColor.b);
     }
     
     public void RefreshCooldown()
     {
         DashOnCooldown = false;
-        gameObject.GetComponent<SpriteRenderer>().color = SpriteColor;
     }
 
     private void WallSlide()
