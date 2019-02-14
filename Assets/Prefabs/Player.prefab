@@ -265,10 +265,14 @@ MonoBehaviour:
   DashStrength: {x: 15, y: 5}
   DashLength: 0.01
   DashCooldown: 2
+  WeaponCooldown: 1
+  FacingRight: 0
   PlayerAxes:
   - 
   - 
   - 
+  - 
+  shooter: 
   IsGrounded: 0
   KnockingBack: 0
   PrevVelocity: {x: 0, y: 0}

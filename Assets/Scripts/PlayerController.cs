@@ -21,8 +21,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 DashStrength;
     public float DashLength;
     public float DashCooldown;
+    public bool FacingRight;
 
-    // player axes array. Currently: [Horizontal, Jump]
+    // player axes array. Currently: [Horizontal, Jump, Dash, Shoot]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
@@ -50,11 +51,13 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[0] = "P1Horizontal";
                 PlayerAxes[1] = "P1Jump";
                 PlayerAxes[2] = "P1Dash";
+                PlayerAxes[3] = "P1Shoot";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2Horizontal";
                 PlayerAxes[1] = "P2Jump";
                 PlayerAxes[2] = "P2Dash";
+                PlayerAxes[3] = "P2Shoot";
                 break;
         }
 
@@ -66,9 +69,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Get Input
+        //Debug.Log(PlayerAxes[3]);
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
         var dash = Input.GetAxis(PlayerAxes[2]);
+        var shoot = Input.GetButtonDown(PlayerAxes[3]);
 
         // Jump from ground if control isn't disabled
         if (IsGrounded && !ControlDisabled)
@@ -118,6 +123,17 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
+
+            if (horizontal > 0)
+                FacingRight = true;
+            else if (horizontal < 0)
+                FacingRight = false;
+        }
+        
+        // Fire Weapon
+        if (shoot)
+        {
+            GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, gameObject);
         }
 
         // Dash
