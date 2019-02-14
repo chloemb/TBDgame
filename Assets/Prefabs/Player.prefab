@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 4111441477871771401}
   - component: {fileID: 629207824}
   - component: {fileID: 629207823}
+  - component: {fileID: 8860448826921193167}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -256,7 +257,11 @@ MonoBehaviour:
   DashStrength: {x: 10, y: 5}
   DashLength: 0.15
   DashCooldown: 2
+  FacingRight: 0
+  ShootCooldown: 1
   PlayerAxes:
+  - 
+  - 
   - 
   - 
   - 
@@ -271,6 +276,7 @@ MonoBehaviour:
   CurrentlyDashing: 0
   ControlDisabled: 0
   DashOnCooldown: 0
+  ShootOnCooldown: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +324,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationState: 0
+  DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
+    type: 3}
+--- !u!114 &8860448826921193167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8b76b6ae60a4dd49be43f552e2c525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
+  Speed: 5
+  BulletPos: {x: 1.01, y: 0.2}
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0
