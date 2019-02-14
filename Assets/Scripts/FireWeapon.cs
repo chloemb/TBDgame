@@ -13,12 +13,12 @@ public class FireWeapon : MonoBehaviour
         var playerWidth = new Vector3(BulletPos.x * player.GetComponent<CapsuleCollider2D>().bounds.size.x, BulletPos.y);
         if(facingRight)
         {
-            Rigidbody2D bulletInstance = Instantiate(Bullet, transform.position + playerWidth, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
+            Rigidbody2D bulletInstance = Instantiate(Bullet, transform.position + playerWidth, Quaternion.Euler(new Vector3(0,0,0)));
             bulletInstance.velocity = new Vector2(Speed, 0);
         }
         else
         {
-            Rigidbody2D bulletInstance = Instantiate(Bullet, transform.position - playerWidth, Quaternion.Euler(new Vector3(0,0,180f))) as Rigidbody2D;
+            Rigidbody2D bulletInstance = Instantiate(Bullet, new Vector3(transform.position.x - playerWidth.x, transform.position.y + playerWidth.y), Quaternion.Euler(new Vector3(0,0,180f)));
             bulletInstance.velocity = new Vector2(-Speed, 0);
         }
     }
