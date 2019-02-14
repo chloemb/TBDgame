@@ -270,16 +270,15 @@
             </e>
           </e>
         </e>
-        <e p="Pixel Font - Tripfive" t="Include">
-          <e p="_README.txt" t="Include" />
-        </e>
         <e p="Scripts" t="Include">
           <e p="AnimationController.cs" t="Include" />
           <e p="BoundsManager.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
+          <e p="ButtonManager.cs" t="Include" />
           <e p="Damager.cs" t="Include" />
           <e p="FireWeapon.cs" t="Include" />
           <e p="HealthManager.cs" t="Include" />
+          <e p="Platform.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="RespawnManager.cs" t="Include" />
         </e>

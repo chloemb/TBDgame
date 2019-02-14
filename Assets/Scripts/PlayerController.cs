@@ -21,13 +21,12 @@ public class PlayerController : MonoBehaviour
     public Vector2 DashStrength;
     public float DashLength;
     public float DashCooldown;
-    public float ShootCooldown;
 
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector]
+    //[HideInInspector]
     public bool IsGrounded, KnockingBack;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
         CurrentlyDashing,
         ControlDisabled,
         DashOnCooldown,
-        ShootOnCooldown,
         FacingRight;
 
     // Start is called before the first frame update
@@ -77,7 +75,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Get Input
-        //Debug.Log(PlayerAxes[3]);
         var horizontal = Input.GetAxis(PlayerAxes[0]);
         var jump = Input.GetAxis(PlayerAxes[1]);
         var dash = Input.GetAxis(PlayerAxes[2]);
@@ -102,20 +99,11 @@ public class PlayerController : MonoBehaviour
             {
                 Vector2 errorVector2 = new Vector2(0, WallJumpStrength.y * JumpHeight);
                 _rb.velocity = new Vector2(0, 0);
-
-                if (TouchWallToLeft)
-                {
-                    errorVector2 += new Vector2(WallJumpStrength.x * Speed, 0);
-                }
-                else
-                {
-                    errorVector2 -= new Vector2(WallJumpStrength.x * Speed, 0);
-                }
-
+                errorVector2 = TouchWallToLeft ? errorVector2 + new Vector2(WallJumpStrength.x * Speed, 0)
+                        : errorVector2 - new Vector2(WallJumpStrength.x * Speed, 0);
                 _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-                WallJumping = true;
-                UsedWallJump = true;
-
+                
+                WallJumping = UsedWallJump = true;
                 DisableControl();
                 Invoke("StopWallJumping", WallJumpLength);
             }
@@ -142,68 +130,49 @@ public class PlayerController : MonoBehaviour
         // Determine left stick angle; if none, the direction the player is facing. Magnitude is 1.
         Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
         if (LeftStickAngle.magnitude == 0)
-        {
-            if (FacingRight)
-            {
-                LeftStickAngle = new Vector2(1f, 0f);
-            }
-            else
-            {
-                LeftStickAngle = new Vector2(-1f, 0f);
-            }
-        }
+            LeftStickAngle = FacingRight ? new Vector2(1f, 0f): new Vector2(-1f, 0f);
 
         // Fire Weapon
-        if (shoot > 0 && !ShootOnCooldown)
+        if (shoot > 0)
         {
             GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
-            ShootOnCooldown = true;
-            Invoke("RefreshShootCooldown", ShootCooldown);
             LastFired = LeftStickAngle;
         }
 
         // Dash
-        if (dash > 0 && !DashOnCooldown && !UsedDash && !TouchWallToLeft && !TouchWallToRight)
+        if (dash > 0 && !DashOnCooldown && !UsedDash)
         {
             PreDashVel = _rb.velocity;
             Vector2 dashvel = DashStrength * LeftStickAngle;
-            CurrentlyDashing = true;
-            UsedDash = true;
 
             if (TouchWallToLeft || TouchWallToRight)
             {
                 if (TouchWallToLeft)
-                {
                     dashvel = DashStrength * WallJumpStrength;
-                }
                 else if (TouchWallToRight)
-                {
                     dashvel = new Vector2(-(DashStrength * WallJumpStrength).x,
                         (DashStrength * WallJumpStrength).y);
-                }
 
-                Invoke("StopDash", WallJumpLength);
+                Invoke("StopDash", DashLength);
             }
             else
             {
                 Invoke("StopDash", DashLength);
             }
-
+            
             _rb.AddForce(dashvel, ForceMode2D.Impulse);
 
             DisableControl();
             PutDashOnCooldown();
             Invoke("RefreshCooldown", DashCooldown);
-
+            
+            CurrentlyDashing = UsedDash = true;
             LastDashed = dashvel;
             _rb.gravityScale = 0;
         }
 
         // Set PrevVelocity
-        if (_rb.velocity != Vector2.zero)
-        {
-            PrevVelocity = _rb.velocity;
-        }
+        PrevVelocity = (_rb.velocity != Vector2.zero) ? _rb.velocity : PrevVelocity;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -212,20 +181,15 @@ public class PlayerController : MonoBehaviour
         {
             // Detect which side the wall is on
             if (PrevVelocity.x < 0)
-            {
                 TouchWallToLeft = true;
-            }
             else
-            {
                 TouchWallToRight = true;
-            }
         }
 
         // Ground object if on floor
         if (col.gameObject.tag == "Floors")
         {
             IsGrounded = true;
-
             UsedDash = false;
         }
     }
@@ -240,18 +204,12 @@ public class PlayerController : MonoBehaviour
 
         if (col.gameObject.tag == "Walls")
         {
-            // No longer touching wall
-            TouchWallToLeft = false;
-            TouchWallToRight = false;
+            // No longer touching wall & can only wall jump once (only relevant if WallJumpStrength.x is 0)
+            TouchWallToLeft = TouchWallToRight = UsedWallJump = false;
 
             // Give control back if not wall jumping (i.e. if falling)
             if (!WallJumping && !CurrentlyDashing)
-            {
                 GiveBackControl();
-            }
-
-            // Can only wall jump once (only relevant if WallJumpStrength.x is 0)
-            UsedWallJump = false;
         }
     }
 
@@ -267,10 +225,8 @@ public class PlayerController : MonoBehaviour
         _rb.gravityScale = GravityScale;
         CurrentlyDashing = false;
         if (IsGrounded)
-        {
             UsedDash = false;
-        }
-
+        
         _rb.velocity = PreDashVel;
     }
 
@@ -282,11 +238,6 @@ public class PlayerController : MonoBehaviour
     public void RefreshCooldown()
     {
         DashOnCooldown = false;
-    }
-
-    public void RefreshShootCooldown()
-    {
-        ShootOnCooldown = false;
     }
 
     private void WallSlide()

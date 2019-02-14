@@ -199,6 +199,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 33628233cd5454522980207fef87048d, type: 2}
+    - target: {fileID: 8860448826921193167, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: Speed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 683380832928549b4b03aafc61e50359, type: 3}
 --- !u!1 &129389133
@@ -5283,6 +5288,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4111441477871771407, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: IsGrounded
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8860448826921193167, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: Speed
