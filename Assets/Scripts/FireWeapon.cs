@@ -6,10 +6,11 @@ public class FireWeapon : MonoBehaviour
 {
     public Rigidbody2D Bullet;
     public float Speed = 1f;
+    public Vector2 BulletPos;
     
     public void FireDefaultWeapon(bool facingRight, GameObject player)
     {
-        var playerWidth = new Vector3(player.GetComponent<Collider2D>().bounds.size.x, 0, 0);
+        var playerWidth = new Vector3(BulletPos.x * player.GetComponent<CapsuleCollider2D>().bounds.size.x, BulletPos.y);
         if(facingRight)
         {
             Rigidbody2D bulletInstance = Instantiate(Bullet, transform.position + playerWidth, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
