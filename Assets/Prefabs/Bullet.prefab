@@ -161,6 +161,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnockbackStrength: 10
   KnockbackLength: 0.25
+  IFrames: 0
   Damage: 0
-  IFrames: 1
-  AppliedDamage: 0

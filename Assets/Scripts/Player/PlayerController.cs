@@ -74,105 +74,109 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Get Input
-        var horizontal = Input.GetAxis(PlayerAxes[0]);
-        var jump = Input.GetAxis(PlayerAxes[1]);
-        var dash = Input.GetAxis(PlayerAxes[2]);
-        var shoot = Input.GetAxis(PlayerAxes[3]);
-        var vertical = Input.GetAxis(PlayerAxes[4]);
-
-        // Jump from ground if control isn't disabled
-        if (IsGrounded && !ControlDisabled)
+        if (!gameObject.GetComponent<HealthManager>().InGracePeriod)
         {
-            if (jump > 0)
+            // Get Input
+            var horizontal = Input.GetAxis(PlayerAxes[0]);
+            var jump = Input.GetAxis(PlayerAxes[1]);
+            var dash = Input.GetAxis(PlayerAxes[2]);
+            var shoot = Input.GetAxis(PlayerAxes[3]);
+            var vertical = Input.GetAxis(PlayerAxes[4]);
+
+            // Jump from ground if control isn't disabled
+            if (IsGrounded && !ControlDisabled)
             {
-                Vector2 errorVector2 = new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
-                _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-                IsGrounded = false;
+                if (jump > 0)
+                {
+                    Vector2 errorVector2 = new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
+                    _rb.AddForce(errorVector2, ForceMode2D.Impulse);
+                    IsGrounded = false;
+                }
             }
-        }
 
-        // Be able to jump off of walls & time amount allowed to cling to wall
-        if (TouchWallToLeft || TouchWallToRight && !IsGrounded)
-        {
-            if (jump > 0 && !UsedWallJump)
+            // Be able to jump off of walls & time amount allowed to cling to wall
+            if (TouchWallToLeft || TouchWallToRight && !IsGrounded)
             {
-                Vector2 errorVector2 = new Vector2(0, WallJumpStrength.y * JumpHeight);
-                _rb.velocity = new Vector2(0, 0);
-                errorVector2 = TouchWallToLeft ? errorVector2 + new Vector2(WallJumpStrength.x * Speed, 0)
+                if (jump > 0 && !UsedWallJump)
+                {
+                    Vector2 errorVector2 = new Vector2(0, WallJumpStrength.y * JumpHeight);
+                    _rb.velocity = new Vector2(0, 0);
+                    errorVector2 = TouchWallToLeft
+                        ? errorVector2 + new Vector2(WallJumpStrength.x * Speed, 0)
                         : errorVector2 - new Vector2(WallJumpStrength.x * Speed, 0);
-                _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-                
-                WallJumping = UsedWallJump = true;
+                    _rb.AddForce(errorVector2, ForceMode2D.Impulse);
+
+                    WallJumping = UsedWallJump = true;
+                    DisableControl();
+                    Invoke("StopWallJumping", WallJumpLength);
+                }
+
+                if (_rb.velocity.magnitude == 0)
+                {
+                    ClingPosition = _rb.position;
+                    Invoke("WallSlide", ClingTime);
+                }
+            }
+
+            // Horizontal movement
+            if (!ControlDisabled)
+            {
+                Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
+                _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
+
+                if (horizontal > 0)
+                    FacingRight = true;
+                else if (horizontal < 0)
+                    FacingRight = false;
+            }
+
+            // Determine left stick angle; if none, the direction the player is facing. Magnitude is 1.
+            Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
+            if (LeftStickAngle.magnitude == 0)
+                LeftStickAngle = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
+
+            // Fire Weapon
+            if (shoot > 0 && !ControlDisabled)
+            {
+                GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
+                LastFired = LeftStickAngle;
+            }
+
+            // Dash
+            if (dash > 0 && !DashOnCooldown && !UsedDash && !ControlDisabled)
+            {
+                PreDashVel = _rb.velocity;
+                Vector2 dashvel = DashStrength * LeftStickAngle;
+
+                if (TouchWallToLeft || TouchWallToRight)
+                {
+                    if (TouchWallToLeft)
+                        dashvel = DashStrength * WallJumpStrength;
+                    else if (TouchWallToRight)
+                        dashvel = new Vector2(-(DashStrength * WallJumpStrength).x,
+                            (DashStrength * WallJumpStrength).y);
+
+                    Invoke("StopDash", DashLength);
+                }
+                else
+                {
+                    Invoke("StopDash", DashLength);
+                }
+
+                _rb.AddForce(dashvel, ForceMode2D.Impulse);
+
                 DisableControl();
-                Invoke("StopWallJumping", WallJumpLength);
+                PutDashOnCooldown();
+                Invoke("RefreshCooldown", DashCooldown);
+
+                CurrentlyDashing = UsedDash = true;
+                LastDashed = dashvel;
+                _rb.gravityScale = 0;
             }
 
-            if (_rb.velocity.magnitude == 0)
-            {
-                ClingPosition = _rb.position;
-                Invoke("WallSlide", ClingTime);
-            }
+            // Set PrevVelocity
+            PrevVelocity = (_rb.velocity != Vector2.zero) ? _rb.velocity : PrevVelocity;
         }
-
-        // Horizontal movement
-        if (!ControlDisabled)
-        {
-            Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
-            _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
-
-            if (horizontal > 0)
-                FacingRight = true;
-            else if (horizontal < 0)
-                FacingRight = false;
-        }
-
-        // Determine left stick angle; if none, the direction the player is facing. Magnitude is 1.
-        Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
-        if (LeftStickAngle.magnitude == 0)
-            LeftStickAngle = FacingRight ? new Vector2(1f, 0f): new Vector2(-1f, 0f);
-
-        // Fire Weapon
-        if (shoot > 0)
-        {
-            GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
-            LastFired = LeftStickAngle;
-        }
-
-        // Dash
-        if (dash > 0 && !DashOnCooldown && !UsedDash)
-        {
-            PreDashVel = _rb.velocity;
-            Vector2 dashvel = DashStrength * LeftStickAngle;
-
-            if (TouchWallToLeft || TouchWallToRight)
-            {
-                if (TouchWallToLeft)
-                    dashvel = DashStrength * WallJumpStrength;
-                else if (TouchWallToRight)
-                    dashvel = new Vector2(-(DashStrength * WallJumpStrength).x,
-                        (DashStrength * WallJumpStrength).y);
-
-                Invoke("StopDash", DashLength);
-            }
-            else
-            {
-                Invoke("StopDash", DashLength);
-            }
-            
-            _rb.AddForce(dashvel, ForceMode2D.Impulse);
-
-            DisableControl();
-            PutDashOnCooldown();
-            Invoke("RefreshCooldown", DashCooldown);
-            
-            CurrentlyDashing = UsedDash = true;
-            LastDashed = dashvel;
-            _rb.gravityScale = 0;
-        }
-
-        // Set PrevVelocity
-        PrevVelocity = (_rb.velocity != Vector2.zero) ? _rb.velocity : PrevVelocity;
     }
 
     void OnCollisionEnter2D(Collision2D col)

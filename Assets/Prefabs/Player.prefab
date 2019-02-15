@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2025481f26e4743a83bda2b2c197c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FacingLeft: 1
   AnimationState: 0
   DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
     type: 3}
@@ -341,6 +342,8 @@ MonoBehaviour:
   Health: 0
   HealthDisplay: {fileID: 4111441478038856029}
   CurrentlyInvincible: 0
+  GracePeriodLength: 3
+  RespawnPoint: {fileID: 0}
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0
