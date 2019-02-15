@@ -108,15 +108,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4111441477871771405}
-  - component: {fileID: 4111441477871771404}
   - component: {fileID: 4111441477871771402}
-  - component: {fileID: 4111441477871771400}
-  - component: {fileID: 2660994059857140868}
-  - component: {fileID: 4111441477871771407}
-  - component: {fileID: 4111441477871771401}
+  - component: {fileID: 4111441477871771404}
   - component: {fileID: 629207824}
   - component: {fileID: 629207823}
+  - component: {fileID: 2660994059857140868}
+  - component: {fileID: 4111441477871771400}
+  - component: {fileID: 4111441477871771407}
   - component: {fileID: 8860448826921193167}
+  - component: {fileID: 4111441477871771401}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -139,6 +139,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &4111441477871771402
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!212 &4111441477871771404
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -187,28 +208,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &4111441477871771402
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!95 &629207824
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4111441477871771406}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 2
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
---- !u!114 &4111441477871771400
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 107455f910738432694f9482f98382c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &629207823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,9 +236,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4111441477871771406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31531c42b20c40f409eb4541c0ddeb3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b2025481f26e4743a83bda2b2c197c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimationState: 0
+  DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
+    type: 3}
 --- !u!70 &2660994059857140868
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -236,6 +258,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.4, y: 0.9}
   m_Direction: 0
+--- !u!114 &4111441477871771400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31531c42b20c40f409eb4541c0ddeb3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4111441477871771407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +309,22 @@ MonoBehaviour:
   ControlDisabled: 0
   DashOnCooldown: 0
   FacingRight: 0
+--- !u!114 &8860448826921193167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8b76b6ae60a4dd49be43f552e2c525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
+  Speed: 10
+  SummonPoint: {x: 1.01, y: 0.2}
+  Cooldown: 1
 --- !u!114 &4111441477871771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,56 +340,7 @@ MonoBehaviour:
   InitialHealth: 6
   Health: 0
   HealthDisplay: {fileID: 4111441478038856029}
---- !u!95 &629207824
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 107455f910738432694f9482f98382c6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &629207823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2025481f26e4743a83bda2b2c197c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationState: 0
-  DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
-    type: 3}
---- !u!114 &8860448826921193167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da8b76b6ae60a4dd49be43f552e2c525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
-  Speed: 10
-  BulletPos: {x: 1.01, y: 0.2}
-  Cooldown: 1
+  CurrentlyInvincible: 0
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

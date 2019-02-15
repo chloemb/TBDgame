@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
@@ -14,11 +15,10 @@ public class AnimationController : MonoBehaviour
 
     private bool FacingLeft = true;
     public int AnimationState = STATE_IDLE;
-    private bool GrayedOut;
+    private bool GrayedOut, TrailOn;
 
     public GameObject DashTrail;
     private GameObject CurTrail;
-    private bool TrailOn;
 
     void Start()
     {
@@ -76,14 +76,14 @@ public class AnimationController : MonoBehaviour
         }
         
         // Manages dash cooldown indicator
-        if (GrayedOut != _pc.DashOnCooldown)
+        if (_pc.DashOnCooldown != GrayedOut)
         {
-            GrayedOut = _pc.DashOnCooldown;
+            GrayedOut = !GrayedOut;
             if (GrayedOut)
             {
                 IEnumerator ColorLerper = DashRefresh(_pc.DashCooldown);
                 StartCoroutine(ColorLerper);
-            }    
+            }
         }
         
         // Dash trail
@@ -107,10 +107,27 @@ public class AnimationController : MonoBehaviour
         }
     }
 
+    public IEnumerator IFrameAnim(float ifr)
+    {
+        float ifpassed = 0;
+        float timeincre = .15f;
+        
+        while (ifpassed < ifr)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = 
+                gameObject.GetComponent<SpriteRenderer>().color == Color.white ? 
+                    Color.Lerp(Color.clear, Color.white, .5f) : Color.white;
+
+            ifpassed += timeincre;
+            yield return new WaitForSeconds(timeincre);
+        }
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     private void DestroyTrail()
     {
-        TrailOn = false;
         Destroy(CurTrail);
+        TrailOn = false;
     }
 
     private void changeState(int n)

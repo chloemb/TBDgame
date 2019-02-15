@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class FireWeapon : MonoBehaviour
 {
     public Rigidbody2D Bullet;
     public float Speed = 1f;
-    public Vector2 BulletPos;
+    public Vector2 SummonPoint;
     public float Cooldown;
     private bool OnCooldown;
 
     private Vector2 FireDirection;
-    
+
     public void FireDefaultWeapon(bool facingright, Vector2 FireDirection, GameObject player)
     {
         if (!OnCooldown)
@@ -19,17 +23,16 @@ public class FireWeapon : MonoBehaviour
             this.FireDirection = FireDirection;
             OnCooldown = true;
             Invoke("RefreshShootCooldown", Cooldown);
-            var playerWidth = new Vector3(BulletPos.x * player.GetComponent<CapsuleCollider2D>().bounds.size.x,
-                BulletPos.y);
+            Vector3 RelativeSumPoint = new Vector3 (SummonPoint.x * player.GetComponent<CapsuleCollider2D>().bounds.size.x,
+                SummonPoint.y * player.GetComponent<CapsuleCollider2D>().bounds.size.y, 0);
 
             if (facingright)
             {
-                SummonBullet(transform.position + playerWidth, 0);
-
+                SummonBullet(transform.position + RelativeSumPoint, 0);
             }
             else
             {
-                SummonBullet(new Vector3(transform.position.x - playerWidth.x, transform.position.y + playerWidth.y), 180);
+                SummonBullet(transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right), 180);
             }
         }
     }

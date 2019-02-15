@@ -146,3 +146,5 @@ MonoBehaviour:
   KnockbackStrength: 2.5
   KnockbackLength: 0.5
   Damage: 1
+  IFrames: 1
+  AppliedDamage: 0

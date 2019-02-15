@@ -8,25 +8,33 @@ public class Damager : MonoBehaviour
     private PlayerController _playerController;
     
     // customizable in inspector
-    public float KnockbackStrength;
-    public float KnockbackLength;
+    public float KnockbackStrength, KnockbackLength, IFrames;
     public int Damage;
-    public bool AppliedDamage;
-
+    
+    private  bool AppliedDamage;
     private Vector2 _lastKnocked;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            if (gameObject.tag == "Hazards")
-            {
-                other.gameObject.GetComponent<HealthManager>().DamagePlayer(Damage);
-                AppliedDamage = true;
-            }
             _playerrb = other.gameObject.GetComponent<Rigidbody2D>();
             _playerController = other.gameObject.GetComponent<PlayerController>();
-            KnockPlayer();
+
+            if (!_playerrb.GetComponent<HealthManager>().CurrentlyInvincible)
+            {
+                _playerrb.GetComponent<HealthManager>().MakeInvincible(IFrames);
+                
+                if (gameObject.tag == "Hazards")
+                {
+                    other.gameObject.GetComponent<HealthManager>().DamagePlayer(Damage);
+                    AppliedDamage = true;
+                }
+
+                _playerrb = other.gameObject.GetComponent<Rigidbody2D>();
+                _playerController = other.gameObject.GetComponent<PlayerController>();
+                KnockPlayer();
+            }
         }
 
         AppliedDamage = false;
@@ -52,6 +60,10 @@ public class Damager : MonoBehaviour
 
         // Disable control while knocking back; give it back after KnockbackLength
         _playerController.DisableControl();
+        
+        // Start iframes
+        IEnumerator toif = _playerrb.gameObject.GetComponent<AnimationController>().IFrameAnim(IFrames);
+        StartCoroutine(toif);
 
         Invoke("StopKnocking", KnockbackLength);
     }

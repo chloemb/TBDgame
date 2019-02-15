@@ -9,6 +9,8 @@ public class HealthManager : MonoBehaviour
     public int Health;
 
     public TextMeshProUGUI HealthDisplay;
+
+    public bool CurrentlyInvincible;
     
     // Start is called before the first frame update
     void Start()
@@ -32,5 +34,16 @@ public class HealthManager : MonoBehaviour
     {
         Health = InitialHealth;
         UpdateHealthDisplay();
+    }
+
+    public void MakeInvincible(float seconds)
+    {
+        CurrentlyInvincible = true;
+        Invoke("MakeVincible", seconds);
+    }
+
+    public void MakeVincible()
+    {
+        CurrentlyInvincible = false;
     }
 }

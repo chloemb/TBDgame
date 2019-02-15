@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: 8-BIT WONDER SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 1883318750
   material: {fileID: 21019150374810278}
-  materialHashCode: 0
+  materialHashCode: -1709555819
   fontAssetType: 1
   m_fontInfo:
     Name: 8BIT WONDER
     PointSize: 56
-    Scale: 0
+    Scale: 1
     CharacterCount: 69
     LineHeight: 56
     Baseline: 0
     Ascender: 56
-    CapHeight: 0
+    CapHeight: 46.6875
     Descender: 0
     CenterLine: 0
     SuperscriptOffset: 56
@@ -34,7 +34,7 @@ MonoBehaviour:
     UnderlineThickness: 5
     strikethrough: 20.363636
     strikethroughThickness: 5
-    TabWidth: 0
+    TabWidth: 280
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -43,10 +43,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 517
-    width: 0
-    height: 0
+    width: 28
+    height: 56
     xOffset: 0
-    yOffset: 0
+    yOffset: 56
     xAdvance: 28
     scale: 1
   - id: 35
@@ -731,7 +731,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 8-BIT WONDER SDF Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

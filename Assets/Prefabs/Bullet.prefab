@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95bede97431f46d5817dcac8bad58fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOrigin: {fileID: 0}
 --- !u!114 &1662682462764337633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,4 +162,5 @@ MonoBehaviour:
   KnockbackStrength: 10
   KnockbackLength: 0.25
   Damage: 0
+  IFrames: 1
   AppliedDamage: 0
