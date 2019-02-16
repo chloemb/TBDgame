@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class AnimationController : MonoBehaviour
     private Animator _anim;
     private PlayerController _pc;
     private Rigidbody2D _rb;
+    public SpriteRenderer _sr;
 
     private const int STATE_IDLE = 0;
     private const int STATE_RUNNING = 1;
@@ -22,11 +24,17 @@ public class AnimationController : MonoBehaviour
     public GameObject DashTrail;
     private GameObject CurTrail;
 
+    public Material DefaultMaterial;
+    public Material FlashWhiteMaterial;
+
     void Awake()
     {
         _anim = GetComponent<Animator>();
         _pc = gameObject.GetComponent<PlayerController>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
+        _sr = gameObject.GetComponent<SpriteRenderer>();
+        Debug.Log(_sr.gameObject);
+        DefaultMaterial = GetComponent<SpriteRenderer>().material;
         _pc.KnockingBack = false;
     }
 
@@ -52,16 +60,16 @@ public class AnimationController : MonoBehaviour
                 if (_pc.KnockingBack) changeState(0);
                 else if (_rb.velocity.x == 0)
                 {
-                    if (_pc.TouchWallToLeft || _pc.TouchWallToRight) changeState(3);
-                    else changeState(0);
+                    if (_pc.TouchWallToLeft || _pc.TouchWallToRight) changeState(STATE_HANGING);
+                    else changeState(STATE_IDLE);
                 }
-                else changeState(1);
+                else changeState(STATE_RUNNING);
             }
             else
             {
                 if (_rb.velocity.y.Equals(0f) && (_pc.TouchWallToLeft || _pc.TouchWallToRight))
                 {
-                    changeState(3);
+                    changeState(STATE_HANGING);
 
                     if (_pc.TouchWallToRight && FacingLeft)
                     {
@@ -74,7 +82,7 @@ public class AnimationController : MonoBehaviour
                         FacingLeft = true;
                     }
                 }
-                else if (!_pc.TouchWallToRight && !_pc.TouchWallToLeft) changeState(2);
+                else if (!_pc.TouchWallToRight && !_pc.TouchWallToLeft) changeState(STATE_FLYING);
             }
 
             // Manages dash cooldown indicator
@@ -102,12 +110,26 @@ public class AnimationController : MonoBehaviour
     private IEnumerator DashRefresh(float cooldown)
     {
         float cdpassed = 0;
-        while (cdpassed <= cooldown)
+        while (cdpassed <= cooldown-.3f)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(Color.gray, Color.white, cdpassed / cooldown);
+            _sr.color = Color.Lerp(Color.gray, Color.white, cdpassed / (cooldown-.3f));
             cdpassed += Time.deltaTime;
             yield return null;
         }
+        
+        Color halftransparent = Color.Lerp(Color.clear, Color.white, .75f);
+        
+        _sr.material = FlashWhiteMaterial;
+        _sr.color = halftransparent;
+        yield return new WaitForSeconds(.1f);
+        _sr.material = DefaultMaterial;
+        _sr.color = Color.white;
+        yield return new WaitForSeconds(.1f);
+        _sr.material = FlashWhiteMaterial;
+        _sr.color = halftransparent;
+        yield return new WaitForSeconds(.1f);
+        _sr.material = DefaultMaterial;
+        _sr.color = Color.white;
     }
 
     public IEnumerator IFrameAnim(float ifr)
@@ -118,16 +140,12 @@ public class AnimationController : MonoBehaviour
         float timeincre = .15f;
         while (ifpassed <= ifr)
         {
-            gameObject.GetComponent<SpriteRenderer>().color =
-                gameObject.GetComponent<SpriteRenderer>().color == Color.white
-                    ? Color.Lerp(Color.clear, Color.white, .5f)
-                    : Color.white;
-
+            _sr.color = _sr.color == Color.white ? Color.Lerp(Color.clear, Color.white, .5f) : Color.white;
             ifpassed += timeincre;
             yield return new WaitForSeconds(timeincre);
         }
 
-        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        _sr.color = Color.white;
         InKBIFrames = false;
     }
 

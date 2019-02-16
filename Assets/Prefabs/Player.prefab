@@ -239,11 +239,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2025481f26e4743a83bda2b2c197c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sr: {fileID: 4111441477871771404}
   FacingLeft: 1
   AnimationState: 0
   InKBIFrames: 0
   DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
     type: 3}
+  DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  FlashWhiteMaterial: {fileID: 2100000, guid: c49b4dd55ae645d4a8992233b30f1f69, type: 3}
 --- !u!70 &2660994059857140868
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -287,12 +290,13 @@ MonoBehaviour:
   GravityScale: 2
   Speed: 5
   JumpHeight: 6.5
-  WallJumpStrength: {x: 0.5, y: 1}
+  WallJumpStrength: {x: 0.45, y: 0.9}
   WallJumpLength: 0.2
   ClingTime: 0.75
-  DashStrength: {x: 10, y: 7}
+  DashStrength: {x: 10, y: 10}
   DashLength: 0.15
   DashCooldown: 2
+  ControlDisabled: 0
   PlayerAxes:
   - 
   - 
@@ -308,7 +312,6 @@ MonoBehaviour:
   WallJumping: 0
   UsedDash: 0
   CurrentlyDashing: 0
-  ControlDisabled: 0
   DashOnCooldown: 0
   FacingRight: 0
 --- !u!114 &8860448826921193167
@@ -348,6 +351,7 @@ MonoBehaviour:
   CurrentlyInvincible: 0
   RespawnPoint: {fileID: 0}
   LastHitIFrames: 0
+  PlayerHolder: {fileID: 0}
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,11 +26,11 @@ public class HealthManager : MonoBehaviour
     {
         if (gameObject.name.Contains("(Clone)")) gameObject.name = gameObject.name.Replace("(Clone)", "");
         PlayerHolder = GameObject.Find("Players").transform;
+        _rb = GetComponent<Rigidbody2D>();
+        _pc = GetComponent<PlayerController>();
         
         Health = InitialHealth;
         UpdateHealthDisplay();
-        _rb = GetComponent<Rigidbody2D>();
-        _pc = GetComponent<PlayerController>();
         
         _pc.SetUpControls();
         
