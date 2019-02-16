@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Threading;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
@@ -14,12 +15,17 @@ public class FireWeapon : MonoBehaviour
     public float Cooldown;
     private bool OnCooldown;
 
+    [HideInInspector] public bool CurrentlyFiring;
+
     private Vector2 FireDirection;
 
     public void FireDefaultWeapon(bool facingright, Vector2 FireDirection, GameObject player)
     {
         if (!OnCooldown)
         {
+            CurrentlyFiring = true;
+            Invoke("NoLongerFiring", .05f);
+            
             this.FireDirection = FireDirection;
             Vector3 RelativeSumPoint = new Vector3 (SummonPoint.x * player.GetComponent<CapsuleCollider2D>().bounds.size.x,
                 SummonPoint.y * player.GetComponent<CapsuleCollider2D>().bounds.size.y, 0);
@@ -42,5 +48,11 @@ public class FireWeapon : MonoBehaviour
     public void RefreshShootCooldown()
     {
         OnCooldown = false;
+    }
+    
+    
+    private void NoLongerFiring()
+    {
+        CurrentlyFiring = false;
     }
 }

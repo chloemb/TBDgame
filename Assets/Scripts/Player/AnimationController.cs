@@ -15,6 +15,7 @@ public class AnimationController : MonoBehaviour
     private const int STATE_RUNNING = 1;
     private const int STATE_FLYING = 2;
     private const int STATE_HANGING = 3;
+    private const int STATE_SHOOTING = 4;
 
     public bool FacingLeft = true;
     public int AnimationState = STATE_IDLE;
@@ -33,7 +34,6 @@ public class AnimationController : MonoBehaviour
         _pc = gameObject.GetComponent<PlayerController>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _sr = gameObject.GetComponent<SpriteRenderer>();
-        Debug.Log(_sr.gameObject);
         DefaultMaterial = GetComponent<SpriteRenderer>().material;
         _pc.KnockingBack = false;
     }
@@ -105,29 +105,43 @@ public class AnimationController : MonoBehaviour
                 TrailOn = true;
             }
         }
+
+        if (_anim.GetInteger("state") == 0 && GetComponent<FireWeapon>().CurrentlyFiring)
+        {
+            changeState(STATE_SHOOTING);
+        }
     }
 
     private IEnumerator DashRefresh(float cooldown)
     {
         float cdpassed = 0;
-        while (cdpassed <= cooldown-.3f)
+        while (cdpassed <= cooldown-.4f)
         {
-            _sr.color = Color.Lerp(Color.gray, Color.white, cdpassed / (cooldown-.3f));
+            _sr.color = Color.Lerp(Color.gray, Color.white, cdpassed / (cooldown-.4f));
             cdpassed += Time.deltaTime;
             yield return null;
         }
         
         Color halftransparent = Color.Lerp(Color.clear, Color.white, .75f);
+
+        float flashingpassed = 0;
+        while (flashingpassed < .4f)
+        {
+            if (_sr.color == Color.white)
+            {
+                _sr.material = FlashWhiteMaterial;
+                _sr.color = halftransparent;
+            }
+            else
+            {
+                _sr.material = DefaultMaterial;
+                _sr.color = Color.white;
+            }
+
+            flashingpassed += .1f;
+            yield return new WaitForSeconds(.1f);
+        }
         
-        _sr.material = FlashWhiteMaterial;
-        _sr.color = halftransparent;
-        yield return new WaitForSeconds(.1f);
-        _sr.material = DefaultMaterial;
-        _sr.color = Color.white;
-        yield return new WaitForSeconds(.1f);
-        _sr.material = FlashWhiteMaterial;
-        _sr.color = halftransparent;
-        yield return new WaitForSeconds(.1f);
         _sr.material = DefaultMaterial;
         _sr.color = Color.white;
     }
@@ -182,6 +196,10 @@ public class AnimationController : MonoBehaviour
 
             case STATE_HANGING:
                 _anim.SetInteger("state", STATE_HANGING);
+                break;
+            
+            case STATE_SHOOTING:
+                _anim.SetInteger("state", STATE_SHOOTING);
                 break;
             
             default:
