@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
 
-    public bool ControlDisabled;
+    public bool ControlDisabled,  TouchWallToRight,
+        TouchWallToLeft;
 
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
@@ -35,8 +36,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
 
     // various info about object
-    [HideInInspector] public bool TouchWallToRight,
-        TouchWallToLeft,
+    [HideInInspector] public bool
         UsedWallJump,
         WallJumping,
         UsedDash,
