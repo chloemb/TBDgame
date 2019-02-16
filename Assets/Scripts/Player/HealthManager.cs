@@ -5,24 +5,34 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
+    public GameObject PlayerPrefab;
     public int InitialHealth;
     public int Health;
-    public TextMeshProUGUI HealthDisplay;
     public float GracePeriodLength;
+    public TextMeshProUGUI HealthDisplay;
     
-    [HideInInspector] public bool InGracePeriod, CurrentlyInvincible;
+    public bool InGracePeriod, CurrentlyInvincible;
 
-    private Transform RespawnPoint;
+    public Transform RespawnPoint;
     private Rigidbody2D _rb;
     private PlayerController _pc;
+
+    [HideInInspector] public float LastHitIFrames;
+    private IEnumerator KBIFrames;
+    public Transform PlayerHolder;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (gameObject.name.Contains("(Clone)")) gameObject.name = gameObject.name.Replace("(Clone)", "");
+        PlayerHolder = GameObject.Find("Players").transform;
+        
         Health = InitialHealth;
         UpdateHealthDisplay();
         _rb = GetComponent<Rigidbody2D>();
         _pc = GetComponent<PlayerController>();
+        
+        _pc.SetUpControls();
         
         switch (gameObject.name)
         {
@@ -36,19 +46,36 @@ public class HealthManager : MonoBehaviour
                 RespawnPoint = GameObject.Find("P1Respawn").transform;
                 break;
         }
+        
+        InGracePeriod = true;
+        gameObject.transform.position = RespawnPoint.position;
+        _rb.velocity = new Vector2(0f, 0f);
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        _pc.RefreshCooldown();
+        
+        IEnumerator GraceIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(GracePeriodLength-.5f);
+        StartCoroutine(GraceIFrames);
+        MakeInvincible(GracePeriodLength);
+        
+        Invoke("EndGracePeriod", GracePeriodLength);
+        
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     private void FixedUpdate()
     {
         if (Health == 0)
         {
-            Respawn();
+            GameObject newplayer = Instantiate(PlayerPrefab, PlayerHolder);
+            Destroy(gameObject);
         }
     }
 
     public void DamagePlayer(int dmg)
     {
         Health -= dmg;
+        KBIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(LastHitIFrames);
+        StartCoroutine(KBIFrames);
         UpdateHealthDisplay();
     }
 
@@ -74,24 +101,11 @@ public class HealthManager : MonoBehaviour
         CurrentlyInvincible = false;
     }
     
-    private void Respawn()
-    {
-        InGracePeriod = true;
-        gameObject.transform.position = RespawnPoint.position;
-        ResetHealth();
-        _rb.velocity = new Vector2(0f, 0f);
-        _rb.gravityScale = 0;
-        _pc.RefreshCooldown();
-        IEnumerator GraceIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(GracePeriodLength-.5f);
-        StartCoroutine(GraceIFrames);
-        MakeInvincible(GracePeriodLength);
-        
-        Invoke("EndGracePeriod", GracePeriodLength);
-    }
-
     private void EndGracePeriod()
     {
         InGracePeriod = false;
         _rb.gravityScale = _pc.GravityScale;
+        gameObject.GetComponent<Collider2D>().enabled = true;
+        _pc.ControlDisabled = false;
     }
 }

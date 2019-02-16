@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FacingLeft: 1
   AnimationState: 0
+  InKBIFrames: 0
   DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
     type: 3}
 --- !u!70 &2660994059857140868
@@ -338,12 +339,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108f093af95c4483f81cadfc9ea2ad3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialHealth: 6
+  PlayerPrefab: {fileID: 4111441477871771406}
+  InitialHealth: 3
   Health: 0
+  GracePeriodLength: 2
   HealthDisplay: {fileID: 4111441478038856029}
+  InGracePeriod: 0
   CurrentlyInvincible: 0
-  GracePeriodLength: 3
   RespawnPoint: {fileID: 0}
+  LastHitIFrames: 0
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

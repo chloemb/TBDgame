@@ -21,19 +21,14 @@ public class FireWeapon : MonoBehaviour
         if (!OnCooldown)
         {
             this.FireDirection = FireDirection;
-            OnCooldown = true;
-            Invoke("RefreshShootCooldown", Cooldown);
             Vector3 RelativeSumPoint = new Vector3 (SummonPoint.x * player.GetComponent<CapsuleCollider2D>().bounds.size.x,
                 SummonPoint.y * player.GetComponent<CapsuleCollider2D>().bounds.size.y, 0);
 
-            if (facingright)
-            {
-                SummonBullet(transform.position + RelativeSumPoint, 0);
-            }
-            else
-            {
-                SummonBullet(transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right), 180);
-            }
+            if (facingright) SummonBullet(transform.position + RelativeSumPoint, 0);
+            else SummonBullet(transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right), 180);
+            
+            OnCooldown = true;
+            Invoke("RefreshShootCooldown", Cooldown);
         }
     }
 

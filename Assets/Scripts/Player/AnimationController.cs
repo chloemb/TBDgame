@@ -14,27 +14,25 @@ public class AnimationController : MonoBehaviour
     private const int STATE_FLYING = 2;
     private const int STATE_HANGING = 3;
 
-    [HideInInspector] public bool FacingLeft = true;
+    public bool FacingLeft = true;
     public int AnimationState = STATE_IDLE;
     private bool GrayedOut, TrailOn, CurrentlySliding;
+    public bool InKBIFrames;
 
     public GameObject DashTrail;
     private GameObject CurTrail;
 
-    void Start()
+    void Awake()
     {
         _anim = GetComponent<Animator>();
         _pc = gameObject.GetComponent<PlayerController>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
+        _pc.KnockingBack = false;
     }
 
     void FixedUpdate()
     {
-        if (gameObject.GetComponent<HealthManager>().InGracePeriod)
-        {
-            changeState(0);
-            AnimationState = STATE_IDLE;
-        }
+        if (gameObject.GetComponent<HealthManager>().InGracePeriod) changeState(0);
         else
         {
             // flipping
@@ -51,36 +49,19 @@ public class AnimationController : MonoBehaviour
 
             if (_pc.IsGrounded)
             {
-                if (_pc.KnockingBack)
-                {
-                    changeState(0);
-                    AnimationState = STATE_IDLE;
-                }
+                if (_pc.KnockingBack) changeState(0);
                 else if (_rb.velocity.x == 0)
                 {
-                    if (_pc.TouchWallToLeft || _pc.TouchWallToRight)
-                    {
-                        changeState(3);
-                        AnimationState = STATE_HANGING;
-                    }
-                    else
-                    {
-                        changeState(0);
-                        AnimationState = STATE_IDLE;
-                    }
+                    if (_pc.TouchWallToLeft || _pc.TouchWallToRight) changeState(3);
+                    else changeState(0);
                 }
-                else
-                {
-                    changeState(1);
-                    AnimationState = STATE_RUNNING;
-                }
+                else changeState(1);
             }
             else
             {
                 if (_rb.velocity.y.Equals(0f) && (_pc.TouchWallToLeft || _pc.TouchWallToRight))
                 {
                     changeState(3);
-                    AnimationState = STATE_HANGING;
 
                     if (_pc.TouchWallToRight && FacingLeft)
                     {
@@ -93,11 +74,7 @@ public class AnimationController : MonoBehaviour
                         FacingLeft = true;
                     }
                 }
-                else if (!_pc.TouchWallToRight && !_pc.TouchWallToLeft)
-                {
-                    changeState(2);
-                    AnimationState = STATE_FLYING;
-                }
+                else if (!_pc.TouchWallToRight && !_pc.TouchWallToLeft) changeState(2);
             }
 
             // Manages dash cooldown indicator
@@ -135,9 +112,10 @@ public class AnimationController : MonoBehaviour
 
     public IEnumerator IFrameAnim(float ifr)
     {
+        InKBIFrames = !gameObject.GetComponent<HealthManager>().InGracePeriod;
+        
         float ifpassed = 0;
         float timeincre = .15f;
-
         while (ifpassed <= ifr)
         {
             gameObject.GetComponent<SpriteRenderer>().color =
@@ -150,6 +128,7 @@ public class AnimationController : MonoBehaviour
         }
 
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        InKBIFrames = false;
     }
 
     private void DestroyTrail()
@@ -168,7 +147,7 @@ public class AnimationController : MonoBehaviour
     {
         if (AnimationState == n)
             return;
-
+        
         switch (n)
         {
             case STATE_IDLE:
@@ -186,6 +165,12 @@ public class AnimationController : MonoBehaviour
             case STATE_HANGING:
                 _anim.SetInteger("state", STATE_HANGING);
                 break;
+            
+            default:
+                _anim.SetInteger("state", STATE_IDLE);
+                break;
         }
+
+        AnimationState = n;
     }
 }

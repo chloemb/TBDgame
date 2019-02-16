@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
 
+    public bool ControlDisabled;
+
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
 
@@ -39,12 +41,11 @@ public class PlayerController : MonoBehaviour
         WallJumping,
         UsedDash,
         CurrentlyDashing,
-        ControlDisabled,
+
         DashOnCooldown,
         FacingRight;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetUpControls()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.gravityScale = GravityScale;

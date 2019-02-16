@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private SpriteRenderer bulletRenderer;
     public Rigidbody2D playerOrigin;
 
-    void Start()
+    void Awake()
     {
         bulletCol = GetComponent<Collider2D>();
         bulletRenderer = GetComponent<SpriteRenderer>();
@@ -21,11 +21,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (bulletRenderer && bulletCol)
-        {
-            bulletRenderer.enabled = bulletCol.enabled = false;
-        }
-
+        // Turn off bullet renderer and collider; destroy it after KnockbackLength
+        bulletRenderer.enabled = bulletCol.enabled = false;
         Invoke("DestroyBullet", gameObject.GetComponent<Damager>().KnockbackLength);
     }
 
