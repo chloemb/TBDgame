@@ -123,7 +123,7 @@ public class AnimationController : MonoBehaviour
             yield return null;
         }
         
-        Color halftransparent = Color.Lerp(Color.clear, Color.white, .75f);
+        Color halftransparent = Color.Lerp(Color.clear, Color.white, .85f);
 
         float flashingpassed = 0;
         while (flashingpassed < .4f)
