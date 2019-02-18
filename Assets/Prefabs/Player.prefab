@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 4111441477871771400}
   - component: {fileID: 4111441477871771407}
   - component: {fileID: 8860448826921193167}
+  - component: {fileID: 1793524021665997566}
   - component: {fileID: 4111441477871771401}
   m_Layer: 8
   m_Name: Player
@@ -330,6 +331,18 @@ MonoBehaviour:
   Speed: 10
   SummonPoint: {x: 1.01, y: 0.2}
   Cooldown: 1
+--- !u!114 &1793524021665997566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e24f72d280041408fddfd5dfd49ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4111441477871771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
