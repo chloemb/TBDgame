@@ -112,12 +112,12 @@ GameObject:
   - component: {fileID: 4111441477871771404}
   - component: {fileID: 629207824}
   - component: {fileID: 629207823}
-  - component: {fileID: 2660994059857140868}
   - component: {fileID: 4111441477871771400}
   - component: {fileID: 4111441477871771407}
   - component: {fileID: 8860448826921193167}
   - component: {fileID: 1793524021665997566}
   - component: {fileID: 4111441477871771401}
+  - component: {fileID: 3583196561935975662}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -248,22 +248,6 @@ MonoBehaviour:
     type: 3}
   DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   FlashWhiteMaterial: {fileID: 2100000, guid: c49b4dd55ae645d4a8992233b30f1f69, type: 3}
---- !u!70 &2660994059857140868
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.4, y: 0.9}
-  m_Direction: 0
 --- !u!114 &4111441477871771400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +282,8 @@ MonoBehaviour:
   DashLength: 0.15
   DashCooldown: 2
   ControlDisabled: 0
+  TouchWallToRight: 0
+  TouchWallToLeft: 0
   PlayerAxes:
   - 
   - 
@@ -307,8 +293,6 @@ MonoBehaviour:
   IsGrounded: 0
   KnockingBack: 0
   PrevVelocity: {x: 0, y: 0}
-  TouchWallToRight: 0
-  TouchWallToLeft: 0
   UsedWallJump: 0
   WallJumping: 0
   UsedDash: 0
@@ -329,20 +313,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
   Speed: 10
-  SummonPoint: {x: 1.01, y: 0.2}
+  SummonPoint: {x: 1.1, y: 0.2}
   Cooldown: 1
---- !u!114 &1793524021665997566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e24f72d280041408fddfd5dfd49ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+
+  CurrentlyFiring: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +339,32 @@ MonoBehaviour:
   RespawnPoint: {fileID: 0}
   LastHitIFrames: 0
   PlayerHolder: {fileID: 0}
+--- !u!61 &3583196561935975662
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.01, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.85}
+  m_EdgeRadius: 0
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

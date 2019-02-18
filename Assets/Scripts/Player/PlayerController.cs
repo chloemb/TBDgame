@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
 
-    public bool ControlDisabled;
+    public bool ControlDisabled,
+        TouchWallToRight,
+        TouchWallToLeft;
 
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
@@ -35,13 +37,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
 
     // various info about object
-    [HideInInspector] public bool TouchWallToRight,
-        TouchWallToLeft,
+    [HideInInspector] public bool
         UsedWallJump,
         WallJumping,
         UsedDash,
         CurrentlyDashing,
-
         DashOnCooldown,
         FacingRight;
 
@@ -83,20 +83,9 @@ public class PlayerController : MonoBehaviour
             var dash = Input.GetAxis(PlayerAxes[2]);
             var shoot = Input.GetAxis(PlayerAxes[3]);
             var vertical = Input.GetAxis(PlayerAxes[4]);
-
-            // Jump from ground if control isn't disabled
-            if (IsGrounded && !ControlDisabled)
-            {
-                if (jump > 0)
-                {
-                    Vector2 errorVector2 = new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
-                    _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-                    IsGrounded = false;
-                }
-            }
-
+            
             // Be able to jump off of walls & time amount allowed to cling to wall
-            if (TouchWallToLeft || TouchWallToRight && !IsGrounded)
+            if ((TouchWallToLeft || TouchWallToRight) && !IsGrounded)
             {
                 if (jump > 0 && !UsedWallJump)
                 {
@@ -119,9 +108,21 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            // Horizontal movement
             if (!ControlDisabled)
             {
+                // Jump from ground if control isn't disabled
+                if (IsGrounded)
+                {
+                    if (jump > 0)
+                    {
+                        Vector2 errorVector2 =
+                            new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
+                        _rb.AddForce(errorVector2, ForceMode2D.Impulse);
+                        IsGrounded = false;
+                    }
+                }
+                
+                // Horizontal movement
                 Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
                 _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
 
@@ -129,50 +130,55 @@ public class PlayerController : MonoBehaviour
                     FacingRight = true;
                 else if (horizontal < 0)
                     FacingRight = false;
-            }
 
-            // Determine left stick angle; if none, the direction the player is facing. Magnitude is 1.
-            Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
-            if (LeftStickAngle.magnitude == 0)
-                LeftStickAngle = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
+                // Determine left stick angle; if none, the direction the player is facing. Magnitude is 1.
+                Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
+                if (LeftStickAngle.magnitude == 0)
+                    LeftStickAngle = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
 
-            // Fire Weapon
-            if (shoot > 0 && !ControlDisabled)
-            {
-                GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
-                LastFired = LeftStickAngle;
-            }
-
-            // Dash
-            if (dash > 0 && !DashOnCooldown && !UsedDash && !ControlDisabled)
-            {
-                PreDashVel = _rb.velocity;
-                Vector2 dashvel = DashStrength * LeftStickAngle;
-
-                if (TouchWallToLeft || TouchWallToRight)
+                // Fire Weapon
+                if (shoot > 0)
                 {
-                    if (TouchWallToLeft)
-                        dashvel = DashStrength * WallJumpStrength;
-                    else if (TouchWallToRight)
-                        dashvel = new Vector2(-(DashStrength * WallJumpStrength).x,
-                            (DashStrength * WallJumpStrength).y);
-
-                    Invoke("StopDash", DashLength);
-                }
-                else
-                {
-                    Invoke("StopDash", DashLength);
+                    GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
+                    LastFired = LeftStickAngle;
                 }
 
-                _rb.AddForce(dashvel, ForceMode2D.Impulse);
+                // Dash
+                if (dash > 0 && !DashOnCooldown && !UsedDash)
+                {
+                    if (!IsGrounded && _rb.velocity.x == 0)
+                    {
+                        LeftStickAngle = new Vector2(0f, 1f);
+                    }
 
-                DisableControl();
-                PutDashOnCooldown();
-                Invoke("RefreshCooldown", DashCooldown);
+                    PreDashVel = _rb.velocity;
+                    Vector2 dashvel = DashStrength * LeftStickAngle;
 
-                CurrentlyDashing = UsedDash = true;
-                LastDashed = dashvel;
-                _rb.gravityScale = 0;
+                    if (TouchWallToLeft || TouchWallToRight)
+                    {
+                        if (TouchWallToLeft)
+                            dashvel = DashStrength * WallJumpStrength;
+                        else if (TouchWallToRight)
+                            dashvel = new Vector2(-(DashStrength * WallJumpStrength).x,
+                                (DashStrength * WallJumpStrength).y);
+
+                        Invoke("StopDash", DashLength);
+                    }
+                    else
+                    {
+                        Invoke("StopDash", DashLength);
+                    }
+
+                    _rb.AddForce(dashvel, ForceMode2D.Impulse);
+
+                    DisableControl();
+                    PutDashOnCooldown();
+                    Invoke("RefreshCooldown", DashCooldown);
+
+                    CurrentlyDashing = UsedDash = true;
+                    LastDashed = dashvel;
+                    _rb.gravityScale = 0;
+                }
             }
 
             // Set PrevVelocity
@@ -231,7 +237,7 @@ public class PlayerController : MonoBehaviour
         CurrentlyDashing = false;
         if (IsGrounded)
             UsedDash = false;
-        
+
         _rb.velocity = PreDashVel;
     }
 

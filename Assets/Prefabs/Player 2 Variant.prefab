@@ -72,6 +72,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 629207824, guid: 683380832928549b4b03aafc61e50359, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 33628233cd5454522980207fef87048d, type: 2}
+    - target: {fileID: 2660994059857140868, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111441477871771404, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300016, guid: c880c0fc2e8054e8e9951d8048ae53aa,
+        type: 3}
+    - target: {fileID: 4111441477871771404, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111441477871771404, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4111441478038856029, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -82,16 +107,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4111441477871771404, guid: 683380832928549b4b03aafc61e50359,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300016, guid: c880c0fc2e8054e8e9951d8048ae53aa,
-        type: 3}
-    - target: {fileID: 629207824, guid: 683380832928549b4b03aafc61e50359, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 33628233cd5454522980207fef87048d, type: 2}
     - target: {fileID: 3646708915245490986, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_Controller
@@ -115,6 +130,21 @@ PrefabInstance:
     - target: {fileID: 6883124358822477425, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
