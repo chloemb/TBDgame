@@ -969,6 +969,16 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8816721410464945858, guid: f1100e4ad89d849bc9a6021b03dda218,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816721410464945856, guid: f1100e4ad89d849bc9a6021b03dda218,
+        type: 3}
+      propertyPath: m_BlockingObjects
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1100e4ad89d849bc9a6021b03dda218, type: 3}
 --- !u!1001 &472552747
