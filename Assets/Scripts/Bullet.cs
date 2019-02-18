@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Turn off bullet renderer and collider; destroy it after KnockbackLength
-        PrepareDestroyBullet();
+        if (!col.gameObject.CompareTag("Hazards")) PrepareDestroyBullet();
     }
 
     private void PrepareDestroyBullet()

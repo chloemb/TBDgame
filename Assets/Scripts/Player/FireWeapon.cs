@@ -27,8 +27,8 @@ public class FireWeapon : MonoBehaviour
             Invoke("NoLongerFiring", .05f);
             
             this.FireDirection = FireDirection;
-            Vector3 RelativeSumPoint = new Vector3 (SummonPoint.x * player.GetComponent<CapsuleCollider2D>().bounds.size.x,
-                SummonPoint.y * player.GetComponent<CapsuleCollider2D>().bounds.size.y, 0);
+            Vector3 RelativeSumPoint = new Vector3 (SummonPoint.x * player.GetComponent<Collider2D>().bounds.size.x,
+                SummonPoint.y * player.GetComponent<Collider2D>().bounds.size.y, 0);
 
             if (facingright) SummonBullet(transform.position + RelativeSumPoint, 0);
             else SummonBullet(transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right), 180);
