@@ -285,6 +285,7 @@
             <e p="HealthManager.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
           </e>
+          <e p="SceneSwitch.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Resources" t="Include">

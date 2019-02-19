@@ -108,14 +108,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4111441477871771405}
-  - component: {fileID: 4111441477871771402}
   - component: {fileID: 4111441477871771404}
   - component: {fileID: 629207824}
+  - component: {fileID: 4111441477871771402}
   - component: {fileID: 629207823}
-  - component: {fileID: 4111441477871771400}
   - component: {fileID: 4111441477871771407}
+  - component: {fileID: 4111441477871771400}
   - component: {fileID: 8860448826921193167}
-  - component: {fileID: 1793524021665997566}
   - component: {fileID: 4111441477871771401}
   - component: {fileID: 3583196561935975662}
   m_Layer: 8
@@ -140,27 +139,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &4111441477871771402
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 2
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!212 &4111441477871771404
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -228,6 +206,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &4111441477871771402
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &629207823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,23 +242,14 @@ MonoBehaviour:
   _sr: {fileID: 4111441477871771404}
   FacingLeft: 1
   AnimationState: 0
+  GrayedOut: 0
+  TrailOn: 0
+  CurrentlySliding: 0
   InKBIFrames: 0
   DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
     type: 3}
   DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   FlashWhiteMaterial: {fileID: 2100000, guid: c49b4dd55ae645d4a8992233b30f1f69, type: 3}
---- !u!114 &4111441477871771400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4111441477871771406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31531c42b20c40f409eb4541c0ddeb3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4111441477871771407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +289,18 @@ MonoBehaviour:
   CurrentlyDashing: 0
   DashOnCooldown: 0
   FacingRight: 0
+--- !u!114 &4111441477871771400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31531c42b20c40f409eb4541c0ddeb3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8860448826921193167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +317,6 @@ MonoBehaviour:
   Speed: 10
   SummonPoint: {x: 1.1, y: 0.2}
   Cooldown: 1
-
   CurrentlyFiring: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:

@@ -17,10 +17,9 @@ public class AnimationController : MonoBehaviour
     private const int STATE_HANGING = 3;
     private const int STATE_SHOOTING = 4;
 
-    public bool FacingLeft = true;
+    public bool SpriteFacingRight;
     public int AnimationState = STATE_IDLE;
-    private bool GrayedOut, TrailOn, CurrentlySliding;
-    public bool InKBIFrames;
+    public bool GrayedOut, TrailOn;
 
     public GameObject DashTrail;
     private GameObject CurTrail;
@@ -45,84 +44,94 @@ public class AnimationController : MonoBehaviour
         else
         {
             // flipping
-            if (!_pc.KnockingBack && _rb.velocity.x > 0 && FacingLeft)
+            if (!_pc.KnockingBack && _pc.FacingRight != SpriteFacingRight)
             {
                 Flip180();
-                FacingLeft = false;
-            }
-            else if (!_pc.KnockingBack && _rb.velocity.x < 0 && !FacingLeft)
-            {
-                Flip180();
-                FacingLeft = true;
+                SpriteFacingRight = _pc.FacingRight;
             }
 
             if (_pc.IsGrounded)
             {
-                if (_pc.KnockingBack) changeState(0);
-                else if (_rb.velocity.x == 0)
+                if (_rb.velocity.magnitude > 0) changeState(STATE_RUNNING);
+                else changeState(STATE_IDLE);
+            }
+            else if (_pc.TouchWallToLeft || _pc.TouchWallToRight)
+            {
+                if (_pc.TouchWallToLeft == SpriteFacingRight)
                 {
-                    if (_pc.TouchWallToLeft || _pc.TouchWallToRight) changeState(STATE_HANGING);
-                    else changeState(STATE_IDLE);
+                    Flip180();
+                    SpriteFacingRight = !SpriteFacingRight;
                 }
-                else changeState(STATE_RUNNING);
+                changeState(STATE_HANGING);
             }
             else
             {
-                if (_rb.velocity.y.Equals(0f) && (_pc.TouchWallToLeft || _pc.TouchWallToRight))
-                {
-                    changeState(STATE_HANGING);
-
-                    if (_pc.TouchWallToRight && FacingLeft)
-                    {
-                        Flip180();
-                        FacingLeft = false;
-                    }
-                    else if (_pc.TouchWallToLeft && !FacingLeft)
-                    {
-                        Flip180();
-                        FacingLeft = true;
-                    }
-                }
-                else if (!_pc.TouchWallToRight && !_pc.TouchWallToLeft) changeState(STATE_FLYING);
+                changeState(STATE_FLYING);
             }
+        }
+        
+        if (AnimationState == STATE_IDLE && GetComponent<FireWeapon>().CurrentlyFiring) changeState(STATE_SHOOTING);
 
-            // Manages dash cooldown indicator
-            if (_pc.DashOnCooldown != GrayedOut)
-            {
-                GrayedOut = !GrayedOut;
-                if (GrayedOut)
-                {
-                    IEnumerator ColorLerper = DashRefresh(_pc.DashCooldown);
-                    StartCoroutine(ColorLerper);
-                }
-            }
+//            if (_pc.IsGrounded)
+//            {
+//                if (_pc.KnockingBack) changeState(0);
+//                else if (_rb.velocity.x == 0)
+//                {
+//                    if (_pc.TouchWallToLeft || _pc.TouchWallToRight) changeState(STATE_HANGING);
+//                    else changeState(STATE_IDLE);
+//                }
+//                else changeState(STATE_RUNNING);
+//            }
+//            else
+//            {
+//                if (_rb.velocity.y.Equals(0f) && (_pc.TouchWallToLeft || _pc.TouchWallToRight))
+//                {
+//                    changeState(STATE_HANGING);
+//
+//                    if (_pc.TouchWallToRight && !SpriteFacingRight)
+//                    {
+//                        Flip180();
+//                    }
+//                    else if (_pc.TouchWallToLeft && SpriteFacingRight)
+//                    {
+//                        Flip180();
+//                    }
+//                }
+//                else if (!_pc.TouchWallToRight && !_pc.TouchWallToLeft) changeState(STATE_FLYING);
+//            }
 
-            // Dash trail
-            if (_pc.CurrentlyDashing && !TrailOn)
+        // Manages dash cooldown indicator
+        if (_pc.DashOnCooldown != GrayedOut)
+        {
+            GrayedOut = !GrayedOut;
+            if (GrayedOut)
             {
-                CurTrail = Instantiate(DashTrail, _rb.transform);
-                CurTrail.GetComponent<TrailRenderer>().time = _pc.DashLength;
-                Invoke("DestroyTrail", _pc.DashLength);
-                TrailOn = true;
+                IEnumerator ColorLerper = DashRefresh(_pc.DashCooldown);
+                StartCoroutine(ColorLerper);
             }
         }
 
-        if (_anim.GetInteger("state") == 0 && GetComponent<FireWeapon>().CurrentlyFiring)
+        // Dash trail
+        if (_pc.CurrentlyDashing && !TrailOn)
         {
-            changeState(STATE_SHOOTING);
+            CurTrail = Instantiate(DashTrail, _rb.transform);
+            CurTrail.GetComponent<TrailRenderer>().time = _pc.DashLength;
+            Invoke("DestroyTrail", _pc.DashLength);
+            TrailOn = true;
         }
     }
+
 
     private IEnumerator DashRefresh(float cooldown)
     {
         float cdpassed = 0;
-        while (cdpassed <= cooldown-.4f)
+        while (cdpassed <= cooldown - .4f)
         {
-            _sr.color = Color.Lerp(Color.gray, Color.white, cdpassed / (cooldown-.4f));
+            _sr.color = Color.Lerp(Color.gray, Color.white, cdpassed / (cooldown - .4f));
             cdpassed += Time.deltaTime;
             yield return null;
         }
-        
+
         Color halftransparent = Color.Lerp(Color.clear, Color.white, .85f);
 
         float flashingpassed = 0;
@@ -142,15 +151,13 @@ public class AnimationController : MonoBehaviour
             flashingpassed += .1f;
             yield return new WaitForSeconds(.1f);
         }
-        
+
         _sr.material = DefaultMaterial;
         _sr.color = Color.white;
     }
 
     public IEnumerator IFrameAnim(float ifr)
     {
-        InKBIFrames = !gameObject.GetComponent<HealthManager>().InGracePeriod;
-        
         float ifpassed = 0;
         float timeincre = .15f;
         while (ifpassed <= ifr)
@@ -161,7 +168,6 @@ public class AnimationController : MonoBehaviour
         }
 
         _sr.color = Color.white;
-        InKBIFrames = false;
     }
 
     private void DestroyTrail()
@@ -180,7 +186,7 @@ public class AnimationController : MonoBehaviour
     {
         if (AnimationState == n)
             return;
-        
+
         switch (n)
         {
             case STATE_IDLE:
@@ -198,11 +204,11 @@ public class AnimationController : MonoBehaviour
             case STATE_HANGING:
                 _anim.SetInteger("state", STATE_HANGING);
                 break;
-            
+
             case STATE_SHOOTING:
                 _anim.SetInteger("state", STATE_SHOOTING);
                 break;
-            
+
             default:
                 _anim.SetInteger("state", STATE_IDLE);
                 break;

@@ -24,16 +24,13 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Set up proper name and get important componenets
         if (gameObject.name.Contains("(Clone)")) gameObject.name = gameObject.name.Replace("(Clone)", "");
         PlayerHolder = GameObject.Find("Players").transform;
         _rb = GetComponent<Rigidbody2D>();
         _pc = GetComponent<PlayerController>();
         
-        Health = InitialHealth;
-        UpdateHealthDisplay();
-        
-        _pc.SetUpControls();
-        
+        // Move player to Respawn point
         switch (gameObject.name)
         {
             case "Player 1":
@@ -46,27 +43,33 @@ public class HealthManager : MonoBehaviour
                 RespawnPoint = GameObject.Find("P1Respawn").transform;
                 break;
         }
-        
-        InGracePeriod = true;
         gameObject.transform.position = RespawnPoint.position;
         _rb.velocity = new Vector2(0f, 0f);
         gameObject.GetComponent<Collider2D>().enabled = false;
+        
+        // Reset health
+        Health = InitialHealth;
+        UpdateHealthDisplay();
+        
+        // Reset controls
+        _pc.SetUpControls();
+        _pc.TouchWallToLeft = _pc.TouchWallToRight = false;
         _pc.RefreshCooldown();
         
+        // Start and end grace period
+        InGracePeriod = true;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         IEnumerator GraceIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(GracePeriodLength-.5f);
         StartCoroutine(GraceIFrames);
         MakeInvincible(GracePeriodLength);
-        
         Invoke("EndGracePeriod", GracePeriodLength);
-        
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     private void FixedUpdate()
     {
         if (Health == 0)
         {
-            GameObject newplayer = Instantiate(PlayerPrefab, PlayerHolder);
+            Instantiate(PlayerPrefab, PlayerHolder);
             Destroy(gameObject);
         }
     }

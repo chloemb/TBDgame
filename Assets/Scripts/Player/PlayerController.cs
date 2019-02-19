@@ -31,13 +31,14 @@ public class PlayerController : MonoBehaviour
 
     // variables for managing movement and walls
     //[HideInInspector]
-    [HideInInspector] public bool IsGrounded, KnockingBack;
+    //[HideInInspector]
+    public bool IsGrounded, KnockingBack;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
 
     // various info about object
-    [HideInInspector] public bool
+    public bool
         UsedWallJump,
         WallJumping,
         UsedDash,
