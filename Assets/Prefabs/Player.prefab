@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 4111441477871771400}
   - component: {fileID: 4111441477871771407}
   - component: {fileID: 8860448826921193167}
+  - component: {fileID: 1793524021665997566}
   - component: {fileID: 4111441477871771401}
   - component: {fileID: 3583196561935975662}
   m_Layer: 8
@@ -314,6 +315,7 @@ MonoBehaviour:
   Speed: 10
   SummonPoint: {x: 1.1, y: 0.2}
   Cooldown: 1
+
   CurrentlyFiring: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:
