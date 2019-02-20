@@ -22,29 +22,26 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
 
-    public bool ControlDisabled,
-        TouchWallToRight,
-        TouchWallToLeft;
-
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    //[HideInInspector]
-    //[HideInInspector]
-    public bool IsGrounded, KnockingBack;
+    [HideInInspector] public bool IsGrounded, KnockingBack;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
 
     // various info about object
-    public bool
+    [HideInInspector] public bool
         UsedWallJump,
         WallJumping,
         UsedDash,
         CurrentlyDashing,
         DashOnCooldown,
-        FacingRight;
+        FacingRight,
+        ControlDisabled,
+        TouchWallToRight,
+        TouchWallToLeft;
 
     public void SetUpControls()
     {
@@ -84,7 +81,7 @@ public class PlayerController : MonoBehaviour
             var dash = Input.GetAxis(PlayerAxes[2]);
             var shoot = Input.GetAxis(PlayerAxes[3]);
             var vertical = Input.GetAxis(PlayerAxes[4]);
-            
+
             // Be able to jump off of walls & time amount allowed to cling to wall
             if ((TouchWallToLeft || TouchWallToRight) && !IsGrounded)
             {
@@ -122,7 +119,7 @@ public class PlayerController : MonoBehaviour
                         IsGrounded = false;
                     }
                 }
-                
+
                 // Horizontal movement
                 Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
                 _rb.AddForce(forcetoapply, ForceMode2D.Impulse);

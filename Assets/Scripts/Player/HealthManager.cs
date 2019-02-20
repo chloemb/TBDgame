@@ -77,8 +77,13 @@ public class HealthManager : MonoBehaviour
     public void DamagePlayer(int dmg)
     {
         Health -= dmg;
-        KBIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(LastHitIFrames);
-        StartCoroutine(KBIFrames);
+        if (dmg >= 0)
+        {
+            KBIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(LastHitIFrames);
+            StartCoroutine(KBIFrames);
+        }
+
+        if (Health > InitialHealth) Health = InitialHealth;
         UpdateHealthDisplay();
     }
 

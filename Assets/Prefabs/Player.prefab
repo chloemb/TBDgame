@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 8860448826921193167}
   - component: {fileID: 4111441477871771401}
   - component: {fileID: 3583196561935975662}
+  - component: {fileID: 3959097550648980411}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -240,12 +241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sr: {fileID: 4111441477871771404}
-  FacingLeft: 1
+  SpriteFacingRight: 0
   AnimationState: 0
   GrayedOut: 0
   TrailOn: 0
-  CurrentlySliding: 0
-  InKBIFrames: 0
   DashTrail: {fileID: 271690099083655175, guid: e39510309c6d4482c8b91e01ab24f2c5,
     type: 3}
   DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -366,6 +365,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.85}
   m_EdgeRadius: 0
+--- !u!114 &3959097550648980411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a12199c7c664bb0804cb1cb581757f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,11 +519,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

@@ -272,8 +272,6 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BoundsManager.cs" t="Include" />
-          <e p="Bullet.cs" t="Include" />
-          <e p="Damager.cs" t="Include" />
           <e p="Menu UI" t="Include">
             <e p="ButtonManager.cs" t="Include" />
             <e p="MenuButton.cs" t="Include" />
@@ -284,6 +282,13 @@
             <e p="FireWeapon.cs" t="Include" />
             <e p="HealthManager.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
+            <e p="Reactor.cs" t="Include" />
+          </e>
+          <e p="Powerup.cs" t="Include" />
+          <e p="PowerupSpawner.cs" t="Include" />
+          <e p="Projectiles" t="Include">
+            <e p="Bullet.cs" t="Include" />
+            <e p="Damager.cs" t="Include" />
           </e>
           <e p="SceneSwitch.cs" t="Include" />
         </e>
