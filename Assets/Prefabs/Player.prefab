@@ -270,9 +270,6 @@ MonoBehaviour:
   DashStrength: {x: 10, y: 10}
   DashLength: 0.15
   DashCooldown: 2
-  ControlDisabled: 0
-  TouchWallToRight: 0
-  TouchWallToLeft: 0
   PlayerAxes:
   - 
   - 
@@ -288,6 +285,9 @@ MonoBehaviour:
   CurrentlyDashing: 0
   DashOnCooldown: 0
   FacingRight: 0
+  ControlDisabled: 0
+  TouchWallToRight: 0
+  TouchWallToLeft: 0
 --- !u!114 &4111441477871771400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,9 +313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
-  Speed: 10
+  Speed: 15
   SummonPoint: {x: 1.1, y: 0.2}
-  Cooldown: 1
+  Cooldown: 0.5
   CurrentlyFiring: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 4111441477871771406}
-  InitialHealth: 3
+  InitialHealth: 2
   Health: 0
   GracePeriodLength: 2
   HealthDisplay: {fileID: 4111441478038856029}
@@ -444,8 +444,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3fa2c00a8e233f94097d0dd9ded2c57c, type: 2}
+  m_sharedMaterial: {fileID: 21019150374810278, guid: 3fa2c00a8e233f94097d0dd9ded2c57c,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -470,8 +471,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 600
-  m_fontSizeBase: 600
+  m_fontSize: 420
+  m_fontSizeBase: 420
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -519,11 +520,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

@@ -8,6 +8,8 @@ TagManager:
   - Walls
   - Ceilings
   - Hazards
+  - Powerups
+  - Projectiles
   layers:
   - Default
   - TransparentFX

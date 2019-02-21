@@ -284,8 +284,10 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="Reactor.cs" t="Include" />
           </e>
-          <e p="Powerup.cs" t="Include" />
-          <e p="PowerupSpawner.cs" t="Include" />
+          <e p="Powerups" t="Include">
+            <e p="Powerup.cs" t="Include" />
+            <e p="PowerupSpawner.cs" t="Include" />
+          </e>
           <e p="Projectiles" t="Include">
             <e p="Bullet.cs" t="Include" />
             <e p="Damager.cs" t="Include" />

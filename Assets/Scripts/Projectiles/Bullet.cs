@@ -28,7 +28,8 @@ public class Bullet : MonoBehaviour
         // Turn off bullet renderer and collider; destroy it after KnockbackLength
         //if (!col.gameObject.CompareTag("Hazards")) PrepareDestroyBullet();
         
-        Destroy(gameObject);
+        if (!col.gameObject.CompareTag("Powerups") && !col.gameObject.CompareTag("Hazards") && !col.gameObject.CompareTag("Projectiles"))
+            Destroy(gameObject);
     }
 
 //    private void PrepareDestroyBullet()

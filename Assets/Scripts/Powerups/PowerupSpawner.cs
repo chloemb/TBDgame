@@ -22,6 +22,6 @@ public class PowerupSpawner : MonoBehaviour
         // Pick random floor except center one
         EdgeCollider2D spawnfloor = Floors[rnd.Next(1, Floors.Length)];
         Instantiate(Powerup, (spawnfloor.points[0]+spawnfloor.points[1])/2 + new Vector2(0,.5f), Quaternion.identity);
-        Invoke("SpawnPowerup", rnd.Next(5,10));
+        Invoke("SpawnPowerup", rnd.Next(20,30));
     }
 }

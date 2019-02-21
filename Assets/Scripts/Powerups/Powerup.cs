@@ -18,7 +18,10 @@ public class Powerup : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        other.gameObject.GetComponent<HealthManager>().DamagePlayer(-1);
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<HealthManager>().DamagePlayer(-1);
+            Destroy(gameObject);
+        }
     }
 }

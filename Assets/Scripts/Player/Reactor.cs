@@ -52,7 +52,7 @@ public class Reactor : MonoBehaviour
             _lastKnocked.y *= 2f;
         }
         // Knockback from weapon
-        else _lastKnocked.x = LastImpact.GetComponent<Rigidbody2D>().velocity.x;
+        else _lastKnocked = KnockbackStrength * LastImpact.GetComponent<Rigidbody2D>().velocity;
 
         _pc.KnockingBack = true;
 
