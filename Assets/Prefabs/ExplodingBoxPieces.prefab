@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1132342520315130136}
   - component: {fileID: 1031918204206110633}
   - component: {fileID: 7866663090042260309}
+  - component: {fileID: 8031470365382196405}
   m_Layer: 9
   m_Name: Box Piece 3
   m_TagString: Hazards
@@ -144,10 +145,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &8031470365382196405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226467361011598446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1732582568482478695
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8422693608650517813}
+  - component: {fileID: 6152602651907719187}
   m_Layer: 0
   m_Name: ExplodingBoxPieces
   m_TagString: Untagged
@@ -187,6 +201,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6152602651907719187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732582568482478695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d56f26db8ad49b6872ef72d1eaf327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lifetime: 3
 --- !u!1 &1927577741827269737
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +227,7 @@ GameObject:
   - component: {fileID: 7460433186779778665}
   - component: {fileID: 79114557258170398}
   - component: {fileID: 4502941357806428749}
+  - component: {fileID: 2751572357394036901}
   m_Layer: 9
   m_Name: Box Piece 7
   m_TagString: Hazards
@@ -331,10 +359,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &2751572357394036901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927577741827269737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2296518226174021822
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +388,7 @@ GameObject:
   - component: {fileID: 5500987708763044412}
   - component: {fileID: 8283287017313239429}
   - component: {fileID: 2555357956636807745}
+  - component: {fileID: 4467168226144010108}
   m_Layer: 9
   m_Name: Box Piece 6
   m_TagString: Hazards
@@ -479,10 +520,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &4467168226144010108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2296518226174021822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2318658898696540115
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +549,7 @@ GameObject:
   - component: {fileID: 2869484949286336007}
   - component: {fileID: 1938040534880056553}
   - component: {fileID: 4338436602076788935}
+  - component: {fileID: 4717573669345338701}
   m_Layer: 9
   m_Name: Box Piece 8
   m_TagString: Hazards
@@ -627,10 +681,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &4717573669345338701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318658898696540115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4642721319603354048
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +710,7 @@ GameObject:
   - component: {fileID: 1396119501267988297}
   - component: {fileID: 6924214798511854528}
   - component: {fileID: 5814716916170138539}
+  - component: {fileID: 3568715677437096645}
   m_Layer: 9
   m_Name: Box Piece 9
   m_TagString: Hazards
@@ -775,10 +842,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &3568715677437096645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4642721319603354048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5022237648307301536
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +871,7 @@ GameObject:
   - component: {fileID: 3192383228049869106}
   - component: {fileID: 8864846764829621902}
   - component: {fileID: 1446525710743233437}
+  - component: {fileID: 2807998650631743067}
   m_Layer: 9
   m_Name: Box Piece 1
   m_TagString: Hazards
@@ -923,10 +1003,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 2
+  EffectLength: 1
   IFrames: 0.5
   Damage: 1
+--- !u!114 &2807998650631743067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022237648307301536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5071537418401957357
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +1032,7 @@ GameObject:
   - component: {fileID: 6073308274395098834}
   - component: {fileID: 1480358691799080132}
   - component: {fileID: 4847650586444321880}
+  - component: {fileID: 8977829137200838715}
   m_Layer: 9
   m_Name: Box Piece 5
   m_TagString: Hazards
@@ -1071,10 +1164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &8977829137200838715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5071537418401957357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5701687955912723796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1193,7 @@ GameObject:
   - component: {fileID: 1553581930834478439}
   - component: {fileID: 7891003717160725520}
   - component: {fileID: 7805283365139273244}
+  - component: {fileID: 1445970285378188338}
   m_Layer: 9
   m_Name: Box Piece 4
   m_TagString: Hazards
@@ -1219,10 +1325,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &1445970285378188338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5701687955912723796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8155416270917782019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1354,7 @@ GameObject:
   - component: {fileID: 673688378591862107}
   - component: {fileID: 2399397613700122858}
   - component: {fileID: 7112556811219661816}
+  - component: {fileID: 1451589287101615710}
   m_Layer: 9
   m_Name: Box Piece 2
   m_TagString: Hazards
@@ -1367,7 +1486,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 0
+  EffectLength: 0
   IFrames: 0.5
   Damage: 1
+--- !u!114 &1451589287101615710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155416270917782019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
