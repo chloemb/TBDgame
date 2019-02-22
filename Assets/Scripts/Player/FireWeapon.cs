@@ -72,12 +72,12 @@ public class FireWeapon : MonoBehaviour
         if (FireDirection.x >= 0 && GetComponent<PlayerController>().FacingRight)
         {
             position = transform.position + RelativeSumPoint;
-            rotation = Quaternion.Euler(0f, 0f, Vector2.Angle(Vector2.right, FireDirection));
+            rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, FireDirection));
         }
         else
         {
             position = transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right);
-            rotation = Quaternion.Euler(0f, 180f, Vector2.Angle(Vector2.left, FireDirection));
+            rotation = Quaternion.Euler(0f, 180f, Vector2.SignedAngle(FireDirection, Vector2.left));
         }
         var bulletInstance = Instantiate(Bullets[BulletIndex], position, rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = Speed * FireDirection;

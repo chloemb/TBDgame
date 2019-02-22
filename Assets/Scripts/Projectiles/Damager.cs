@@ -12,13 +12,11 @@ public class Damager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("calling react");
             other.gameObject.GetComponent<Reactor>().React(gameObject);
         }
 
         if (other.gameObject.name.Contains("Falling Spike"))
         {
-            Debug.Log("hit falling spike");
             other.gameObject.GetComponent<FallManager>().Fall();
         }
     }

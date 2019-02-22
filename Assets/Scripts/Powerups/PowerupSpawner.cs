@@ -9,9 +9,7 @@ public class PowerupSpawner : MonoBehaviour
     public List<Transform> PowerupSpawnPoints;
     public GameObject[] Powerups;
 
-    public float FirstSpawn;
-    public int SpawnIntervalMinimum;
-    public int SpawnIntervalMaximum;
+    public int PowerupSpawnRate;
 
     private void Start()
     {
@@ -22,24 +20,21 @@ public class PowerupSpawner : MonoBehaviour
                 PowerupSpawnPoints.Add(child);
             }
         }
-        Invoke("SpawnPowerup", FirstSpawn);
     }
-
-    private void SpawnPowerup()
+    
+    private void FixedUpdate()
     {
         Random rnd = new Random();
-        
-        // Pick random spawnpoint
-        Transform spawnpoint = PowerupSpawnPoints[rnd.Next(1, PowerupSpawnPoints.Count)];
-        
-        // Pick random type of powerup
-        GameObject powerup = Powerups[rnd.Next(0, Powerups.Length)];
-        
-        // Spawn that powerup at chosen point
-        var newpowerup = Instantiate(powerup, spawnpoint);
-        newpowerup.transform.Translate(0f, .5f, 0f);
-        
-        // Set up next powerup spawn
-        Invoke("SpawnPowerup", rnd.Next(SpawnIntervalMinimum, SpawnIntervalMaximum));
+        int spawnpowerup = rnd.Next(0, PowerupSpawnRate * PowerupSpawnPoints.Count);
+
+        if (spawnpowerup == 0)
+        {
+            int spawnhere = rnd.Next(0, PowerupSpawnPoints.Count);
+            if (PowerupSpawnPoints[spawnhere].childCount == 0)
+            {
+                var newpowerup = Instantiate(Powerups[rnd.Next(0, Powerups.Length)], PowerupSpawnPoints[spawnhere]);
+                newpowerup.transform.Translate(0f, .25f, 0f);
+            }
+        }
     }
 }

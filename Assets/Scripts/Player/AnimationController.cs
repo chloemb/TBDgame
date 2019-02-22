@@ -106,7 +106,8 @@ public class AnimationController : MonoBehaviour
             yield return null;
         }
 
-        Color halftransparent = Color.Lerp(Color.clear, Color.white, .85f);
+        Color pinkyellow = new Color(255/255f, 155/255f, 50/255f);
+        Color halftransparent = Color.Lerp(Color.clear, pinkyellow, .85f);
 
         float flashingpassed = 0;
         while (flashingpassed < .4f)
