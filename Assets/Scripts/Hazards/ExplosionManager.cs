@@ -11,22 +11,28 @@ public class ExplosionManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Projectiles")
-            Explode();
+            Explode(other.GetComponent<BulletInfo>().playerOrigin);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.collider.tag == "Projectiles" || col.relativeVelocity.magnitude > MaxContactSpeed)
-            Explode();
+        if (col.relativeVelocity.magnitude > MaxContactSpeed)
+        {
+            GameObject playerOrigin = col.collider.tag == "Projectiles" ? col.collider.GetComponent<BulletInfo>().playerOrigin : null;
+            Explode(playerOrigin);
+            col.gameObject.GetComponent<HealthManager>().DamagePlayer(1);
+        }
     }
 
-    public void Explode()
+    public void Explode(GameObject origin)
     {
         Destroy(gameObject);
         GameObject pieces = Instantiate(ExplodablePieces, transform.position, Quaternion.identity);
         foreach (Transform p in pieces.transform)
         {
             p.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-MaxDebrisSpeed, MaxDebrisSpeed), Random.Range(-MaxDebrisSpeed, MaxDebrisSpeed));
+            if (origin != null)
+                p.GetComponent<BoxPiece>().playerOrigin = origin;
         }
     }
 }
