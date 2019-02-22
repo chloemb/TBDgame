@@ -36,7 +36,6 @@ public class AnimationController : MonoBehaviour
         _sr = gameObject.GetComponent<SpriteRenderer>();
         _rea = gameObject.GetComponent<Reactor>();
         
-        DefaultMaterial = GetComponent<SpriteRenderer>().material;
         _rea.KnockingBack = false;
         _sr.material = DefaultMaterial;
     }
