@@ -6,7 +6,7 @@ using Random = System.Random;
 
 public class PowerupSpawner : MonoBehaviour
 {
-    private EdgeCollider2D[] Floors;
+    public List<Transform> PowerupSpawnPoints;
     public GameObject[] Powerups;
 
     public float FirstSpawn;
@@ -15,7 +15,13 @@ public class PowerupSpawner : MonoBehaviour
 
     private void Start()
     {
-        Floors = GetComponents<EdgeCollider2D>();
+        foreach (var child in GameObject.Find("Powerups").GetComponentsInChildren<Transform>())
+        {
+            if (child.gameObject.name.Contains("Spawn"))
+            {
+                PowerupSpawnPoints.Add(child);
+            }
+        }
         Invoke("SpawnPowerup", FirstSpawn);
     }
 
@@ -23,14 +29,15 @@ public class PowerupSpawner : MonoBehaviour
     {
         Random rnd = new Random();
         
-        // Pick random floor except center one
-        EdgeCollider2D spawnfloor = Floors[rnd.Next(1, Floors.Length)];
+        // Pick random spawnpoint
+        Transform spawnpoint = PowerupSpawnPoints[rnd.Next(1, PowerupSpawnPoints.Count)];
         
         // Pick random type of powerup
         GameObject powerup = Powerups[rnd.Next(0, Powerups.Length)];
         
-        // Spawn that powerup in middle of chosen floor
-        Instantiate(powerup, (spawnfloor.points[0]+spawnfloor.points[1])/2 + new Vector2(0,.5f), Quaternion.identity);
+        // Spawn that powerup at chosen point
+        var newpowerup = Instantiate(powerup, spawnpoint);
+        newpowerup.transform.Translate(0f, .5f, 0f);
         
         // Set up next powerup spawn
         Invoke("SpawnPowerup", rnd.Next(SpawnIntervalMinimum, SpawnIntervalMaximum));

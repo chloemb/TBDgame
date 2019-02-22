@@ -5,7 +5,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="ExplosionManager.cs" t="Include" />
         <e p="PennyPixel Sprites" t="Include">
           <e p="PennyPixel_2DTilemapProject" t="Include">
             <e p="Assets" t="Include">
@@ -273,7 +272,11 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BoundsManager.cs" t="Include" />
-          <e p="FallManager.cs" t="Include" />
+          <e p="Hazards" t="Include">
+            <e p="ExplosionManager.cs" t="Include" />
+            <e p="FallManager.cs" t="Include" />
+            <e p="HazardSpawner.cs" t="Include" />
+          </e>
           <e p="Menu UI" t="Include">
             <e p="ButtonManager.cs" t="Include" />
             <e p="MenuButton.cs" t="Include" />

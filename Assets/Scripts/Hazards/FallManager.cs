@@ -16,4 +16,9 @@ public class FallManager : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = FallSpeed;
         GetComponent<Damager>().enabled = true;
     }
+    
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
