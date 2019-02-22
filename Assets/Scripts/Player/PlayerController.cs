@@ -150,6 +150,33 @@ public class PlayerController : MonoBehaviour
                     }
 
                     PreDashVel = _rb.velocity;
+                    if (LeftStickAngle.x >= .3f && LeftStickAngle.x <= .7f)
+                        LeftStickAngle.x = .5f;
+                    else if (LeftStickAngle.x < .3f && LeftStickAngle.x > -.3f)
+                        LeftStickAngle.x = 0;
+                    else if (LeftStickAngle.x < -.3f && LeftStickAngle.x >= -.7f)
+                        LeftStickAngle.x = -0.5f;
+                    else if (LeftStickAngle.x < -.7f)
+                        LeftStickAngle.x = -1;
+                    else
+                        LeftStickAngle.x = 1;
+
+                    if (LeftStickAngle.y >= .3f && LeftStickAngle.y <= .7f)
+                        LeftStickAngle.y = .5f;
+                    else if (LeftStickAngle.y < .3f && LeftStickAngle.y > -.3f)
+                        LeftStickAngle.y = 0;
+                    else if (LeftStickAngle.y < -.3f && LeftStickAngle.y >= -.7f)
+                        LeftStickAngle.y = -0.5f;
+                    else if (LeftStickAngle.y < -.7f)
+                        LeftStickAngle.y = -1;
+                    else
+                        LeftStickAngle.y = 1;
+
+                    if (LeftStickAngle.x == 0f && LeftStickAngle.y == 0f)
+                        if (FacingRight)
+                            LeftStickAngle = new Vector2(1, 0);
+                        else 
+                            LeftStickAngle = new Vector2(-1, 0);
                     Vector2 dashvel = DashStrength * LeftStickAngle;
 
                     if (TouchWallToLeft || TouchWallToRight)
@@ -167,6 +194,7 @@ public class PlayerController : MonoBehaviour
                         Invoke("StopDash", DashLength);
                     }
 
+                    _rb.velocity = new Vector2(0, 0);
                     _rb.AddForce(dashvel, ForceMode2D.Impulse);
 
                     DisableControl();
