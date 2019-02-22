@@ -2154,9 +2154,7 @@ MonoBehaviour:
   Powerups:
   - {fileID: 7629586756243544715, guid: a671fb9f8eb60447db3ff28bd0039c95, type: 3}
   - {fileID: 7012571229736731238, guid: 7e14af5a4c0c34d0984816f3f734ed79, type: 3}
-  FirstSpawn: 5
-  SpawnIntervalMinimum: 15
-  SpawnIntervalMaximum: 20
+  PowerupSpawnRate: 300
 --- !u!4 &554240836
 Transform:
   m_ObjectHideFlags: 0
