@@ -172,11 +172,12 @@ public class PlayerController : MonoBehaviour
                     else
                         LeftStickAngle.y = 1;
 
-                    if (LeftStickAngle.x == 0f && LeftStickAngle.y == 0f)
-                        if (FacingRight)
-                            LeftStickAngle = new Vector2(1, 0);
-                        else 
-                            LeftStickAngle = new Vector2(-1, 0);
+                    //Increase strength if the player dashed from stationary
+                    if ((LeftStickAngle.x.Equals(1) || LeftStickAngle.x.Equals(-1)) && LeftStickAngle.y.Equals(0))
+                        LeftStickAngle = FacingRight ? new Vector2(1.5f, 0) : new Vector2(-1.5f, 0);
+                    Debug.Log("x: " + LeftStickAngle.x);
+                    Debug.Log("y: " + LeftStickAngle.y);
+                    
                     Vector2 dashvel = DashStrength * LeftStickAngle;
 
                     if (TouchWallToLeft || TouchWallToRight)
