@@ -10,16 +10,22 @@ public class Damager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("calling react");
+        if (other.gameObject.CompareTag("Player") && !gameObject.name.Contains("Box Piece"))
+        {   
             other.gameObject.GetComponent<Reactor>().React(gameObject);
         }
 
         if (other.gameObject.name.Contains("Falling Spike"))
         {
-            Debug.Log("hit falling spike");
             other.gameObject.GetComponent<FallManager>().Fall();
+        }
+
+        if (other.gameObject.CompareTag("Player") && gameObject.name.Contains("Box Piece") && gameObject.GetComponent<BoxPiece>().playerOrigin != null)
+        {
+            if (gameObject.GetComponent<BoxPiece>().playerOrigin.name != other.name)
+            {
+                other.gameObject.GetComponent<Reactor>().React(gameObject);
+            }
         }
     }
 }

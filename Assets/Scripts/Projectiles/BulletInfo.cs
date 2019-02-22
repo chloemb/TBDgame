@@ -22,7 +22,6 @@ public class BulletInfo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("trigger enter");
         if (!col.gameObject.CompareTag("Powerups") && !col.gameObject.CompareTag("Hazards") && 
             !col.gameObject.CompareTag("Projectiles"))
             Destroy(gameObject);

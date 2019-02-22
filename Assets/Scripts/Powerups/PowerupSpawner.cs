@@ -6,33 +6,35 @@ using Random = System.Random;
 
 public class PowerupSpawner : MonoBehaviour
 {
-    private EdgeCollider2D[] Floors;
+    public List<Transform> PowerupSpawnPoints;
     public GameObject[] Powerups;
 
-    public float FirstSpawn;
-    public int SpawnIntervalMinimum;
-    public int SpawnIntervalMaximum;
+    public int PowerupSpawnRate;
 
     private void Start()
     {
-        Floors = GetComponents<EdgeCollider2D>();
-        Invoke("SpawnPowerup", FirstSpawn);
+        foreach (var child in GameObject.Find("Powerups").GetComponentsInChildren<Transform>())
+        {
+            if (child.gameObject.name.Contains("Spawn"))
+            {
+                PowerupSpawnPoints.Add(child);
+            }
+        }
     }
-
-    private void SpawnPowerup()
+    
+    private void FixedUpdate()
     {
         Random rnd = new Random();
-        
-        // Pick random floor except center one
-        EdgeCollider2D spawnfloor = Floors[rnd.Next(1, Floors.Length)];
-        
-        // Pick random type of powerup
-        GameObject powerup = Powerups[rnd.Next(0, Powerups.Length)];
-        
-        // Spawn that powerup in middle of chosen floor
-        Instantiate(powerup, (spawnfloor.points[0]+spawnfloor.points[1])/2 + new Vector2(0,.5f), Quaternion.identity);
-        
-        // Set up next powerup spawn
-        Invoke("SpawnPowerup", rnd.Next(SpawnIntervalMinimum, SpawnIntervalMaximum));
+        int spawnpowerup = rnd.Next(0, PowerupSpawnRate * PowerupSpawnPoints.Count);
+
+        if (spawnpowerup == 0)
+        {
+            int spawnhere = rnd.Next(0, PowerupSpawnPoints.Count);
+            if (PowerupSpawnPoints[spawnhere].childCount == 0)
+            {
+                var newpowerup = Instantiate(Powerups[rnd.Next(0, Powerups.Length)], PowerupSpawnPoints[spawnhere]);
+                newpowerup.transform.Translate(0f, .25f, 0f);
+            }
+        }
     }
 }

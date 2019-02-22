@@ -12,15 +12,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Pack
       objectReference: {fileID: 0}
+    - target: {fileID: 1714128989767756563, guid: 06e9970edb78e44b589b33a5e0fa0268,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.08292424
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714128989767756563, guid: 06e9970edb78e44b589b33a5e0fa0268,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714128989767756563, guid: 06e9970edb78e44b589b33a5e0fa0268,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8773585
+      objectReference: {fileID: 0}
     - target: {fileID: 5053255068917438432, guid: 06e9970edb78e44b589b33a5e0fa0268,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053255068917438432, guid: 06e9970edb78e44b589b33a5e0fa0268,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5053255068917438432, guid: 06e9970edb78e44b589b33a5e0fa0268,
         type: 3}

@@ -133,9 +133,32 @@ public class PlayerController : MonoBehaviour
                 Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
                 if (LeftStickAngle.magnitude == 0)
                     LeftStickAngle = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
+                
+                // Remove this section to have different, slightly more frustrating but slightly more precise aiming
+                if (LeftStickAngle.x >= .3f && LeftStickAngle.x <= .7f)
+                    LeftStickAngle.x = .5f;
+                else if (LeftStickAngle.x < .3f && LeftStickAngle.x > -.3f)
+                    LeftStickAngle.x = 0;
+                else if (LeftStickAngle.x < -.3f && LeftStickAngle.x >= -.7f)
+                    LeftStickAngle.x = -0.5f;
+                else if (LeftStickAngle.x < -.7f)
+                    LeftStickAngle.x = -1;
+                else
+                    LeftStickAngle.x = 1;
+
+                if (LeftStickAngle.y >= .3f && LeftStickAngle.y <= .7f)
+                    LeftStickAngle.y = .5f;
+                else if (LeftStickAngle.y < .3f && LeftStickAngle.y > -.3f)
+                    LeftStickAngle.y = 0;
+                else if (LeftStickAngle.y < -.3f && LeftStickAngle.y >= -.7f)
+                    LeftStickAngle.y = -0.5f;
+                else if (LeftStickAngle.y < -.7f)
+                    LeftStickAngle.y = -1;
+                else
+                    LeftStickAngle.y = 1;
 
                 // Fire Weapon
-                if (shoot > 0)
+                if (shoot > 0 && !TouchWallToLeft && !TouchWallToRight)
                 {
                     GetComponent<FireWeapon>().Fire(LeftStickAngle);
                     LastFired = LeftStickAngle;
@@ -150,33 +173,11 @@ public class PlayerController : MonoBehaviour
                     }
 
                     PreDashVel = _rb.velocity;
-                    if (LeftStickAngle.x >= .3f && LeftStickAngle.x <= .7f)
-                        LeftStickAngle.x = .5f;
-                    else if (LeftStickAngle.x < .3f && LeftStickAngle.x > -.3f)
-                        LeftStickAngle.x = 0;
-                    else if (LeftStickAngle.x < -.3f && LeftStickAngle.x >= -.7f)
-                        LeftStickAngle.x = -0.5f;
-                    else if (LeftStickAngle.x < -.7f)
-                        LeftStickAngle.x = -1;
-                    else
-                        LeftStickAngle.x = 1;
 
-                    if (LeftStickAngle.y >= .3f && LeftStickAngle.y <= .7f)
-                        LeftStickAngle.y = .5f;
-                    else if (LeftStickAngle.y < .3f && LeftStickAngle.y > -.3f)
-                        LeftStickAngle.y = 0;
-                    else if (LeftStickAngle.y < -.3f && LeftStickAngle.y >= -.7f)
-                        LeftStickAngle.y = -0.5f;
-                    else if (LeftStickAngle.y < -.7f)
-                        LeftStickAngle.y = -1;
-                    else
-                        LeftStickAngle.y = 1;
-
-                    if (LeftStickAngle.x == 0f && LeftStickAngle.y == 0f)
-                        if (FacingRight)
-                            LeftStickAngle = new Vector2(1, 0);
-                        else 
-                            LeftStickAngle = new Vector2(-1, 0);
+                    //Increase strength if the player dashed from stationary
+                    if ((LeftStickAngle.x.Equals(1) || LeftStickAngle.x.Equals(-1)) && LeftStickAngle.y.Equals(0))
+                        LeftStickAngle = FacingRight ? new Vector2(1.5f, 0) : new Vector2(-1.5f, 0);
+                    
                     Vector2 dashvel = DashStrength * LeftStickAngle;
 
                     if (TouchWallToLeft || TouchWallToRight)
