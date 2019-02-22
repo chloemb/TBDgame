@@ -2974,7 +2974,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1e6a5456f24c19babd5347b642b971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Powerup: {fileID: 5800420165513248793, guid: 0a19f5474021247dcbffcc2fefa06426, type: 3}
+  Powerups:
+  - {fileID: 7629586756243544715, guid: a671fb9f8eb60447db3ff28bd0039c95, type: 3}
+  - {fileID: 7012571229736731238, guid: 7e14af5a4c0c34d0984816f3f734ed79, type: 3}
+  FirstSpawn: 5
+  SpawnIntervalMinimum: 10
+  SpawnIntervalMaximum: 15
 --- !u!1 &987895372
 GameObject:
   m_ObjectHideFlags: 0

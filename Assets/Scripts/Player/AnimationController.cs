@@ -10,6 +10,7 @@ public class AnimationController : MonoBehaviour
     private PlayerController _pc;
     private Rigidbody2D _rb;
     public SpriteRenderer _sr;
+    private Reactor _rea;
 
     private const int STATE_IDLE = 0;
     private const int STATE_RUNNING = 1;
@@ -33,8 +34,10 @@ public class AnimationController : MonoBehaviour
         _pc = gameObject.GetComponent<PlayerController>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _sr = gameObject.GetComponent<SpriteRenderer>();
+        _rea = gameObject.GetComponent<Reactor>();
+        
         DefaultMaterial = GetComponent<SpriteRenderer>().material;
-        _pc.KnockingBack = false;
+        _rea.KnockingBack = false;
         _sr.material = DefaultMaterial;
     }
 
@@ -44,7 +47,7 @@ public class AnimationController : MonoBehaviour
         else
         {
             // flipping
-            if (!_pc.KnockingBack && _pc.FacingRight != SpriteFacingRight)
+            if (!_rea.KnockingBack && _pc.FacingRight != SpriteFacingRight)
             {
                 Flip180();
                 SpriteFacingRight = _pc.FacingRight;
@@ -71,34 +74,6 @@ public class AnimationController : MonoBehaviour
         }
         
         if (AnimationState == STATE_IDLE && GetComponent<FireWeapon>().CurrentlyFiring) changeState(STATE_SHOOTING);
-
-//            if (_pc.IsGrounded)
-//            {
-//                if (_pc.KnockingBack) changeState(0);
-//                else if (_rb.velocity.x == 0)
-//                {
-//                    if (_pc.TouchWallToLeft || _pc.TouchWallToRight) changeState(STATE_HANGING);
-//                    else changeState(STATE_IDLE);
-//                }
-//                else changeState(STATE_RUNNING);
-//            }
-//            else
-//            {
-//                if (_rb.velocity.y.Equals(0f) && (_pc.TouchWallToLeft || _pc.TouchWallToRight))
-//                {
-//                    changeState(STATE_HANGING);
-//
-//                    if (_pc.TouchWallToRight && !SpriteFacingRight)
-//                    {
-//                        Flip180();
-//                    }
-//                    else if (_pc.TouchWallToLeft && SpriteFacingRight)
-//                    {
-//                        Flip180();
-//                    }
-//                }
-//                else if (!_pc.TouchWallToRight && !_pc.TouchWallToLeft) changeState(STATE_FLYING);
-//            }
 
         // Manages dash cooldown indicator
         if (_pc.DashOnCooldown != GrayedOut)

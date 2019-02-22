@@ -312,10 +312,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8b76b6ae60a4dd49be43f552e2c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 631355524690474713, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
+  Bullets:
+  - {fileID: 3909773694351377151, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
+  - {fileID: 3591710038527740813, guid: 88d9616a3315a43cc9e0ebbf37deb420, type: 3}
   Speed: 15
   SummonPoint: {x: 1.1, y: 0.2}
   Cooldown: 0.5
+  RemainingUses: 0
+  CurrentWeapon: 
   CurrentlyFiring: 0
 --- !u!114 &4111441477871771401
 MonoBehaviour:

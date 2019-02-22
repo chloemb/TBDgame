@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector] public bool IsGrounded, KnockingBack;
+    [HideInInspector] public bool IsGrounded;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
                 // Fire Weapon
                 if (shoot > 0)
                 {
-                    GetComponent<FireWeapon>().FireDefaultWeapon(FacingRight, LeftStickAngle, gameObject);
+                    GetComponent<FireWeapon>().Fire(LeftStickAngle);
                     LastFired = LeftStickAngle;
                 }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1662682462764337633}
   - component: {fileID: 590666564998256074}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Default Bullet
   m_TagString: Projectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOrigin: {fileID: 0}
   BulletLife: 1.5
+  Cooldown: 0.75
+  Uses: 0
+  Speed: 15
 --- !u!114 &1662682462764337633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnockbackStrength: 2
-  KnockbackLength: 0.25
+  EffectStrength: 2
+  EffectLength: 0.25
   IFrames: 0
   Damage: 0
 --- !u!114 &590666564998256074

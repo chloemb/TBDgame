@@ -8,12 +8,14 @@ public class Reactor : MonoBehaviour
     private PlayerController _pc;
     private HealthManager _hm;
 
-    private float KnockbackStrength, KnockbackLength;
+    private float EffectStrength, EffectLength;
 
     private bool HitHazard;
     private Vector2 _lastKnocked;
 
     private GameObject LastImpact;
+
+    public bool KnockingBack, Floating;
 
     void Start()
     {
@@ -22,20 +24,40 @@ public class Reactor : MonoBehaviour
         _hm = GetComponent<HealthManager>();
     }
 
-    public void React(GameObject effector, int Damage, float KnockbackStrength, float KnockbackLength, float IFrames)
+    public void React(GameObject effector)
     {
+        Damager effectorinfo = effector.GetComponent<Damager>();
+        
         if (!_hm.CurrentlyInvincible && !_pc.CurrentlyDashing)
         {
             LastImpact = effector;
+            EffectStrength = effectorinfo.EffectStrength;
+            EffectLength = effectorinfo.EffectLength;
 
-            _hm.LastHitIFrames = IFrames;
-            _hm.MakeInvincible(IFrames);
-            _hm.DamagePlayer(Damage);
+            if (effector.CompareTag("Projectiles"))
+            {
+                HitHazard = false;
+                switch (effector.name)
+                {
+                    case "Default Bullet(Clone)":
+                        Debug.Log("hit by bullet");
+                        HitHazard = false;
+                        KnockPlayer();
+                        break;
+                    case "Bubblet(Clone)":
+                        FloatPlayer();
+                        break;
+                }
+            }
+            else
+            {
+                _hm.LastHitIFrames = effectorinfo.IFrames;
+                _hm.MakeInvincible(effectorinfo.IFrames);
+                _hm.DamagePlayer(effectorinfo.Damage);
 
-            this.KnockbackStrength = KnockbackStrength;
-            this.KnockbackLength = KnockbackLength;
-            HitHazard = effector.CompareTag("Hazards");
-            KnockPlayer();
+                HitHazard = true;
+                KnockPlayer();
+            }
         }
     }
 
@@ -43,26 +65,53 @@ public class Reactor : MonoBehaviour
     {
         // Disable control while knocking back; give it back after KnockbackLength
         _pc.DisableControl();
-        Invoke("StopKnocking", KnockbackLength);
+        KnockingBack = true;
+        Invoke("Release", EffectLength);
         
+        Debug.Log(EffectStrength);
+
         // Knockback from hazard
         if (HitHazard)
         {
-            _lastKnocked = -KnockbackStrength * _pc.PrevVelocity.normalized;
+            _lastKnocked = -EffectStrength * _pc.PrevVelocity.normalized;
             _lastKnocked.y *= 2f;
         }
         // Knockback from weapon
-        else _lastKnocked = KnockbackStrength * LastImpact.GetComponent<Rigidbody2D>().velocity;
-
-        _pc.KnockingBack = true;
+        else _lastKnocked = EffectStrength * LastImpact.GetComponent<Rigidbody2D>().velocity;
 
         // Apply knockback force
         _rb.velocity = _lastKnocked;
     }
+    
+    private void FloatPlayer()
+    {
+        _pc.DisableControl();
+        Floating = true;
+        Invoke("Release", EffectLength);
 
-    private void StopKnocking()
+        _rb.gravityScale = 0f;
+        _rb.velocity = new Vector2(0f, .2f * EffectStrength);
+    }
+
+    private void Release()
     {
         _pc.GiveBackControl();
-        _pc.KnockingBack = false;
+        KnockingBack = false;
+        Floating = false;
+        _rb.gravityScale = _pc.GravityScale;
+    }
+
+    public void PickUpPowerup(GameObject powerup)
+    {
+        switch (powerup.name)
+        {
+            case "Health Pack(Clone)":
+                GetComponent<HealthManager>().DamagePlayer(-1);
+                break;
+
+            case "Bubble Gun Powerup(Clone)":
+                GetComponent<FireWeapon>().SwitchWeapon("Bubble Gun");
+                break;
+        }
     }
 }

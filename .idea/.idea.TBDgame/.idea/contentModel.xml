@@ -289,7 +289,7 @@
             <e p="PowerupSpawner.cs" t="Include" />
           </e>
           <e p="Projectiles" t="Include">
-            <e p="Bullet.cs" t="Include" />
+            <e p="BulletInfo.cs" t="Include" />
             <e p="Damager.cs" t="Include" />
           </e>
           <e p="SceneSwitch.cs" t="Include" />
