@@ -277,7 +277,6 @@ MonoBehaviour:
   - 
   - 
   IsGrounded: 0
-  KnockingBack: 0
   PrevVelocity: {x: 0, y: 0}
   UsedWallJump: 0
   WallJumping: 0
@@ -381,6 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a12199c7c664bb0804cb1cb581757f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KnockingBack: 0
+  Floating: 0
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

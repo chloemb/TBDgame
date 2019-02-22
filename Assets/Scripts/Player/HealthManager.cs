@@ -56,6 +56,9 @@ public class HealthManager : MonoBehaviour
         _pc.TouchWallToLeft = _pc.TouchWallToRight = false;
         _pc.RefreshCooldown();
         
+        // Reset material
+        GetComponent<SpriteRenderer>().material = GetComponent<AnimationController>().DefaultMaterial;
+        
         // Start and end grace period
         InGracePeriod = true;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;

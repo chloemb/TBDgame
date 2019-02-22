@@ -40,7 +40,6 @@ public class Reactor : MonoBehaviour
                 switch (effector.name)
                 {
                     case "Default Bullet(Clone)":
-                        Debug.Log("hit by bullet");
                         HitHazard = false;
                         KnockPlayer();
                         break;

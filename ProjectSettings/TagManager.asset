@@ -10,6 +10,7 @@ TagManager:
   - Hazards
   - Powerups
   - Projectiles
+  - Interactable Hazards
   layers:
   - Default
   - TransparentFX

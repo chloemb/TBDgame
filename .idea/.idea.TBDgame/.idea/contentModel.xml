@@ -272,6 +272,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BoundsManager.cs" t="Include" />
+          <e p="FallManager.cs" t="Include" />
           <e p="Menu UI" t="Include">
             <e p="ButtonManager.cs" t="Include" />
             <e p="MenuButton.cs" t="Include" />
