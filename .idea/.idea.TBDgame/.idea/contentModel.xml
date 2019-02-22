@@ -273,6 +273,8 @@
         <e p="Scripts" t="Include">
           <e p="BoundsManager.cs" t="Include" />
           <e p="Hazards" t="Include">
+            <e p="BoxPiece.cs" t="Include" />
+            <e p="DestroyHolder.cs" t="Include" />
             <e p="ExplosionManager.cs" t="Include" />
             <e p="FallManager.cs" t="Include" />
             <e p="HazardSpawner.cs" t="Include" />
