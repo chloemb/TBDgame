@@ -20,17 +20,17 @@ PrefabInstance:
     - target: {fileID: 4111441477871771405, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 4111441477871771405, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 4111441477871771405, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.0634743
       objectReference: {fileID: 0}
     - target: {fileID: 4111441477871771405, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
@@ -75,17 +75,11 @@ PrefabInstance:
     - target: {fileID: 629207824, guid: 683380832928549b4b03aafc61e50359, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 71d3f6278698f4b3d9317738405b1ba0,
-        type: 2}
-    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
+      objectReference: {fileID: 9100000, guid: 33628233cd5454522980207fef87048d, type: 2}
+    - target: {fileID: 2660994059857140868, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4111441477871771404, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
@@ -113,11 +107,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2660994059857140868, guid: 683380832928549b4b03aafc61e50359,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3646708915245490986, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
       propertyPath: m_Controller
@@ -143,10 +132,20 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7648583877818150152, guid: 683380832928549b4b03aafc61e50359,
+    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
         type: 3}
-      propertyPath: m_Name
-      value: Big Bubble
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583196561935975662, guid: 683380832928549b4b03aafc61e50359,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 683380832928549b4b03aafc61e50359, type: 3}

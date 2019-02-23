@@ -46,10 +46,6 @@ public class Reactor : MonoBehaviour
                     case "Bubblet(Clone)":
                         FloatPlayer();
                         break;
-                    case "Unstoppabullet(Clone)":
-                        HitHazard = false;
-                        KnockPlayer();
-                        break;
                 }
             }
             else
@@ -70,6 +66,8 @@ public class Reactor : MonoBehaviour
         _pc.DisableControl();
         KnockingBack = true;
         Invoke("Release", EffectLength);
+        
+        Debug.Log(EffectStrength);
 
         // Knockback from hazard
         if (HitHazard)
@@ -112,10 +110,6 @@ public class Reactor : MonoBehaviour
 
             case "Bubble Gun Powerup(Clone)":
                 GetComponent<FireWeapon>().SwitchWeapon("Bubble Gun");
-                break;
-            
-            case "Gunstoppable Powerup(Clone)":
-                GetComponent<FireWeapon>().SwitchWeapon("Gunstoppable");
                 break;
         }
     }

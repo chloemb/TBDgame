@@ -8,6 +8,7 @@ public class BoxPiece : MonoBehaviour
     
     private void OnBecameInvisible()
     {
+        Debug.Log("Box piece destroyed");
         Destroy(gameObject);
     }
 }
