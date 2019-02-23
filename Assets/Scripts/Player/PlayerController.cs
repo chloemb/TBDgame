@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
 
-    // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical]
+    // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical, Offhand]
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
 
     // various info about object
-    [HideInInspector] public bool
+    // [HideInInspector]
+    public bool
         UsedWallJump,
         WallJumping,
         UsedDash,
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[2] = "P1Dash";
                 PlayerAxes[3] = "P1Shoot";
                 PlayerAxes[4] = "P1Vertical";
+                PlayerAxes[5] = "P1Offhand";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2Horizontal";
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[2] = "P2Dash";
                 PlayerAxes[3] = "P2Shoot";
                 PlayerAxes[4] = "P2Vertical";
+                PlayerAxes[5] = "P2Offhand";
                 break;
         }
 
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
             var dash = Input.GetAxis(PlayerAxes[2]);
             var shoot = Input.GetAxis(PlayerAxes[3]);
             var vertical = Input.GetAxis(PlayerAxes[4]);
+            var offhand = Input.GetAxis(PlayerAxes[5]);
 
             // Be able to jump off of walls & time amount allowed to cling to wall
             if ((TouchWallToLeft || TouchWallToRight) && !IsGrounded)
@@ -163,11 +167,18 @@ public class PlayerController : MonoBehaviour
                     GetComponent<FireWeapon>().Fire(LeftStickAngle);
                     LastFired = LeftStickAngle;
                 }
+                
+                // Fire offhand weapon
+                if (offhand > 0 && !TouchWallToLeft && !TouchWallToRight)
+                {
+                    GetComponent<FireWeapon>().FireOffhand(LeftStickAngle);
+                    LastFired = LeftStickAngle;
+                }
 
                 // Dash
                 if (dash > 0 && !DashOnCooldown && !UsedDash)
                 {
-                    if (!IsGrounded && _rb.velocity.x == 0)
+                    if (!IsGrounded && _rb.velocity.x == 0 && _rb.velocity.y > 0)
                     {
                         LeftStickAngle = new Vector2(0f, 1f);
                     }

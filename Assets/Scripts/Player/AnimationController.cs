@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    // Note: The reason the animator sometimes clings in the wrong direction is because of how TouchWallToRight and
+    // TouchWallToLeft are determined.
+    
     private Animator _anim;
     private PlayerController _pc;
     private Rigidbody2D _rb;
@@ -52,7 +55,8 @@ public class AnimationController : MonoBehaviour
                 SpriteFacingRight = _pc.FacingRight;
             }
 
-            if (_pc.IsGrounded)
+            if (_rea.Floating) changeState(STATE_FLYING);
+            else if (_pc.IsGrounded)
             {
                 if (_rb.velocity.magnitude > 0) changeState(STATE_RUNNING);
                 else changeState(STATE_IDLE);
@@ -154,7 +158,7 @@ public class AnimationController : MonoBehaviour
     private void Flip180()
     {
         transform.Rotate(0, 180, 0);
-        gameObject.GetComponent<HealthManager>().HealthDisplay.transform.Rotate(0, 180, 0);
+        gameObject.GetComponentInChildren<Canvas>().transform.Rotate(0, 180, 0);
     }
 
     private void changeState(int n)
