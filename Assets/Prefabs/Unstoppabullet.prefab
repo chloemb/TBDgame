@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442273f3960ad4f05a2fd9235ca00126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectStrength: 2
+  EffectStrength: 1
   EffectLength: 0.1
   IFrames: 0
   Damage: 0
