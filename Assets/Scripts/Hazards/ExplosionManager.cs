@@ -26,7 +26,6 @@ public class ExplosionManager : MonoBehaviour
 
     public void Explode(GameObject origin)
     {
-        Destroy(gameObject);
         GameObject pieces = Instantiate(ExplodablePieces, transform.position, Quaternion.identity);
         foreach (Transform p in pieces.transform)
         {
@@ -34,5 +33,6 @@ public class ExplosionManager : MonoBehaviour
             if (origin != null)
                 p.GetComponent<BoxPiece>().playerOrigin = origin;
         }
+        Destroy(transform.parent.parent.gameObject);
     }
 }
