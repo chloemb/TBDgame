@@ -9,20 +9,27 @@ public class IndicatorAnimationController : MonoBehaviour
 {
     private int BubbleStage, UnstBulStage;
     private Animator _bubbleanim, _bigbubbleanim, _unstbulanim;
+    private SpriteRenderer _shield;
 
     private FireWeapon _fw;
     private Reactor _rea;
+    private HealthManager _hm;
 
-    private bool ShowingBubbles, ShowingBigBubble, ShowingUnstBul;
+    private bool ShowingBubbles, ShowingBigBubble, ShowingUnstBul, ShowingShield;
     
     // Start is called before the first frame update
     void Start()
     {
         _fw = GetComponentInParent<FireWeapon>();
         _rea = GetComponentInParent<Reactor>();
+        _hm = GetComponentInParent<HealthManager>();
+
+        _shield = gameObject.transform.Find("Shield").GetComponent<SpriteRenderer>();
         _bubbleanim = gameObject.transform.Find("Bubbles").GetComponent<Animator>();
         _bigbubbleanim = gameObject.transform.Find("BigBubble").GetComponent<Animator>();
         _unstbulanim = gameObject.transform.Find("UnstBulIndicator").GetComponent<Animator>();
+
+        _shield.enabled = false;
     }
 
     // Update is called once per frame
@@ -31,6 +38,7 @@ public class IndicatorAnimationController : MonoBehaviour
         string Current = _fw.CurrentOffhandWeapon;
         int Remaining = _fw.RemainingUses;
         bool floating = _rea.Floating;
+        int CurHealth = _hm.Health;
         
         if (Current == "Bubble Gun")
         {
@@ -126,6 +134,16 @@ public class IndicatorAnimationController : MonoBehaviour
             {
                 _bigbubbleanim.SetTrigger("FloatEnd");
             }
+        }
+
+        if (CurHealth == 2 && !ShowingShield)
+        {
+            _shield.enabled = true;
+            ShowingShield = true;
+        } else if (CurHealth == 1 && ShowingShield)
+        {
+            _shield.enabled = false;
+            ShowingShield = false;
         }
     }
 }

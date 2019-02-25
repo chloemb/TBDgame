@@ -54,32 +54,35 @@ public class FireWeapon : MonoBehaviour
 
     public void FireOffhand(Vector2 FireDirection)
     {
-        if (!OffhandOnCooldown)
+        if (!OffhandOnCooldown && CurrentOffhandWeapon != null)
         {
             if (RemainingUses == 0)
             {
                 SwitchWeapon(null);
             }
-            
-            this.FireDirection = FireDirection;
-            
-            switch (CurrentOffhandWeapon)
+            else
             {
-                case "Bubble Gun":
-                    SummonBullet(BUBBLET, OffhandSpeed);
-                    RemainingUses--;
-                    break;
-                case "Gunstoppable":
-                    SummonBullet(UNSTOPPABULLET, OffhandSpeed);
-                    RemainingUses--;
-                    break;
+
+                this.FireDirection = FireDirection;
+
+                switch (CurrentOffhandWeapon)
+                {
+                    case "Bubble Gun":
+                        SummonBullet(BUBBLET, OffhandSpeed);
+                        RemainingUses--;
+                        break;
+                    case "Gunstoppable":
+                        SummonBullet(UNSTOPPABULLET, OffhandSpeed);
+                        RemainingUses--;
+                        break;
+                }
+
+                CurrentlyFiring = true;
+                Invoke("NoLongerFiring", .05f);
+                OffhandOnCooldown = OnCooldown = true;
+                Invoke("RefreshOffhandCooldown", OffhandCooldown);
+                Invoke("RefreshShootCooldown", Cooldown);
             }
-            
-            CurrentlyFiring = true;
-            Invoke("NoLongerFiring", .05f);
-            OffhandOnCooldown = OnCooldown = true;
-            Invoke("RefreshOffhandCooldown", OffhandCooldown);
-            Invoke("RefreshShootCooldown", Cooldown);
         }
     }
 
