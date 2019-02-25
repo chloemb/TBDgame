@@ -72,6 +72,7 @@ public class HealthManager : MonoBehaviour
     {
         if (Health == 0)
         {
+            SendMessageUpwards("Killed");
             // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
             Destroy(gameObject);
         }

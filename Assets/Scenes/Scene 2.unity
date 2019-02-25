@@ -8935,31 +8935,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2123044841111369056, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123044841111369056, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8057615699840721829, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1074608821}
-    - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2123044841111369056, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2123044841111369056, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125597ba9135d45709f33813a648f99f, type: 3}
 --- !u!1001 &7297452594197213624

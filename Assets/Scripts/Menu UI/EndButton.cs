@@ -4,17 +4,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ButtonManager : MonoBehaviour
+public class EndButton : MonoBehaviour
 {
-
     public Image fade;
-
     private float _fadeDelay = 1f;
 
-    public void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        var startButton = transform.Find("Buttons/Start").gameObject.GetComponent<Button>();
-        startButton.onClick.AddListener(() => StartCoroutine(StartFade()));
+        var continueButton = transform.Find("Buttons/Continue").gameObject.GetComponent<Button>();
+        continueButton.onClick.AddListener(() => StartCoroutine(StartFade()));
 
         var quitButton = transform.Find("Buttons/Quit").gameObject.GetComponent<Button>();
         quitButton.onClick.AddListener(QuitGame);
@@ -26,16 +25,16 @@ public class ButtonManager : MonoBehaviour
         while (_fadeDelay > 0f)
         {
             _fadeDelay -= .5f * Time.deltaTime;
-            
+
             color.a = 1f - _fadeDelay;
             fade.color = color;
             yield return null;
         }
 
-        StartGame();
+        LoadGame();
     }
 
-    private static void StartGame()
+    private static void LoadGame()
     {
         SceneManager.LoadScene(5);
     }
