@@ -25,25 +25,25 @@ public class HealthManager : MonoBehaviour
     void Awake()
     {
         // Set up proper name and get important componenets
-        if (gameObject.name.Contains("(Clone)")) gameObject.name = gameObject.name.Replace("(Clone)", "");
+        gameObject.name = gameObject.name.Replace(" Variant(Clone)", "");
         PlayerHolder = GameObject.Find("Players").transform;
         _rb = GetComponent<Rigidbody2D>();
         _pc = GetComponent<PlayerController>();
         
         // Move player to Respawn point
-        switch (gameObject.name)
-        {
-            case "Player 1":
-                RespawnPoint = GameObject.Find("P1Respawn").transform;
-                break;
-            case "Player 2":
-                RespawnPoint = GameObject.Find("P2Respawn").transform;
-                break;
-            default:
-                RespawnPoint = GameObject.Find("P1Respawn").transform;
-                break;
-        }
-        gameObject.transform.position = RespawnPoint.position;
+//        switch (gameObject.name)
+//        {
+//            case "Player 1":
+//                RespawnPoint = GameObject.Find("P1Respawn").transform;
+//                break;
+//            case "Player 2":
+//                RespawnPoint = GameObject.Find("P2Respawn").transform;
+//                break;
+//            default:
+//                RespawnPoint = GameObject.Find("P1Respawn").transform;
+//                break;
+//        }
+//        gameObject.transform.position = RespawnPoint.position;
         _rb.velocity = new Vector2(0f, 0f);
         gameObject.GetComponent<Collider2D>().enabled = false;
         
@@ -53,11 +53,11 @@ public class HealthManager : MonoBehaviour
         
         // Reset controls
         _pc.SetUpControls();
-        _pc.TouchWallToLeft = _pc.TouchWallToRight = false;
-        _pc.RefreshCooldown();
+        //_pc.TouchWallToLeft = _pc.TouchWallToRight = false;
+        //_pc.RefreshCooldown();
         
         // Reset material
-        GetComponent<SpriteRenderer>().material = GetComponent<AnimationController>().DefaultMaterial;
+        //GetComponent<SpriteRenderer>().material = GetComponent<AnimationController>().DefaultMaterial;
         
         // Start and end grace period
         InGracePeriod = true;
@@ -72,7 +72,7 @@ public class HealthManager : MonoBehaviour
     {
         if (Health == 0)
         {
-            Instantiate(PlayerPrefab, PlayerHolder);
+            // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
             Destroy(gameObject);
         }
     }

@@ -288,7 +288,9 @@
             <e p="AnimationController.cs" t="Include" />
             <e p="FireWeapon.cs" t="Include" />
             <e p="HealthManager.cs" t="Include" />
+            <e p="IndicatorAnimationController.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerRespawner.cs" t="Include" />
             <e p="Reactor.cs" t="Include" />
           </e>
           <e p="Powerups" t="Include">
