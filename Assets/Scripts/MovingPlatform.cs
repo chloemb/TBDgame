@@ -21,42 +21,47 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (StartingLeftRight) //starts going left
+        if (!(_rb.velocity.y > 0))
         {
-            if (_leftRight)
+            if (StartingLeftRight) //starts going left
             {
-                _rb.velocity = new Vector2(speed * -1, 0);
-                if (_rb.position.x <= startPos.x - changeValue)
+                if (_leftRight)
                 {
-                    _leftRight = false;
+                    _rb.velocity = new Vector2(speed * -1, 0);
+                    if (_rb.position.x <= startPos.x - changeValue)
+                    {
+                        _leftRight = false;
+                    }
+                }
+                else
+                {
+                    if (_rb.position.x >= startPos.x)
+                    {
+                        _leftRight = true;
+                    }
+
+                    _rb.velocity = new Vector2(speed, 0);
                 }
             }
-            else
+            else //starts going right
             {
-                if (_rb.position.x >= startPos.x)
+                if (_leftRight)
                 {
-                    _leftRight = true;
+                    _rb.velocity = new Vector2(speed * -1, 0);
+                    if (_rb.position.x <= startPos.x)
+                    {
+                        _leftRight = false;
+                    }
                 }
-                _rb.velocity = new Vector2(speed, 0);
-            }
-        }
-        else //starts going right
-        {
-            if (_leftRight)
-            {
-                _rb.velocity = new Vector2(speed * -1, 0);
-                if (_rb.position.x <= startPos.x)
+                else
                 {
-                    _leftRight = false;
+                    if (_rb.position.x >= startPos.x + changeValue)
+                    {
+                        _leftRight = true;
+                    }
+
+                    _rb.velocity = new Vector2(speed, 0);
                 }
-            }
-            else
-            {
-                if (_rb.position.x >= startPos.x + changeValue)
-                {
-                    _leftRight = true;
-                }
-                _rb.velocity = new Vector2(speed, 0);
             }
         }
     }
