@@ -10,10 +10,11 @@ public class HazardSpawner : MonoBehaviour
 {
     public List<Transform> BoxSpawnPoints;
     public List<Transform> SpikeSpawnPoints;
+    public List<Transform> MovingSpikeSpawnPoints;
 
-    public GameObject ExplodingBox, FallingSpike;
+    public GameObject ExplodingBox, FallingSpike, MovingSpike;
 
-    public int SpikeSpawnRate, BoxSpawnRate;
+    public int SpikeSpawnRate, BoxSpawnRate, MovingSpikeSpawnRate;
 
     private void Start()
     {
@@ -29,6 +30,13 @@ public class HazardSpawner : MonoBehaviour
             if (child.gameObject.name.Contains("Spawn"))
             {
                 SpikeSpawnPoints.Add(child);
+            }
+        }
+        foreach (var child in GameObject.Find("Moving Spikes").GetComponentsInChildren<Transform>())
+        {
+            if (child.gameObject.name.Contains("Spawn"))
+            {
+                MovingSpikeSpawnPoints.Add(child);
             }
         }
     }
@@ -57,6 +65,18 @@ public class HazardSpawner : MonoBehaviour
                 if (spawnhere == 0)
                 {
                     Instantiate(FallingSpike, spikespawn);
+                }
+            }
+        }
+
+        foreach (var spikespawn in MovingSpikeSpawnPoints)
+        {
+            if (spikespawn.childCount == 0)
+            {
+                int spawnhere = rnd.Next(0, MovingSpikeSpawnRate);
+                if (spawnhere == 0)
+                {
+                    Instantiate(MovingSpike, spikespawn);
                 }
             }
         }
