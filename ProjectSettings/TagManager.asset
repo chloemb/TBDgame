@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floors
-  - Walls
-  - Ceilings
-  - Hazards
-  - Powerups
-  - Projectiles
   - Interactable Hazards
+  - Walls
+  - Floors
+  - Ceilings
+  - Powerups
+  - Hazards
+  - Projectiles
   layers:
   - Default
   - TransparentFX
@@ -20,15 +20,10 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Debris
-<<<<<<< HEAD
-  - 
-  - 
-=======
   - Surfaces
-  - Spawn
->>>>>>> parent of f8cb06f... Revert "Updated Moving Platform"
+  - Players
+  - 
+  - 
   - 
   - 
   - 
@@ -50,12 +45,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 1069781237
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Foreground
-    uniqueID: 556802533
     locked: 0

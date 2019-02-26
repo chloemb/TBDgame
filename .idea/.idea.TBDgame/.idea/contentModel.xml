@@ -278,11 +278,15 @@
             <e p="ExplosionManager.cs" t="Include" />
             <e p="FallManager.cs" t="Include" />
             <e p="HazardSpawner.cs" t="Include" />
+            <e p="MovingSpike.cs" t="Include" />
           </e>
           <e p="Menu UI" t="Include">
             <e p="ButtonManager.cs" t="Include" />
+            <e p="EndButton.cs" t="Include" />
             <e p="MenuButton.cs" t="Include" />
+            <e p="SceneButton.cs" t="Include" />
           </e>
+          <e p="MovingPlatform.cs" t="Include" />
           <e p="Platform.cs" t="Include" />
           <e p="Player" t="Include">
             <e p="AnimationController.cs" t="Include" />

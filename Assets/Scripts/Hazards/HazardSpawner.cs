@@ -32,11 +32,15 @@ public class HazardSpawner : MonoBehaviour
                 SpikeSpawnPoints.Add(child);
             }
         }
-        foreach (var child in GameObject.Find("Moving Spikes").GetComponentsInChildren<Transform>())
+
+        if (GameObject.Find("Moving Spikes").GetComponentsInChildren<Transform>() != null)
         {
-            if (child.gameObject.name.Contains("Spawn"))
+            foreach (var child in GameObject.Find("Moving Spikes").GetComponentsInChildren<Transform>())
             {
-                MovingSpikeSpawnPoints.Add(child);
+                if (child.gameObject.name.Contains("Spawn"))
+                {
+                    MovingSpikeSpawnPoints.Add(child);
+                }
             }
         }
     }

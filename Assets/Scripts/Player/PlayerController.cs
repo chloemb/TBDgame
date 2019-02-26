@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
@@ -26,8 +27,9 @@ public class PlayerController : MonoBehaviour
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    [HideInInspector] public bool IsGrounded;
+    public bool IsGrounded;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
+    private Collider2D _col;
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
 
@@ -43,6 +45,11 @@ public class PlayerController : MonoBehaviour
         ControlDisabled,
         TouchWallToRight,
         TouchWallToLeft;
+
+    private void Start()
+    {
+        _col = GetComponent<Collider2D>();
+    }
 
     public void SetUpControls()
     {
@@ -76,6 +83,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        GroundedRay();
+        
         if (!gameObject.GetComponent<HealthManager>().InGracePeriod)
         {
             // Get Input
@@ -120,7 +129,7 @@ public class PlayerController : MonoBehaviour
                         Vector2 errorVector2 =
                             new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
                         _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-                        IsGrounded = false;
+                        //IsGrounded = false;
                     }
                 }
 
@@ -224,6 +233,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void GroundedRay()
+    {
+        bool OnGround = Physics2D.Raycast(gameObject.transform.position, Vector2.down, _col.bounds.extents.y * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+
+        if (IsGrounded != OnGround)
+        {
+            IsGrounded = OnGround;
+            if (IsGrounded)
+            {
+                GiveBackControl();
+                UsedDash = UsedWallJump = false;
+            }
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Walls")
@@ -235,21 +260,21 @@ public class PlayerController : MonoBehaviour
                 TouchWallToRight = true;
         }
 
-        // Ground object if on floor
-        if (col.gameObject.tag == "Floors")
-        {
-            IsGrounded = true;
-            UsedDash = false;
-        }
+//        // Ground object if on floor
+//        if (col.gameObject.tag == "Floors")
+//        {
+//            IsGrounded = true;
+//            UsedDash = false;
+//        }
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
-        // Unground object if leaving floor
-        if (col.gameObject.tag == "Floors")
-        {
-            IsGrounded = false;
-        }
+//        // Unground object if leaving floor
+//        if (col.gameObject.tag == "Floors")
+//        {
+//            IsGrounded = false;
+//        }
 
         if (col.gameObject.tag == "Walls")
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5188319560136312518}
   - component: {fileID: 845155412771874235}
   - component: {fileID: 3639470919314905918}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BigBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 556802533
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300004, guid: 270193053ce034b8e8e27dd49316a663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 4111441477352368783}
   - component: {fileID: 4111441477352368782}
   - component: {fileID: 6220378607004284541}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 8860448826921193167}
   - component: {fileID: 3583196561935975662}
   - component: {fileID: 3959097550648980411}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 556802533
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300016, guid: 426d852f2d58a4340aacc26675833e9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 4111441478038856028}
   - component: {fileID: 4111441478038856026}
   - component: {fileID: 4111441478038856029}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: TextMeshPro Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 4072889003356216319}
   - component: {fileID: 5771776676100825896}
   - component: {fileID: 782855653602928811}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: UnstBulIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 556802533
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300010, guid: 269e8b90a16e146dca6f5e044fd26657, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 1097275963627974167}
   - component: {fileID: 1733264508945334455}
   - component: {fileID: 1244070132092737885}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 556802533
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300012, guid: e6fd29428c2a241d3b820877636d8d88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -871,7 +871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8256743144484013201}
   - component: {fileID: 6182552737667811056}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -927,7 +927,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 556802533
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 627c7ee851f8a45d695cd3524f590df4, type: 3}
   m_Color: {r: 0.5176471, g: 1, b: 0.99074304, a: 0.7647059}
