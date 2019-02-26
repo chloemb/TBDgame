@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Select.unity
     guid: 4da7cebb7e3c27f40bc15ea358b883ca
+  - enabled: 1
+    path: Assets/Scenes/Sunnyland Scene.unity
+    guid: d4318839775573c46ac563b22160b466
+  - enabled: 1
+    path: Assets/Scenes/Sunnyland Scene 2.unity
+    guid: 20ea59c1004abc74797356a02ec1f126
   m_configObjects: {}
