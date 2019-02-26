@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class LevelButton : MonoBehaviour, ISelectHandler
+public class LevelButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
-    public Sprite border;
+    public Image border;
     private float _fadeDelay;
 
     void Start()
     {
-        _fadeDelay = .1f;
+        _fadeDelay = 1f;
     }
 
     public void OnSelect(BaseEventData eventData)
@@ -22,20 +22,38 @@ public class LevelButton : MonoBehaviour, ISelectHandler
 
     private IEnumerator FadeIn()
     {
+        StopCoroutine("FadeOut");
         var color = Color.white;
-        //var spRenderer = border.
         while (_fadeDelay > 0f)
         {
-            _fadeDelay -= Time.deltaTime;
+            _fadeDelay -= 5 * Time.deltaTime;
 
             color.a = 1f - _fadeDelay;
-        //    border.color = color;
+            border.color = color;
             yield return null;
         }
+
+        _fadeDelay = 1f;
     }
 
     public void OnDeselect(BaseEventData data)
     {
-        Debug.Log("Deselected");
+        StartCoroutine("FadeOut");
+    }
+
+    private IEnumerator FadeOut()
+    {
+        StopCoroutine("FadeIn");
+        var color = Color.white;
+        while (_fadeDelay > 0f)
+        {
+            _fadeDelay -= 5 * Time.deltaTime;
+
+            color.a = _fadeDelay;
+            border.color = color;
+            yield return null;
+        }
+
+        _fadeDelay = 1f;
     }
 }
