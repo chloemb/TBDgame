@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
@@ -27,20 +26,16 @@ public class PlayerController : MonoBehaviour
     public string[] PlayerAxes;
 
     // variables for managing movement and walls
-    //[HideInInspector]
-    public bool IsGrounded;
+    [HideInInspector] public bool IsGrounded;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
-    [HideInInspector] public Vector2 PrevFrameVel;
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
-    private Collider2D _col;
 
     // various info about object
     // [HideInInspector]
     public bool
         UsedWallJump,
         WallJumping,
-        Jumping,
         UsedDash,
         CurrentlyDashing,
         DashOnCooldown,
@@ -48,11 +43,6 @@ public class PlayerController : MonoBehaviour
         ControlDisabled,
         TouchWallToRight,
         TouchWallToLeft;
-
-    private void Awake()
-    {
-        _col = GetComponent<Collider2D>();
-    }
 
     public void SetUpControls()
     {
@@ -86,15 +76,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        PrevFrameVel = _rb.velocity;
-        
-        // Test
-        // if (_col.IsTouchingLayers())
-        
-        GroundedRay();
-//        LeftWallRay();
-//        RightWallRay();
-        
         if (!gameObject.GetComponent<HealthManager>().InGracePeriod)
         {
             // Get Input
@@ -106,7 +87,7 @@ public class PlayerController : MonoBehaviour
             var offhand = Input.GetAxis(PlayerAxes[5]);
 
             // Be able to jump off of walls & time amount allowed to cling to wall
-            if ((TouchWallToLeft || TouchWallToRight) && !IsGrounded && !Jumping)
+            if ((TouchWallToLeft || TouchWallToRight) && !IsGrounded)
             {
                 if (jump > 0 && !UsedWallJump)
                 {
@@ -120,9 +101,6 @@ public class PlayerController : MonoBehaviour
                     WallJumping = UsedWallJump = true;
                     DisableControl();
                     Invoke("StopWallJumping", WallJumpLength);
-
-                    Jumping = true;
-                    Invoke(nameof(NotJumping), .1f);
                 }
 
                 if (_rb.velocity.magnitude == 0)
@@ -135,15 +113,14 @@ public class PlayerController : MonoBehaviour
             if (!ControlDisabled)
             {
                 // Jump from ground if control isn't disabled
-                if (IsGrounded && !Jumping)
+                if (IsGrounded)
                 {
                     if (jump > 0)
                     {
                         Vector2 errorVector2 =
                             new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
                         _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-                        Jumping = true;
-                        Invoke("NotJumping", .1f);
+                        IsGrounded = false;
                     }
                 }
 
@@ -244,38 +221,8 @@ public class PlayerController : MonoBehaviour
 
             // Set PrevVelocity
             PrevVelocity = (_rb.velocity != Vector2.zero) ? _rb.velocity : PrevVelocity;
-            
-
         }
     }
-
-    private void GroundedRay()
-    {
-        bool TouchingFloor = Physics2D.Raycast(transform.position, -Vector3.up, _col.bounds.extents.y + .1f,
-            LayerMask.GetMask("Surfaces"));
-        if (TouchingFloor != IsGrounded)
-        {
-            IsGrounded = TouchingFloor;
-            if (IsGrounded)
-            {
-                UsedDash = false;
-                GiveBackControl();
-            }
-        }
-    }
-
-//    private bool LeftWallRay()
-//    {     
-//        return Physics2D.Raycast(transform.position, Vector2.left, _col.bounds.extents.x + .1f,
-//            LayerMask.GetMask("Surfaces"));
-//    }
-//    
-//    private bool RightWallRay()
-//    {
-//        return Physics2D.Raycast(transform.position, Vector3.right, _col.bounds.extents.x + .1f,
-//            LayerMask.GetMask("Surfaces"));
-//
-//    }
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -288,24 +235,21 @@ public class PlayerController : MonoBehaviour
                 TouchWallToRight = true;
         }
 
-//        // Ground object if on floor
-//        if (col.gameObject.tag == "Floors")
-//        {
-//            Debug.Log("entering floor");
-//            GiveBackControl();
-//            IsGrounded = true;
-//            UsedDash = false;
-//        }
+        // Ground object if on floor
+        if (col.gameObject.tag == "Floors")
+        {
+            IsGrounded = true;
+            UsedDash = false;
+        }
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
-//        // Unground object if leaving floor
-//        if (col.gameObject.tag == "Floors")
-//        {
-//            Debug.Log("leaving floor");
-//            IsGrounded = false;
-//        }
+        // Unground object if leaving floor
+        if (col.gameObject.tag == "Floors")
+        {
+            IsGrounded = false;
+        }
 
         if (col.gameObject.tag == "Walls")
         {
@@ -317,8 +261,6 @@ public class PlayerController : MonoBehaviour
                 GiveBackControl();
         }
     }
-    
-
 
     private void StopWallJumping()
     {
@@ -349,15 +291,10 @@ public class PlayerController : MonoBehaviour
 
     private void WallSlide()
     {
-        if (_rb.position == ClingPosition && !IsGrounded)
+        if (_rb.position == ClingPosition)
         {
             DisableControl();
         }
-    }
-
-    private void NotJumping()
-    {
-        Jumping = false;
     }
 
     public void DisableControl()

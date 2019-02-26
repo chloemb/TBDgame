@@ -36,28 +36,24 @@ public class HazardSpawner : MonoBehaviour
     private void FixedUpdate()
     {
         Random rnd = new Random();
-//        int spawnbox = rnd.Next(0, BoxSpawnRate * BoxSpawnPoints.Count);
-//        int spawnspike = rnd.Next(0, SpikeSpawnRate * SpikeSpawnPoints.Count);
+        int spawnbox = rnd.Next(0, BoxSpawnRate * BoxSpawnPoints.Count);
+        int spawnspike = rnd.Next(0, SpikeSpawnRate * SpikeSpawnPoints.Count);
 
-        foreach (var boxspawn in BoxSpawnPoints)
+        if (spawnbox == 0)
         {
-            if (boxspawn.childCount == 0) {
-                int spawnhere = rnd.Next(0, BoxSpawnRate);
-                if (spawnhere == 0)
-                {
-                    Instantiate(ExplodingBox, boxspawn);
-                }
+            int spawnhere = rnd.Next(0, BoxSpawnPoints.Count);
+            if (BoxSpawnPoints[spawnhere].childCount == 0)
+            {
+                Instantiate(ExplodingBox, BoxSpawnPoints[spawnhere]);
             }
         }
         
-        foreach (var spikespawn in SpikeSpawnPoints)
+        if (spawnspike == 0)
         {
-            if (spikespawn.childCount == 0) {
-                int spawnhere = rnd.Next(0, SpikeSpawnRate);
-                if (spawnhere == 0)
-                {
-                    Instantiate(FallingSpike, spikespawn);
-                }
+            int spawnhere = rnd.Next(0, SpikeSpawnPoints.Count);
+            if (SpikeSpawnPoints[spawnhere].childCount == 0)
+            {
+                Instantiate(FallingSpike, SpikeSpawnPoints[spawnhere]);
             }
         }
     }
