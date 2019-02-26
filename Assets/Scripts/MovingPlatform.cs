@@ -6,18 +6,16 @@ public class MovingPlatform : MonoBehaviour
 {
     private Rigidbody2D _rb;
     public bool StartingLeftRight; // true for left, false for right
-    public bool _leftRight;
+    private bool _leftRight;
     public float speed;
-    public Vector2 startPos;
+    private Vector2 startPos;
     public float changeValue; // Amount of distance the platform covers before switching
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _leftRight = StartingLeftRight;
-        if(!GetComponent<MovingSpike>())
-            startPos = _rb.position;
-        Debug.Log(startPos.x);
+        startPos = _rb.position;
     }
 
     // Update is called once per frame
@@ -65,16 +63,6 @@ public class MovingPlatform : MonoBehaviour
                     _rb.velocity = new Vector2(speed, 0);
                 }
             }
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            Debug.Log("Yatta");
-             col.gameObject.GetComponent<Rigidbody2D>().velocity = (_leftRight) ? new Vector2(speed * -1, 0) : new Vector2(speed, 0);
-            Debug.Log(col.gameObject.GetComponent<Rigidbody2D>().velocity);
         }
     }
 }
