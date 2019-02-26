@@ -102,19 +102,20 @@ public class AnimationController : MonoBehaviour
 
     private IEnumerator DashRefresh(float cooldown)
     {
+        float flashlength = .2f;
         float cdpassed = 0;
-        while (cdpassed <= cooldown - .4f)
+        while (cdpassed <= cooldown - flashlength)
         {
-            _sr.color = Color.Lerp(Color.gray, Color.white, cdpassed / (cooldown - .4f));
+            _sr.color = Color.Lerp(Color.gray, Color.white, cdpassed / (cooldown - flashlength));
             cdpassed += Time.deltaTime;
             yield return null;
         }
 
-        Color pinkyellow = new Color(255/255f, 155/255f, 50/255f);
+        Color pinkyellow = new Color(255/255f, 255/255f, 50/255f);
         Color halftransparent = Color.Lerp(Color.clear, pinkyellow, .85f);
 
         float flashingpassed = 0;
-        while (flashingpassed < .4f)
+        while (flashingpassed < flashlength)
         {
             if (_sr.color == Color.white)
             {

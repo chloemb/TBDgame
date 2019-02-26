@@ -409,7 +409,7 @@ MonoBehaviour:
   ClingTime: 0.75
   DashStrength: {x: 10, y: 10}
   DashLength: 0.15
-  DashCooldown: 1.5
+  DashCooldown: 0.5
   PlayerAxes:
   - 
   - 
