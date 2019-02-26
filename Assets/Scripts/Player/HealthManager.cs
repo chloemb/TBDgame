@@ -70,9 +70,15 @@ public class HealthManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Health == 0)
+        if (Health == 0 && name == "Player 1")
         {
-            SendMessageUpwards("Killed");
+            SendMessageUpwards("Player1Killed");
+            // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
+            Destroy(gameObject);
+        }
+        else if (Health == 0 && name == "Player 2")
+        {
+            SendMessageUpwards("Player2Killed");
             // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
             Destroy(gameObject);
         }
