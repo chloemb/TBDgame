@@ -24,9 +24,10 @@ public class PlayerController : MonoBehaviour
 
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical, Offhand]
     public string[] PlayerAxes;
+    private Collider2D _col;
 
     // variables for managing movement and walls
-    [HideInInspector] public bool IsGrounded;
+    public bool IsGrounded;
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
@@ -43,6 +44,11 @@ public class PlayerController : MonoBehaviour
         ControlDisabled,
         TouchWallToRight,
         TouchWallToLeft;
+
+    private void Start()
+    {
+        _col = GetComponent<Collider2D>();
+    }
 
     public void SetUpControls()
     {
@@ -76,6 +82,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        GroundedRay();
+        LeftWallRay();
+        RightWallRay();
+        
         if (!gameObject.GetComponent<HealthManager>().InGracePeriod)
         {
             // Get Input
@@ -120,7 +130,7 @@ public class PlayerController : MonoBehaviour
                         Vector2 errorVector2 =
                             new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
                         _rb.AddForce(errorVector2, ForceMode2D.Impulse);
-                        IsGrounded = false;
+                        //IsGrounded = false;
                     }
                 }
 
@@ -224,42 +234,111 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void GroundedRay()
+    {
+        Vector2 leftbound = transform.position - new Vector3(_col.bounds.extents.x, 0);
+        Vector2 rightbound = transform.position + new Vector3(_col.bounds.extents.x, 0);
+        bool GroundLeft = Physics2D.Raycast(leftbound, Vector2.down, _col.bounds.extents.y * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool GroundRight = Physics2D.Raycast(rightbound, Vector2.down, _col.bounds.extents.y * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool TouchingGround = GroundLeft || GroundRight;
+
+        if (IsGrounded != TouchingGround)
+        {
+            IsGrounded = TouchingGround;
+            if (IsGrounded)
+            {
+                GiveBackControl();
+                UsedDash = UsedWallJump = false;
+            }
+        }
+    }
+
+    private void LeftWallRay()
+    {
+        Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
+        Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
+        bool LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool TouchingLeft = LeftDown || LeftUp;
+
+        if (TouchWallToLeft != TouchingLeft)
+        {
+            TouchWallToLeft = TouchingLeft;
+            if (!TouchWallToLeft)
+            {
+                UsedWallJump = false;
+                if (!WallJumping && !CurrentlyDashing)
+                {
+                    GiveBackControl();
+                }
+            }
+        }
+    }
+    
+    private void RightWallRay()
+    {
+        Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
+        Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
+        bool RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool TouchingRight = RightDown || RightUp;
+
+        if (TouchWallToRight != TouchingRight)
+        {
+            TouchWallToRight = TouchingRight;
+            if (!TouchWallToRight)
+            {
+                UsedWallJump = false;
+                if (!WallJumping && !CurrentlyDashing)
+                {
+                    GiveBackControl();
+                }
+            }
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Walls")
-        {
-            // Detect which side the wall is on
-            if (PrevVelocity.x < 0)
-                TouchWallToLeft = true;
-            else
-                TouchWallToRight = true;
-        }
+//        if (col.gameObject.tag == "Walls")
+//        {
+//            // Detect which side the wall is on
+//            if (PrevVelocity.x < 0)
+//                TouchWallToLeft = true;
+//            else
+//                TouchWallToRight = true;
+//        }
 
-        // Ground object if on floor
-        if (col.gameObject.tag == "Floors")
-        {
-            IsGrounded = true;
-            UsedDash = false;
-        }
+//        // Ground object if on floor
+//        if (col.gameObject.tag == "Floors")
+//        {
+//            IsGrounded = true;
+//            UsedDash = false;
+//        }
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
         // Unground object if leaving floor
-        if (col.gameObject.tag == "Floors")
-        {
-            IsGrounded = false;
-        }
+//        if (col.gameObject.tag == "Floors")
+//        {
+//            IsGrounded = false;
+//        }
 
-        if (col.gameObject.tag == "Walls")
-        {
-            // No longer touching wall & can only wall jump once (only relevant if WallJumpStrength.x is 0)
-            TouchWallToLeft = TouchWallToRight = UsedWallJump = false;
-
-            // Give control back if not wall jumping (i.e. if falling)
-            if (!WallJumping && !CurrentlyDashing)
-                GiveBackControl();
-        }
+//        if (col.gameObject.tag == "Walls")
+//        {
+//            // No longer touching wall & can only wall jump once (only relevant if WallJumpStrength.x is 0)
+//            TouchWallToLeft = TouchWallToRight = UsedWallJump = false;
+//
+//            // Give control back if not wall jumping (i.e. if falling)
+//            if (!WallJumping && !CurrentlyDashing)
+//                GiveBackControl();
+//        }
     }
 
     private void StopWallJumping()
