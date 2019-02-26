@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical, Offhand]
     public string[] PlayerAxes;
     private Collider2D _col;
+    private FireWeapon _fw;
 
     // variables for managing movement and walls
     public bool IsGrounded;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _col = GetComponent<Collider2D>();
+        _fw = GetComponent<FireWeapon>();
     }
 
     public void SetUpControls()
@@ -143,46 +145,35 @@ public class PlayerController : MonoBehaviour
                 else if (horizontal < 0)
                     FacingRight = false;
 
-                // Determine left stick angle; if none, the direction the player is facing. Magnitude is 1.
-                Vector2 LeftStickAngle = new Vector2(horizontal, vertical).normalized;
-                if (LeftStickAngle.magnitude == 0)
-                    LeftStickAngle = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
-                
-                // Remove this section to have different, slightly more frustrating but slightly more precise aiming
-                if (LeftStickAngle.x >= .3f && LeftStickAngle.x <= .7f)
-                    LeftStickAngle.x = .5f;
-                else if (LeftStickAngle.x < .3f && LeftStickAngle.x > -.3f)
-                    LeftStickAngle.x = 0;
-                else if (LeftStickAngle.x < -.3f && LeftStickAngle.x >= -.7f)
-                    LeftStickAngle.x = -0.5f;
-                else if (LeftStickAngle.x < -.7f)
-                    LeftStickAngle.x = -1;
-                else
-                    LeftStickAngle.x = 1;
+                // Determine left stick angle (LSA) and snap to certain angle; if none, the direction the player is facing. Magnitude is 1.
+                Vector2 LSA = new Vector2(horizontal, vertical).normalized;
+                if (LSA.magnitude == 0)
+                    LSA = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
 
-                if (LeftStickAngle.y >= .3f && LeftStickAngle.y <= .7f)
-                    LeftStickAngle.y = .5f;
-                else if (LeftStickAngle.y < .3f && LeftStickAngle.y > -.3f)
-                    LeftStickAngle.y = 0;
-                else if (LeftStickAngle.y < -.3f && LeftStickAngle.y >= -.7f)
-                    LeftStickAngle.y = -0.5f;
-                else if (LeftStickAngle.y < -.7f)
-                    LeftStickAngle.y = -1;
-                else
-                    LeftStickAngle.y = 1;
+                LSA.x = LSA.x >= .3f && LSA.x <= .7f ? .5f :
+                    LSA.x < .3f && LSA.x > -.3f ? 0f :
+                    LSA.x < -.3f && LSA.x >= -.7f ? -.5f :
+                    LSA.x < -.7f ? -1f : 1f;
 
-                // Fire Weapon
-                if (shoot > 0 && !TouchWallToLeft && !TouchWallToRight)
+                LSA.y = LSA.y >= .3f && LSA.y <= .7f ? .5f :
+                    LSA.y < .3f && LSA.y > -.3f ? 0f :
+                    LSA.y < -.3f && LSA.y >= -.7f ? -.5f :
+                    LSA.y < -.7f ? -1f : 1f;
+
+                LSA = LSA.normalized;
+
+                // Fire Weapon (but not into walls)
+                if (shoot > 0 && !(TouchWallToLeft && LSA.x < 0) && !(TouchWallToRight && LSA.x > 0))
                 {
-                    GetComponent<FireWeapon>().Fire(LeftStickAngle);
-                    LastFired = LeftStickAngle;
+                    _fw.Fire(LSA);
+                    LastFired = LSA;
                 }
                 
                 // Fire offhand weapon
-                if (offhand > 0 && !TouchWallToLeft && !TouchWallToRight)
+                if (offhand > 0 && !(TouchWallToLeft && LSA.x < 0) && !(TouchWallToRight && LSA.x > 0))
                 {
-                    GetComponent<FireWeapon>().FireOffhand(LeftStickAngle);
-                    LastFired = LeftStickAngle;
+                    _fw.FireOffhand(LSA);
+                    LastFired = LSA;
                 }
 
                 // Dash
@@ -190,16 +181,16 @@ public class PlayerController : MonoBehaviour
                 {
                     if (!IsGrounded && _rb.velocity.x == 0 && _rb.velocity.y > 0)
                     {
-                        LeftStickAngle = new Vector2(0f, 1f);
+                        LSA = new Vector2(0f, 1f);
                     }
 
                     PreDashVel = _rb.velocity;
 
                     //Increase strength if the player dashed from stationary
-                    if ((LeftStickAngle.x.Equals(1) || LeftStickAngle.x.Equals(-1)) && LeftStickAngle.y.Equals(0))
-                        LeftStickAngle = FacingRight ? new Vector2(1.5f, 0) : new Vector2(-1.5f, 0);
+                    if ((LSA.x.Equals(1) || LSA.x.Equals(-1)) && LSA.y.Equals(0))
+                        LSA = FacingRight ? new Vector2(1.5f, 0) : new Vector2(-1.5f, 0);
                     
-                    Vector2 dashvel = DashStrength * LeftStickAngle;
+                    Vector2 dashvel = DashStrength * LSA;
 
                     if (TouchWallToLeft || TouchWallToRight)
                     {
@@ -236,12 +227,17 @@ public class PlayerController : MonoBehaviour
 
     private void GroundedRay()
     {
+        // Get leftmost and rightmost positions on player collider
         Vector2 leftbound = transform.position - new Vector3(_col.bounds.extents.x, 0);
         Vector2 rightbound = transform.position + new Vector3(_col.bounds.extents.x, 0);
+        
+        // Raycast down from those positions
         bool GroundLeft = Physics2D.Raycast(leftbound, Vector2.down, _col.bounds.extents.y * 1.1f,
             LayerMask.GetMask("Surfaces"));
         bool GroundRight = Physics2D.Raycast(rightbound, Vector2.down, _col.bounds.extents.y * 1.1f,
             LayerMask.GetMask("Surfaces"));
+        
+        // If either of those raycasts hit floor, ground player. Else, unground.
         bool TouchingGround = GroundLeft || GroundRight;
 
         if (IsGrounded != TouchingGround)
@@ -303,44 +299,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-//        if (col.gameObject.tag == "Walls")
-//        {
-//            // Detect which side the wall is on
-//            if (PrevVelocity.x < 0)
-//                TouchWallToLeft = true;
-//            else
-//                TouchWallToRight = true;
-//        }
-
-//        // Ground object if on floor
-//        if (col.gameObject.tag == "Floors")
-//        {
-//            IsGrounded = true;
-//            UsedDash = false;
-//        }
-    }
-
-    void OnCollisionExit2D(Collision2D col)
-    {
-        // Unground object if leaving floor
-//        if (col.gameObject.tag == "Floors")
-//        {
-//            IsGrounded = false;
-//        }
-
-//        if (col.gameObject.tag == "Walls")
-//        {
-//            // No longer touching wall & can only wall jump once (only relevant if WallJumpStrength.x is 0)
-//            TouchWallToLeft = TouchWallToRight = UsedWallJump = false;
-//
-//            // Give control back if not wall jumping (i.e. if falling)
-//            if (!WallJumping && !CurrentlyDashing)
-//                GiveBackControl();
-//        }
-    }
-
     private void StopWallJumping()
     {
         GiveBackControl();
@@ -386,3 +344,4 @@ public class PlayerController : MonoBehaviour
         ControlDisabled = false;
     }
 }
+
