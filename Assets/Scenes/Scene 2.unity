@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 20979282}
   - component: {fileID: 20979281}
   - component: {fileID: 20979280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Walls
   m_Icon: {fileID: 0}
@@ -800,8 +800,8 @@ MonoBehaviour:
     type: 3}
   FallingSpike: {fileID: 6418930139455605932, guid: e34f07676128744bf8bf1c8c998c9401,
     type: 3}
-  SpikeSpawnRate: 30
-  BoxSpawnRate: 100
+  SpikeSpawnRate: 300
+  BoxSpawnRate: 600
 --- !u!4 &208378994
 Transform:
   m_ObjectHideFlags: 0
@@ -1689,7 +1689,7 @@ MonoBehaviour:
   - {fileID: 7629586756243544715, guid: a671fb9f8eb60447db3ff28bd0039c95, type: 3}
   - {fileID: 7012571229736731238, guid: 7e14af5a4c0c34d0984816f3f734ed79, type: 3}
   - {fileID: 3504332178910298239, guid: ff043acec30734950a313d4ffe35ca53, type: 3}
-  PowerupSpawnRate: 200
+  PowerupSpawnRate: 1000
 --- !u!4 &554240836
 Transform:
   m_ObjectHideFlags: 0
@@ -1698,7 +1698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554240834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 998375619}
@@ -1814,7 +1814,8 @@ GameObject:
   - component: {fileID: 729573589}
   - component: {fileID: 729573591}
   - component: {fileID: 729573590}
-  m_Layer: 0
+  - component: {fileID: 729573592}
+  m_Layer: 10
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2897,6 +2898,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &729573592
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729573588}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
 --- !u!4 &762634591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7297452594186819575, guid: 83f17157d8ecd4df8819a6bf1f4a9dc6,
@@ -2966,7 +2981,7 @@ GameObject:
   - component: {fileID: 979421929}
   - component: {fileID: 979421928}
   - component: {fileID: 979421927}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floors
   m_TagString: Floors
   m_Icon: {fileID: 0}
@@ -3247,7 +3262,7 @@ GameObject:
   - component: {fileID: 1081320636}
   - component: {fileID: 1081320635}
   - component: {fileID: 1081320634}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ceilings
   m_TagString: Ceilings
   m_Icon: {fileID: 0}
@@ -3547,13 +3562,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1280041924}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1280041924
 Transform:
   m_ObjectHideFlags: 0
@@ -9009,6 +9024,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2123044841111369056, guid: 125597ba9135d45709f33813a648f99f,
+
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123044841111369056, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
@@ -9018,17 +9044,7 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8057615699840721829, guid: 125597ba9135d45709f33813a648f99f,
+    - target: {fileID: 5718792602014076728, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_Camera
       value: 

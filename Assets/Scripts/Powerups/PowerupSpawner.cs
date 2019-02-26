@@ -25,15 +25,17 @@ public class PowerupSpawner : MonoBehaviour
     private void FixedUpdate()
     {
         Random rnd = new Random();
-        int spawnpowerup = rnd.Next(0, PowerupSpawnRate * PowerupSpawnPoints.Count);
 
-        if (spawnpowerup == 0)
+        foreach (Transform puspawn in PowerupSpawnPoints)
         {
-            int spawnhere = rnd.Next(0, PowerupSpawnPoints.Count);
-            if (PowerupSpawnPoints[spawnhere].childCount == 0)
+            if (puspawn.childCount == 0)
             {
-                var newpowerup = Instantiate(Powerups[rnd.Next(0, Powerups.Length)], PowerupSpawnPoints[spawnhere]);
-                newpowerup.transform.Translate(0f, .25f, 0f);
+                int spawnhere = rnd.Next(0, PowerupSpawnRate);
+                if (spawnhere == 0)
+                {
+                    int whichpu = rnd.Next(0, Powerups.Length);
+                    Instantiate(Powerups[whichpu], puspawn);
+                }
             }
         }
     }
