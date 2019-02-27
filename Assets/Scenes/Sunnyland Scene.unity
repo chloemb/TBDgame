@@ -3438,6 +3438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1937921829}
+  - component: {fileID: 1937921830}
   m_Layer: 0
   m_Name: Hazards
   m_TagString: Untagged
@@ -3462,6 +3463,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1937921830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937921828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9875182522e6341289447f6f850e2806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoxSpawnPoints: []
+  SpikeSpawnPoints: []
+  ExplodingBox: {fileID: 5600950221394272617, guid: d1c189bca27344fb18f32e9aab6683f9,
+    type: 3}
+  FallingSpike: {fileID: 6418930139455605932, guid: e34f07676128744bf8bf1c8c998c9401,
+    type: 3}
+  SpikeSpawnRate: 600
+  BoxSpawnRate: 300
 --- !u!1 &2094827557
 GameObject:
   m_ObjectHideFlags: 0
