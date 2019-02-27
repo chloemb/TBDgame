@@ -282,8 +282,11 @@
           <e p="Menu UI" t="Include">
             <e p="ButtonManager.cs" t="Include" />
             <e p="EndButton.cs" t="Include" />
+            <e p="GlobalControl.cs" t="Include" />
+            <e p="LevelButton.cs" t="Include" />
             <e p="MenuButton.cs" t="Include" />
             <e p="SceneButton.cs" t="Include" />
+            <e p="WinManager.cs" t="Include" />
           </e>
           <e p="MovingPlatform.cs" t="Include" />
           <e p="Platform.cs" t="Include" />

@@ -255,11 +255,12 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
-        bool LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f,
+        RaycastHit2D LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        bool LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f,
+        RaycastHit2D LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        bool TouchingLeft = LeftDown || LeftUp;
+        bool TouchingLeft = (LeftDown != null && LeftDown.normal == Vector2.right) ||
+                            (LeftUp != null && LeftUp.normal == Vector2.right);
 
         if (TouchWallToLeft != TouchingLeft)
         {
@@ -279,14 +280,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
-        bool RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f,
+        RaycastHit2D RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        bool RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f,
+        RaycastHit2D RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        bool TouchingRight = RightDown || RightUp;
+        bool TouchingRight = (RightDown != null && RightDown.normal == Vector2.left) || 
+                             (RightUp != null && RightUp.normal == Vector2.left);
 
         if (TouchWallToRight != TouchingRight)
         {
+            Debug.Log(RightDown.normal);
             TouchWallToRight = TouchingRight;
             if (!TouchWallToRight)
             {
