@@ -20,6 +20,7 @@ public class SceneSwitch : MonoBehaviour
     void Start()
     {
         Music = GameObject.Find("GlobalControl").GetComponent<AudioSource>();
+        Music.volume = 1f;
         Music.Play();
         _kills1Happened = 0;
         _kills2Happened = 0;
