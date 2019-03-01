@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
 
-    // player axes array. Currently: [Horizontal, Jump, Dash, Shoot, Vertical, Offhand]
+    // player axes array. Currently: [LHorizontal, LVertical, Jump, Dash, Shoot, Offhand, RHorizontal, RVertical]
     public string[] PlayerAxes;
     private Collider2D _col;
     private FireWeapon _fw;
@@ -60,20 +60,24 @@ public class PlayerController : MonoBehaviour
         switch (gameObject.name)
         {
             case "Player 1":
-                PlayerAxes[0] = "P1Horizontal";
-                PlayerAxes[1] = "P1Jump";
-                PlayerAxes[2] = "P1Dash";
-                PlayerAxes[3] = "P1Shoot";
-                PlayerAxes[4] = "P1Vertical";
+                PlayerAxes[0] = "P1LHorizontal";
+                PlayerAxes[1] = "P1LVertical";
+                PlayerAxes[2] = "P1Jump";
+                PlayerAxes[3] = "P1Dash";
+                PlayerAxes[4] = "P1Shoot";
                 PlayerAxes[5] = "P1Offhand";
+                PlayerAxes[6] = "P1RHorizontal";
+                PlayerAxes[7] = "P1RVertical";
                 break;
             case "Player 2":
-                PlayerAxes[0] = "P2Horizontal";
-                PlayerAxes[1] = "P2Jump";
-                PlayerAxes[2] = "P2Dash";
-                PlayerAxes[3] = "P2Shoot";
-                PlayerAxes[4] = "P2Vertical";
+                PlayerAxes[0] = "P2LHorizontal";
+                PlayerAxes[1] = "P2LVertical";
+                PlayerAxes[2] = "P2Jump";
+                PlayerAxes[3] = "P2Dash";
+                PlayerAxes[4] = "P2Shoot";
                 PlayerAxes[5] = "P2Offhand";
+                PlayerAxes[6] = "P2RHorizontal";
+                PlayerAxes[7] = "P2RVertical";
                 break;
         }
 
@@ -91,12 +95,14 @@ public class PlayerController : MonoBehaviour
         if (!gameObject.GetComponent<HealthManager>().InGracePeriod)
         {
             // Get Input
-            var horizontal = Input.GetAxis(PlayerAxes[0]);
-            var jump = Input.GetAxis(PlayerAxes[1]);
-            var dash = Input.GetAxis(PlayerAxes[2]);
-            var shoot = Input.GetAxis(PlayerAxes[3]);
-            var vertical = Input.GetAxis(PlayerAxes[4]);
+            var lhorizontal = Input.GetAxis(PlayerAxes[0]);
+            var lvertical = Input.GetAxis(PlayerAxes[1]);
+            var jump = Input.GetAxis(PlayerAxes[2]);
+            var dash = Input.GetAxis(PlayerAxes[3]);
+            var shoot = Input.GetAxis(PlayerAxes[4]);
             var offhand = Input.GetAxis(PlayerAxes[5]);
+            var rhorizontal = Input.GetAxis(PlayerAxes[6]);
+            var rvertical = Input.GetAxis(PlayerAxes[7]);
 
             // Be able to jump off of walls & time amount allowed to cling to wall
             if ((TouchWallToLeft || TouchWallToRight) && !IsGrounded)
@@ -130,23 +136,23 @@ public class PlayerController : MonoBehaviour
                     if (jump > 0)
                     {
                         Vector2 errorVector2 =
-                            new Vector2(Speed * horizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
+                            new Vector2(Speed * lhorizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
                         _rb.AddForce(errorVector2, ForceMode2D.Impulse);
                         //IsGrounded = false;
                     }
                 }
 
                 // Horizontal movement
-                Vector2 forcetoapply = new Vector2(horizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
+                Vector2 forcetoapply = new Vector2(lhorizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
                 _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
 
-                if (horizontal > 0)
+                if (lhorizontal > 0)
                     FacingRight = true;
-                else if (horizontal < 0)
+                else if (lhorizontal < 0)
                     FacingRight = false;
 
                 // Determine left stick angle (LSA) and snap to certain angle; if none, the direction the player is facing. Magnitude is 1.
-                Vector2 LSA = new Vector2(horizontal, vertical).normalized;
+                Vector2 LSA = new Vector2(lhorizontal, lvertical).normalized;
                 if (LSA.magnitude == 0)
                     LSA = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
 
@@ -161,19 +167,36 @@ public class PlayerController : MonoBehaviour
                     LSA.y < -.7f ? -1f : 1f;
 
                 LSA = LSA.normalized;
+                
+                // Same as LSA but for the right stick
+                Vector2 RSA = new Vector2(rhorizontal, rvertical).normalized;
+                if (RSA.magnitude == 0)
+                    RSA = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
+                
+                RSA.x = RSA.x >= .3f && RSA.x <= .7f ? .5f :
+                    RSA.x < .3f && RSA.x > -.3f ? 0f :
+                    RSA.x < -.3f && RSA.x >= -.7f ? -.5f :
+                    RSA.x < -.7f ? -1f : 1f;
 
-                // Fire Weapon (but not into walls)
-                if (shoot > 0 && !(TouchWallToLeft && LSA.x < 0) && !(TouchWallToRight && LSA.x > 0))
+                RSA.y = RSA.y >= .3f && RSA.y <= .7f ? .5f :
+                    RSA.y < .3f && RSA.y > -.3f ? 0f :
+                    RSA.y < -.3f && RSA.y >= -.7f ? -.5f :
+                    RSA.y < -.7f ? -1f : 1f;
+
+                RSA = RSA.normalized;
+
+                // Fire Weapon
+                if (shoot > 0)
                 {
-                    _fw.Fire(LSA);
-                    LastFired = LSA;
+                    _fw.Fire(RSA);
+                    LastFired = RSA;
                 }
                 
                 // Fire offhand weapon
-                if (offhand > 0 && !(TouchWallToLeft && LSA.x < 0) && !(TouchWallToRight && LSA.x > 0))
+                if (offhand > 0)
                 {
-                    _fw.FireOffhand(LSA);
-                    LastFired = LSA;
+                    _fw.FireOffhand(RSA);
+                    LastFired = RSA;
                 }
 
                 // Dash

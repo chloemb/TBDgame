@@ -17,7 +17,7 @@ public class Reactor : MonoBehaviour
 
     public bool KnockingBack, Floating;
 
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _pc = GetComponent<PlayerController>();

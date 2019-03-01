@@ -417,6 +417,8 @@ MonoBehaviour:
   - 
   - 
   - 
+  - 
+  - 
   IsGrounded: 0
   PrevVelocity: {x: 0, y: 0}
   UsedWallJump: 0
