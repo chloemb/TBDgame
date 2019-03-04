@@ -1814,7 +1814,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c4d5c7651b5f34fb1bed095f8ad43d6d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3df7fb6118d874a749f05b9791c55b32, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9131,26 +9131,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 375
       objectReference: {fileID: 0}
-    - target: {fileID: 5313417676725320872, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 556802533
-      objectReference: {fileID: 0}
-    - target: {fileID: 5313417676725320872, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5313417677082160478, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 556802533
-      objectReference: {fileID: 0}
-    - target: {fileID: 5313417677082160478, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5838819257251072072, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_Camera
@@ -9170,6 +9150,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: 556802533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: StageTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 3df7fb6118d874a749f05b9791c55b32, type: 3}
+    - target: {fileID: 5313417676725320872, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 556802533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313417676725320872, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313417677082160478, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 556802533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313417677082160478, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5813771360764934266, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}

@@ -15,12 +15,14 @@ public class SceneSwitch : MonoBehaviour
     private int _kills2Happened;
 
     private AudioSource Music;
+    public AudioClip StageTheme;
 
     // Start is called before the first frame update
     void Start()
     {
         Music = GameObject.Find("GlobalControl").GetComponent<AudioSource>();
         Music.volume = 1f;
+        Music.clip = StageTheme;
         Music.Play();
         _kills1Happened = 0;
         _kills2Happened = 0;
