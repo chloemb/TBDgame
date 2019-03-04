@@ -113,6 +113,7 @@ MonoBehaviour:
   Players:
   - {fileID: 8816721409979425600, guid: f1100e4ad89d849bc9a6021b03dda218, type: 3}
   - {fileID: 648445408577700951, guid: 8c20aadd49c824f5ca0379c479c8f384, type: 3}
+  MovingPlatforms: {fileID: 0}
 --- !u!114 &5392521415988146300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +221,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 648445408577700950, guid: 8c20aadd49c824f5ca0379c479c8f384,
+        type: 3}
+      propertyPath: SpawnPoint
+      value: 
+      objectReference: {fileID: 1551823916165067252}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c20aadd49c824f5ca0379c479c8f384, type: 3}
 --- !u!4 &2123044840942963504 stripped
@@ -298,12 +304,12 @@ PrefabInstance:
     - target: {fileID: 8816721409979425602, guid: f1100e4ad89d849bc9a6021b03dda218,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: 0
+      value: 556802533
       objectReference: {fileID: 0}
     - target: {fileID: 8816721409979425602, guid: f1100e4ad89d849bc9a6021b03dda218,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8816721409979425602, guid: f1100e4ad89d849bc9a6021b03dda218,
         type: 3}
@@ -420,6 +426,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8816721409979425601, guid: f1100e4ad89d849bc9a6021b03dda218,
+        type: 3}
+      propertyPath: SpawnPoint
+      value: 
+      objectReference: {fileID: 1551823916123297379}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1100e4ad89d849bc9a6021b03dda218, type: 3}
 --- !u!4 &8057615699253810724 stripped
