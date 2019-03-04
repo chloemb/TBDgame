@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 7469692517570225793}
   - component: {fileID: 6312701655621221014}
   - component: {fileID: 464445581960638803}
+  - component: {fileID: 3451681849748549348}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -419,6 +420,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  - 
   IsGrounded: 0
   PrevVelocity: {x: 0, y: 0}
   UsedWallJump: 0
@@ -455,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullets:
-  - {fileID: 3909773694351377151, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
+  - {fileID: 3977474366423857869, guid: f69cbb7ffb86d40f38248c5a8f166e00, type: 3}
   - {fileID: 3591710038527740813, guid: 88d9616a3315a43cc9e0ebbf37deb420, type: 3}
   - {fileID: 3591710038527740813, guid: be197e4c2aaf1427eb9b19221b2bb127, type: 3}
   RemainingUses: 0
@@ -553,6 +555,23 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
+--- !u!114 &3451681849748549348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111441477871771406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cfabdf47b354da696643ff71620997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trap: {fileID: 3627253114998124646, guid: 1cdd22a2633fd4f27be829451cf42487, type: 3}
+  Uses: 10
+  Cooldown: 2
+  SetTime: 0.5
+  SettingTrap: 0
 --- !u!1 &4111441478038856031
 GameObject:
   m_ObjectHideFlags: 0

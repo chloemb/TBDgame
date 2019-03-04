@@ -22,10 +22,12 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
 
-    // player axes array. Currently: [LHorizontal, LVertical, Jump, Dash, Shoot, Offhand, RHorizontal, RVertical]
+    // player axes array.
+    // Currently: [LHorizontal, LVertical, Jump, Dash, Shoot, Offhand, RHorizontal, RVertical, SetTrap]
     public string[] PlayerAxes;
     private Collider2D _col;
     private FireWeapon _fw;
+    private SetTrap _st;
 
     // variables for managing movement and walls
     public bool IsGrounded;
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         _col = GetComponent<Collider2D>();
         _fw = GetComponent<FireWeapon>();
+        _st = GetComponent<SetTrap>();
     }
 
     public void SetUpControls()
@@ -68,6 +71,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[5] = "P1Offhand";
                 PlayerAxes[6] = "P1RHorizontal";
                 PlayerAxes[7] = "P1RVertical";
+                PlayerAxes[8] = "P1Trap";
                 break;
             case "Player 2":
                 PlayerAxes[0] = "P2LHorizontal";
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[5] = "P2Offhand";
                 PlayerAxes[6] = "P2RHorizontal";
                 PlayerAxes[7] = "P2RVertical";
+                PlayerAxes[8] = "P2Trap";
                 break;
         }
 
@@ -103,6 +108,7 @@ public class PlayerController : MonoBehaviour
             var offhand = Input.GetAxis(PlayerAxes[5]);
             var rhorizontal = Input.GetAxis(PlayerAxes[6]);
             var rvertical = Input.GetAxis(PlayerAxes[7]);
+            var setTrap = Input.GetAxis(PlayerAxes[8]);
 
             // Be able to jump off of walls & time amount allowed to cling to wall
             if ((TouchWallToLeft || TouchWallToRight) && !IsGrounded)
@@ -197,6 +203,12 @@ public class PlayerController : MonoBehaviour
                 {
                     _fw.FireOffhand(RSA);
                     LastFired = RSA;
+                }
+                
+                // Set trap
+                if (setTrap > 0 && IsGrounded)
+                {
+                    _st.Set();
                 }
 
                 // Dash
