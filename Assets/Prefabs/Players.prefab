@@ -129,6 +129,22 @@ MonoBehaviour:
   KillsRequired: 3
   Score1: {fileID: 5313417676554692532}
   Score2: {fileID: 4379502932793173101}
+--- !u!114 &8952010136323641512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123044840942963507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cfabdf47b354da696643ff71620997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapSet: 0
+  trapCount: 3
+  trap: {fileID: 0}
+  setTrapButton: P2Trap
 --- !u!1001 &1551823915278421860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -211,6 +227,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 648445408577700950, guid: 8c20aadd49c824f5ca0379c479c8f384,
+        type: 3}
+      propertyPath: PlayerAxes.Array.size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 648445408477673988, guid: 8c20aadd49c824f5ca0379c479c8f384,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -228,6 +249,12 @@ PrefabInstance:
       objectReference: {fileID: 1551823916165067252}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c20aadd49c824f5ca0379c479c8f384, type: 3}
+--- !u!1 &2123044840942963507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 648445408577700951, guid: 8c20aadd49c824f5ca0379c479c8f384,
+    type: 3}
+  m_PrefabInstance: {fileID: 1551823915278421860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2123044840942963504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 648445408577700948, guid: 8c20aadd49c824f5ca0379c479c8f384,
@@ -315,6 +342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816721409979425601, guid: f1100e4ad89d849bc9a6021b03dda218,
+        type: 3}
+      propertyPath: PlayerAxes.Array.size
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8816721410464945871, guid: f1100e4ad89d849bc9a6021b03dda218,
         type: 3}
@@ -506,24 +538,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1805761170768675352, guid: d96c670be86630f479d96f62750c48ae,
-        type: 3}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5177235965359237610, guid: d96c670be86630f479d96f62750c48ae,
         type: 3}
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2108871268222859350, guid: d96c670be86630f479d96f62750c48ae,
+    - target: {fileID: 142750133709256980, guid: d96c670be86630f479d96f62750c48ae,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805761170768675352, guid: d96c670be86630f479d96f62750c48ae,
         type: 3}
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 142750133709256980, guid: d96c670be86630f479d96f62750c48ae,
+    - target: {fileID: 2108871268222859350, guid: d96c670be86630f479d96f62750c48ae,
         type: 3}
-      propertyPath: m_UiScaleMode
+      propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
