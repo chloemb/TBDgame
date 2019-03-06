@@ -2935,6 +2935,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 7.55
       objectReference: {fileID: 0}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: StageTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: ad6ad3dec19154aefba127753785a64b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125597ba9135d45709f33813a648f99f, type: 3}
 --- !u!1001 &1879592971
@@ -3289,7 +3294,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c4d5c7651b5f34fb1bed095f8ad43d6d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ad6ad3dec19154aefba127753785a64b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
