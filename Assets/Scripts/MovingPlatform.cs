@@ -10,6 +10,8 @@ public class MovingPlatform : MonoBehaviour
     public float speed;
     private Vector2 startPos;
     public float changeValue; // Amount of distance the platform covers before switching
+    
+
     // Use this for initialization
     void Start()
     {
@@ -27,7 +29,7 @@ public class MovingPlatform : MonoBehaviour
             {
                 if (_leftRight)
                 {
-                    _rb.velocity = new Vector2(speed * -1, 0);
+                    _rb.MovePosition(_rb.position - new Vector2(speed, 0));
                     if (_rb.position.x <= startPos.x - changeValue)
                     {
                         _leftRight = false;
@@ -40,14 +42,14 @@ public class MovingPlatform : MonoBehaviour
                         _leftRight = true;
                     }
 
-                    _rb.velocity = new Vector2(speed, 0);
+                    _rb.MovePosition(_rb.position + new Vector2(speed, 0));
                 }
             }
             else //starts going right
             {
                 if (_leftRight)
                 {
-                    _rb.velocity = new Vector2(speed * -1, 0);
+                    _rb.MovePosition(_rb.position - new Vector2(speed, 0));
                     if (_rb.position.x <= startPos.x)
                     {
                         _leftRight = false;
@@ -60,9 +62,33 @@ public class MovingPlatform : MonoBehaviour
                         _leftRight = true;
                     }
 
-                    _rb.velocity = new Vector2(speed, 0);
+                    _rb.MovePosition(_rb.position + new Vector2(speed, 0));
                 }
             }
         }
     }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Debug.Log("On");
+            col.collider.transform.SetParent(transform);
+            col.collider.transform.GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+    }
+
+    /*private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player" && col.gameObject.name == "Player 1")
+        {
+            //col.collider.transform.SetParent(PlayerSpawnPoints[0]);
+           // col.collider.transform.GetComponent<Rigidbody2D>().isKinematic = false;
+        }
+        else if (col.gameObject.tag == "Player" && col.gameObject.name == "Player 2")
+        {
+            //col.collider.transform.SetParent(PlayerSpawnPoints[1]);
+            //col.collider.transform.GetComponent<Rigidbody2D>().isKinematic = false;
+        }
+    }*/
 }

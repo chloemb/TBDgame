@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 DashStrength;
     public float DashLength;
     public float DashCooldown;
+    
 
     // player axes array. Currently: [LHorizontal, LVertical, Jump, Dash, Shoot, Offhand, RHorizontal, RVertical]
     public string[] PlayerAxes;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
+    private Transform SpawnPoint;
 
     // various info about object
     // [HideInInspector]
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         _col = GetComponent<Collider2D>();
         _fw = GetComponent<FireWeapon>();
+        SpawnPoint = transform.parent;
     }
 
     public void SetUpControls()
@@ -135,6 +138,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (jump > 0)
                     {
+                        GetComponent<Rigidbody2D>().isKinematic = false;
                         Vector2 errorVector2 =
                             new Vector2(Speed * lhorizontal, JumpHeight) - new Vector2(_rb.velocity.x, 0);
                         _rb.AddForce(errorVector2, ForceMode2D.Impulse);
@@ -146,11 +150,21 @@ public class PlayerController : MonoBehaviour
                 Vector2 forcetoapply = new Vector2(lhorizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
                 _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
 
-                if (lhorizontal > 0)
-                    FacingRight = true;
-                else if (lhorizontal < 0)
-                    FacingRight = false;
+                if (!transform.parent.gameObject.name.Contains("Respawn") && (lhorizontal > 0 || lhorizontal < 0 || jump > 0))
+                {
+                    Debug.Log("Off");
+                    GetComponent<Rigidbody2D>().isKinematic = false;
+                    transform.parent = SpawnPoint;
+                }
 
+                if (lhorizontal > 0)
+                {
+                    FacingRight = true;
+                }
+                else if (lhorizontal < 0)
+                {
+                    FacingRight = false;
+                }
                 // Determine left stick angle (LSA) and snap to certain angle; if none, the direction the player is facing. Magnitude is 1.
                 Vector2 LSA = new Vector2(lhorizontal, lvertical).normalized;
                 if (LSA.magnitude == 0)
