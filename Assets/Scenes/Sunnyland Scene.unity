@@ -2293,7 +2293,7 @@ MonoBehaviour:
   - {fileID: 7629586756243544715, guid: a671fb9f8eb60447db3ff28bd0039c95, type: 3}
   - {fileID: 7012571229736731238, guid: 7e14af5a4c0c34d0984816f3f734ed79, type: 3}
   - {fileID: 3504332178910298239, guid: ff043acec30734950a313d4ffe35ca53, type: 3}
-  PowerupSpawnRate: 300
+  PowerupSpawnRate: 500
 --- !u!1001 &1005814517
 PrefabInstance:
   m_ObjectHideFlags: 0
