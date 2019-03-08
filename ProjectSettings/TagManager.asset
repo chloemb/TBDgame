@@ -11,6 +11,7 @@ TagManager:
   - Powerups
   - Projectiles
   - Interactable Hazards
+  - Moving Floor
   layers:
   - Default
   - TransparentFX

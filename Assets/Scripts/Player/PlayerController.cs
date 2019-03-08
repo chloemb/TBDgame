@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
+using Assets.Scripts;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 DashStrength;
     public float DashLength;
     public float DashCooldown;
+    public PhysicsMaterial2D NoFriction;
     
 
     // player axes array.
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
     private Transform SpawnPoint;
+    private PlatformType _platform;
 
     // various info about object
     // [HideInInspector]
@@ -56,6 +59,7 @@ public class PlayerController : MonoBehaviour
         _fw = GetComponent<FireWeapon>();
         SpawnPoint = transform.parent;
         _st = GetComponent<SetTrap>();
+        _platform = Platform.GetPlatform();
     }
 
     public void SetUpControls()
@@ -63,9 +67,9 @@ public class PlayerController : MonoBehaviour
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.gravityScale = GravityScale;
 
-        switch (gameObject.name)
+        switch (gameObject.name + " " + _platform.ToString())
         {
-            case "Player 1":
+            case "Player 1 Mac":
                 PlayerAxes[0] = "P1LHorizontal";
                 PlayerAxes[1] = "P1LVertical";
                 PlayerAxes[2] = "P1Jump";
@@ -76,7 +80,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[7] = "P1RVertical";
                 PlayerAxes[8] = "P1Trap";
                 break;
-            case "Player 2":
+            case "Player 2 Mac":
                 PlayerAxes[0] = "P2LHorizontal";
                 PlayerAxes[1] = "P2LVertical";
                 PlayerAxes[2] = "P2Jump";
@@ -86,6 +90,28 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P2RHorizontal";
                 PlayerAxes[7] = "P2RVertical";
                 PlayerAxes[8] = "P2Trap";
+                break;
+            case "Player 1 Windows":
+                PlayerAxes[0] = "P1LHorizontal_Windows";
+                PlayerAxes[1] = "P1LVertical_Windows";
+                PlayerAxes[2] = "P1Jump_Windows";
+                PlayerAxes[3] = "P1Dash_Windows";
+                PlayerAxes[4] = "P1Shoot_Windows";
+                PlayerAxes[5] = "P1Offhand_Windows";
+                PlayerAxes[6] = "P1RHorizontal_Windows";
+                PlayerAxes[7] = "P1RVertical_Windows";
+                PlayerAxes[8] = "P1Trap_Windows";
+                break;
+            case "Player 2 Windows":
+                PlayerAxes[0] = "P2LHorizontal_Windows";
+                PlayerAxes[1] = "P2LVertical_Windows";
+                PlayerAxes[2] = "P2Jump_Windows";
+                PlayerAxes[3] = "P2Dash_Windows";
+                PlayerAxes[4] = "P2Shoot_Windows";
+                PlayerAxes[5] = "P2Offhand_Windows";
+                PlayerAxes[6] = "P2RHorizontal_Windows";
+                PlayerAxes[7] = "P2RVertical_Windows";
+                PlayerAxes[8] = "P2Trap_Windows";
                 break;
         }
 
@@ -156,14 +182,24 @@ public class PlayerController : MonoBehaviour
                 Vector2 forcetoapply = new Vector2(lhorizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
                 _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
 
+                /*if (lhorizontal > 0 || lhorizontal < 0)
+                {
+                    this.GetComponent<CompositeCollider2D>().sharedMaterial = NoFriction;
+                    this.GetComponent<CapsuleCollider2D>().sharedMaterial = NoFriction;
+                }
+                else
+                {
+                    this.GetComponent<CompositeCollider2D>().sharedMaterial = null;
+                    this.GetComponent<CompositeCollider2D>().sharedMaterial = null;
+                }*/
+
                 if (!transform.parent.gameObject.name.Contains("Respawn") && (lhorizontal > 0 || lhorizontal < 0 || jump > 0))
                 {
-                    Debug.Log("Off");
-                    GetComponent<Rigidbody2D>().isKinematic = false;
-                    transform.parent = SpawnPoint;
+                    //Debug.Log("Off");
+                    //transform.parent = SpawnPoint;
                 }
 
-                if (lhorizontal > 0)
+                    if (lhorizontal > 0)
                 {
                     FacingRight = true;
                 }

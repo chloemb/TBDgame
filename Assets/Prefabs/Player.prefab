@@ -411,6 +411,7 @@ MonoBehaviour:
   DashStrength: {x: 10, y: 10}
   DashLength: 0.15
   DashCooldown: 0.5
+  NoFriction: {fileID: 6200000, guid: 893ff09ac46914bc8b43ef765014ce04, type: 2}
   PlayerAxes:
   - 
   - 
@@ -457,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullets:
-  - {fileID: 3977474366423857869, guid: f69cbb7ffb86d40f38248c5a8f166e00, type: 3}
+  - {fileID: 3909773694351377151, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
   - {fileID: 3591710038527740813, guid: 88d9616a3315a43cc9e0ebbf37deb420, type: 3}
   - {fileID: 3591710038527740813, guid: be197e4c2aaf1427eb9b19221b2bb127, type: 3}
   RemainingUses: 0
@@ -553,7 +554,11 @@ CompositeCollider2D:
       - X: 2000000
         Y: -4250000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 0.2, y: 0.425}
+      - {x: -0.2, y: 0.425}
+      - {x: -0.2, y: -0.425}
+      - {x: 0.2, y: -0.425}
   m_VertexDistance: 0.0005
 --- !u!114 &3451681849748549348
 MonoBehaviour:

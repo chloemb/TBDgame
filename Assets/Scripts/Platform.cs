@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Code
+namespace Assets.Scripts
 {
     /// <summary>
     /// Represents a what platform (e.g. OS) we're running on
@@ -31,18 +31,6 @@ namespace Assets.Code
                    Application.platform == RuntimePlatform.WindowsPlayer
                 ? PlatformType.Windows
                 : PlatformType.Mac;
-        }
-
-        /// <summary>
-        /// Returns the name of the platform appropriate input axis for firing.
-        /// Windows has a different binding for the right trigger than OSX/Linux.
-        /// </summary>
-        /// <returns>Name of the "fire" axis</returns>
-        public static string GetFireAxis()
-        {
-            return GetPlatform() == PlatformType.Windows
-                ? "FireWindows"
-                : "FireMac"; // OSX/Linux bind right trigger the same way
         }
     }
 }
