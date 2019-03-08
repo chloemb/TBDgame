@@ -53,22 +53,26 @@ public class PlayerController : MonoBehaviour
         TouchWallToRight,
         TouchWallToLeft;
 
-    private void Start()
+    private void Awake()
     {
         _col = GetComponent<Collider2D>();
         _fw = GetComponent<FireWeapon>();
         SpawnPoint = transform.parent;
         _st = GetComponent<SetTrap>();
-        _platform = Platform.GetPlatform();
     }
 
     public void SetUpControls()
     {
+        _platform = Platform.GetPlatform();
+        Debug.Log(_platform);
+        
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.gravityScale = GravityScale;
+        Debug.Log(gameObject.name + " " + _platform.ToString());
 
         switch (gameObject.name + " " + _platform.ToString())
         {
+            
             case "Player 1 Mac":
                 PlayerAxes[0] = "P1LHorizontal";
                 PlayerAxes[1] = "P1LVertical";
@@ -374,7 +378,6 @@ public class PlayerController : MonoBehaviour
 
         if (TouchWallToRight != TouchingRight)
         {
-            Debug.Log(RightDown.normal);
             TouchWallToRight = TouchingRight;
             if (!TouchWallToRight)
             {
