@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class GlobalControl : MonoBehaviour
 {
@@ -17,6 +19,14 @@ public class GlobalControl : MonoBehaviour
         else if (Instance != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Level Select")
+        {
+            GetComponent<AudioSource>().volume = 0;
         }
     }
 }
