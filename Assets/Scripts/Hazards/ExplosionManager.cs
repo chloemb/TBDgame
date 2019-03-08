@@ -10,7 +10,7 @@ public class ExplosionManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Projectiles")
+        if (other.CompareTag("Projectiles"))
             Explode(other.GetComponent<BulletInfo>().playerOrigin);
     }
 
@@ -18,7 +18,7 @@ public class ExplosionManager : MonoBehaviour
     {
         if (col.relativeVelocity.magnitude > MaxContactSpeed)
         {
-            GameObject playerOrigin = col.collider.tag == "Projectiles" ? col.collider.GetComponent<BulletInfo>().playerOrigin : null;
+            GameObject playerOrigin = col.collider.CompareTag("Projectiles") ? col.collider.GetComponent<BulletInfo>().playerOrigin : null;
             Explode(playerOrigin);
             col.gameObject.GetComponent<HealthManager>().DamagePlayer(1);
         }
