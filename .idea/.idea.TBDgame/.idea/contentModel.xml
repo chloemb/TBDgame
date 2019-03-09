@@ -6,6 +6,11 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Bounclet.cs" t="Include" />
+        <e p="Images" t="Include">
+          <e p="Wooden boxes" t="Include">
+            <e p="Information.txt" t="Include" />
+          </e>
+        </e>
         <e p="PennyPixel Sprites" t="Include">
           <e p="PennyPixel_2DTilemapProject" t="Include">
             <e p="Assets" t="Include">
