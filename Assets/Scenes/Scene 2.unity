@@ -1749,6 +1749,7 @@ MonoBehaviour:
   - {fileID: 7629586756243544715, guid: a671fb9f8eb60447db3ff28bd0039c95, type: 3}
   - {fileID: 7012571229736731238, guid: 7e14af5a4c0c34d0984816f3f734ed79, type: 3}
   - {fileID: 3504332178910298239, guid: ff043acec30734950a313d4ffe35ca53, type: 3}
+  - {fileID: 8982715482006380893, guid: d805bc5b5556744bc8ff65d7b50ed3d3, type: 3}
   PowerupSpawnRate: 500
 --- !u!4 &554240836
 Transform:
@@ -1791,6 +1792,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21081729491938412, guid: 59af73a3b10423d4684059ed49d4f352,
+        type: 2}
+    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1074608821}
+    - target: {fileID: 3427608983656862956, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3427608984061220198, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
@@ -1847,37 +1879,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3427608983656862956, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 21081729491938412, guid: 59af73a3b10423d4684059ed49d4f352,
-        type: 2}
-    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1074608821}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c, type: 3}
 --- !u!1 &652719269
