@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb;
 
+    public bool Paused;
+
     // Customizable in inspector
     public float GravityScale;
     public float Speed;
@@ -26,11 +28,12 @@ public class PlayerController : MonoBehaviour
     
 
     // player axes array.
-    // Currently: [LHorizontal, LVertical, Jump, Dash, Shoot, Offhand, RHorizontal, RVertical, SetTrap]
+    // Currently: [LHorizontal, LVertical, Jump, Dash, Shoot, Offhand, RHorizontal, RVertical, SetTrap, Pause]
     public string[] PlayerAxes;
     private Collider2D _col;
     private FireWeapon _fw;
     private SetTrap _st;
+    private Transform _pm;
 
     // variables for managing movement and walls
     public bool IsGrounded;
@@ -59,16 +62,15 @@ public class PlayerController : MonoBehaviour
         _fw = GetComponent<FireWeapon>();
         SpawnPoint = transform.parent;
         _st = GetComponent<SetTrap>();
+        _pm = GameObject.Find("Menu").transform;
     }
 
     public void SetUpControls()
     {
         _platform = Platform.GetPlatform();
-        Debug.Log(_platform);
         
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.gravityScale = GravityScale;
-        Debug.Log(gameObject.name + " " + _platform.ToString());
 
         switch (gameObject.name + " " + _platform.ToString())
         {
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P1RHorizontal";
                 PlayerAxes[7] = "P1RVertical";
                 PlayerAxes[8] = "P1Trap";
+                PlayerAxes[9] = "Pause";
                 break;
             case "Player 2 Mac":
                 PlayerAxes[0] = "P2LHorizontal";
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P2RHorizontal";
                 PlayerAxes[7] = "P2RVertical";
                 PlayerAxes[8] = "P2Trap";
+                PlayerAxes[9] = "Pause";
                 break;
             case "Player 1 Windows":
                 PlayerAxes[0] = "P1LHorizontal_Windows";
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P1RHorizontal_Windows";
                 PlayerAxes[7] = "P1RVertical_Windows";
                 PlayerAxes[8] = "P1Trap_Windows";
+                PlayerAxes[9] = "Pause_Windows";
                 break;
             case "Player 2 Windows":
                 PlayerAxes[0] = "P2LHorizontal_Windows";
@@ -116,6 +121,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P2RHorizontal_Windows";
                 PlayerAxes[7] = "P2RVertical_Windows";
                 PlayerAxes[8] = "P2Trap_Windows";
+                PlayerAxes[9] = "Pause_Windows";
                 break;
         }
 
@@ -123,14 +129,32 @@ public class PlayerController : MonoBehaviour
         PrevVelocity = new Vector2(1, 1);
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        if (Input.GetButtonDown(PlayerAxes[9]))
+        {
+            if (!Paused)
+            {
+                Paused = true;
+                _pm.gameObject.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Paused = false;
+                _pm.gameObject.SetActive(false);
+                Time.timeScale = 1f;
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         GroundedRay();
         LeftWallRay();
         RightWallRay();
         
-        if (!gameObject.GetComponent<HealthManager>().InGracePeriod)
+        if (!gameObject.GetComponent<HealthManager>().InGracePeriod && !Paused)
         {
             // Get Input
             var lhorizontal = Input.GetAxis(PlayerAxes[0]);
