@@ -379,7 +379,7 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: joystick 1 button 0
     positiveButton: 
-    altNegativeButton: 
+    altNegativeButton: space
     altPositiveButton: 
     gravity: 1000
     dead: 0.2
@@ -601,10 +601,10 @@ InputManager:
     m_Name: Pause_Windows
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick 1 button 7
     positiveButton: joystick 1 button 7
-    altNegativeButton: 
-    altPositiveButton: 
+    altNegativeButton: escape
+    altPositiveButton: escape
     gravity: 1000
     dead: 0.2
     sensitivity: 3
