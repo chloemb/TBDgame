@@ -10,7 +10,6 @@ public class HazardSpawner : MonoBehaviour
 {
     public List<Transform> BoxSpawnPoints;
     public List<Transform> SpikeSpawnPoints;
-    public GameObject[] Auras;
 
     public GameObject ExplodingBox, FallingSpike;
 
@@ -36,9 +35,6 @@ public class HazardSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Auras = GameObject.FindGameObjectsWithTag("Auras");
-        bool playerhere = false;
-        
         Random rnd = new Random();
 
         foreach (Transform boxspawn in BoxSpawnPoints)
@@ -48,19 +44,7 @@ public class HazardSpawner : MonoBehaviour
                 int spawnhere = rnd.Next(0, BoxSpawnRate);
                 if (spawnhere == 0)
                 {
-                    
-                    foreach (GameObject area in Auras)
-                    {
-                        if (area.GetComponent<Collider2D>().bounds.Contains(boxspawn.position))
-                        {
-                            playerhere = true;
-                        }
-                    }
-
-                    if (!playerhere)
-                    {
-                        Instantiate(ExplodingBox, boxspawn);
-                    }
+                    Instantiate(ExplodingBox, boxspawn);
                 }
             }
         }
@@ -72,18 +56,7 @@ public class HazardSpawner : MonoBehaviour
                 int spawnhere = rnd.Next(0, SpikeSpawnRate);
                 if (spawnhere == 0)
                 {
-                    foreach (GameObject area in Auras)
-                    {
-                        if (area.GetComponent<Collider2D>().bounds.Contains(spikespawn.position))
-                        {
-                            playerhere = true;
-                        }
-                    }
-
-                    if (!playerhere)
-                    {
-                        Instantiate(FallingSpike, spikespawn);
-                    }
+                    Instantiate(FallingSpike, spikespawn);
                 }
             }
         }

@@ -22,18 +22,15 @@ public class BulletInfo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.gameObject.CompareTag("Auras"))
+        if (gameObject.name.Contains("Unstoppabullet"))
         {
-            if (gameObject.name.Contains("Unstoppabullet"))
-            {
-                if (col.gameObject.CompareTag("Player"))
-                    DestroyBullet();
-            }
-            else if (!col.gameObject.CompareTag("Powerups") && !col.gameObject.CompareTag("Hazards") &&
-                     !col.gameObject.CompareTag("Projectiles"))
-            {
-                Destroy(gameObject);
-            }
+            if (col.gameObject.CompareTag("Player"))
+                DestroyBullet();
+        }
+        else if (!col.gameObject.CompareTag("Powerups") && !col.gameObject.CompareTag("Hazards") &&
+                 !col.gameObject.CompareTag("Projectiles"))
+        {
+            Destroy(gameObject);
         }
     }
 
