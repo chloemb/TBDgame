@@ -117,9 +117,6 @@ public class Reactor : MonoBehaviour
             case "Gunstoppable Powerup(Clone)":
                 GetComponent<FireWeapon>().SwitchWeapon("Gunstoppable");
                 break;
-            case "Bouncing Bomb Powerup(Clone)":
-                GetComponent<FireWeapon>().SwitchWeapon("Bouncing Bomb");
-                break;
         }
     }
 }

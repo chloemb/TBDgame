@@ -148,7 +148,6 @@ MonoBehaviour:
   EffectLength: 0.5
   IFrames: 1
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &6790501613936918430
 MonoBehaviour:
   m_ObjectHideFlags: 0

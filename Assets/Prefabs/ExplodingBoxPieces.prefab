@@ -99,7 +99,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -149,7 +149,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &8031470365382196405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &1732582568482478695
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +313,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -365,7 +363,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &2751572357394036901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &2296518226174021822
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +474,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -528,7 +524,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &4467168226144010108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &2318658898696540115
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +635,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -691,7 +685,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &4717573669345338701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,7 +697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &4642721319603354048
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +796,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -854,7 +846,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &3568715677437096645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,7 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &5022237648307301536
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +957,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1017,7 +1007,6 @@ MonoBehaviour:
   EffectLength: 1
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &2807998650631743067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,7 +1019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &5071537418401957357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1118,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1180,7 +1168,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &8977829137200838715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,7 +1180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &5701687955912723796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1279,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1343,7 +1329,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &1445970285378188338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1356,7 +1341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
 --- !u!1 &8155416270917782019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1440,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 649ca3204d1d74fafa2b8c15def34d71, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1506,7 +1490,6 @@ MonoBehaviour:
   EffectLength: 0
   IFrames: 0.5
   Damage: 1
-  NoDamageToSelf: 0
 --- !u!114 &1451589287101615710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,4 +1502,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7aa6a4436854085ac2eafb07627f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}

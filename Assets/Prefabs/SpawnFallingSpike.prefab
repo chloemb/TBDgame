@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8730322711556705459}
   m_Layer: 0
-  m_Name: SpawnFallingSpike
+  m_Name: Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
