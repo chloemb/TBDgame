@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,10 +9,13 @@ public class PauseManager : MonoBehaviour
 {
     public Image fade;
     private float _fadeDelay = 1f;
+    private GameObject Pause;
 
     // Start is called before the first frame update
     void Start()
     {
+        Pause = transform.Find("Pause").gameObject;
+
         var levelsButton = transform.Find("Pause/Buttons/Levels").gameObject.GetComponent<Button>();
         levelsButton.onClick.AddListener(LoadGame);
 
@@ -21,7 +25,7 @@ public class PauseManager : MonoBehaviour
         var quitButton = transform.Find("Pause/Buttons/Quit").gameObject.GetComponent<Button>();
         quitButton.onClick.AddListener(QuitGame);
 
-        this.gameObject.SetActive(false);
+        Pause.SetActive(false);
     }
 
     private IEnumerator StartFade()
@@ -41,7 +45,7 @@ public class PauseManager : MonoBehaviour
 
     private void Unpause()
     {
-        this.gameObject.SetActive(false);
+        Pause.SetActive(false);
         Time.timeScale = 1f;
     }
 

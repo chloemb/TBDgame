@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         _fw = GetComponent<FireWeapon>();
         SpawnPoint = transform.parent;
         _st = GetComponent<SetTrap>();
-        _pm = GameObject.Find("Menu").transform;
+        _pm = GameObject.Find("Menu").transform.Find("Pause");
     }
 
     public void SetUpControls()
