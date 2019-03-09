@@ -9,9 +9,6 @@ public class WinManager : MonoBehaviour
     public TextMeshProUGUI Player1Text;
     public TextMeshProUGUI Player2Text;
 
-    public AudioSource Music;
-    public float FadeLength;
-
     public void Start()
     {
         switch (GlobalControl.Instance.winner)
@@ -23,10 +20,6 @@ public class WinManager : MonoBehaviour
                 Player2Wins();
                 break;
         }
-
-        Music = GameObject.Find("GlobalControl").GetComponent<AudioSource>();
-        FadeLength = 3f;
-        StartCoroutine(FadeOutMusic());
     }
 
     void Player1Wins()
@@ -39,17 +32,4 @@ public class WinManager : MonoBehaviour
         Player2Text.color = new Color(Player2Text.color.r, Player2Text.color.g, Player2Text.color.b, 255);
     }
 
-    private IEnumerator FadeOutMusic()
-    {
-        float StartVolume = Music.volume;
-
-        while (Music.volume > 0)
-        {
-            Music.volume -= StartVolume * Time.deltaTime / FadeLength;
-            yield return null;
-        }
-
-        Music.Stop();
-        Music.volume = StartVolume;
-    }
 }
