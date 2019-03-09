@@ -24,6 +24,7 @@ public class FireWeapon : MonoBehaviour
     private static int DEFAULT_BULLET = 0;
     private static int BUBBLET = 1;
     private static int UNSTOPPABULLET = 2;
+    private static int BOUNCLET = 3;
 
     [HideInInspector] public bool CurrentlyFiring;
 
@@ -73,6 +74,10 @@ public class FireWeapon : MonoBehaviour
                         break;
                     case "Gunstoppable":
                         SummonBullet(UNSTOPPABULLET, OffhandSpeed);
+                        RemainingUses--;
+                        break;
+                    case "Bouncing Bomb":
+                        SummonBullet(BOUNCLET, OffhandSpeed);
                         RemainingUses--;
                         break;
                 }
@@ -142,6 +147,11 @@ public class FireWeapon : MonoBehaviour
             case "Gunstoppable":
                 CurrentOffhandWeapon = "Gunstoppable";
                 info = Bullets[UNSTOPPABULLET].GetComponent<BulletInfo>();
+                RemainingUses = 5;
+                break;
+            case "Bouncing Bomb":
+                CurrentOffhandWeapon = "Bouncing Bomb";
+                info = Bullets[BOUNCLET].GetComponent<BulletInfo>();
                 RemainingUses = 5;
                 break;
             case null:
