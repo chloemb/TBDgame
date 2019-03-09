@@ -98,7 +98,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0923077, y: 1.0923077}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -120,8 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplodablePieces: {fileID: 1732582568482478695, guid: d487d8c067d364569bd531ca9b5bd2e0,
-    type: 3}
-  ExplosionPrefab: {fileID: 5655893439138462373, guid: f886f4610045a3042a7d3682d418d250,
     type: 3}
   MaxDebrisSpeed: 20
   MaxContactSpeed: 20
