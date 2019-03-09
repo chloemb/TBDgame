@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         _fw = GetComponent<FireWeapon>();
         SpawnPoint = transform.parent;
         _st = GetComponent<SetTrap>();
-        _pm = GameObject.Find("Menu").transform.Find("Pause");
+        _pm = GameObject.Find("Menu").transform;
     }
 
     public void SetUpControls()
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         LeftWallRay();
         RightWallRay();
         
-        if (!gameObject.GetComponent<HealthManager>().InGracePeriod)
+        if (!gameObject.GetComponent<HealthManager>().InGracePeriod && !Paused)
         {
             // Get Input
             var lhorizontal = Input.GetAxis(PlayerAxes[0]);

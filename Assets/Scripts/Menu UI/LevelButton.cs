@@ -22,7 +22,6 @@ public class LevelButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private IEnumerator FadeIn()
     {
-        StopCoroutine("FadeOut");
         var color = Color.white;
         while (_fadeDelay > 0f)
         {
