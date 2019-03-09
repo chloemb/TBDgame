@@ -8090,7 +8090,8 @@ MonoBehaviour:
   FallingSpike: {fileID: 6418930139455605932, guid: e34f07676128744bf8bf1c8c998c9401,
     type: 3}
   SpikeSpawnRate: 1
-  BoxSpawnRate: 300
+  BoxSpawnRate: 30
+  BoxSize: {x: 0, y: 0, z: 0}
 --- !u!1001 &1145520793
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class HazardSpawner : MonoBehaviour
 {
     public List<Transform> BoxSpawnPoints;
     public List<Transform> SpikeSpawnPoints;
-    public GameObject[] Players;
+    public GameObject[] Auras;
 
     public GameObject ExplodingBox, FallingSpike;
 
@@ -36,7 +36,7 @@ public class HazardSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Players = GameObject.FindGameObjectsWithTag("Player");
+        Auras = GameObject.FindGameObjectsWithTag("Auras");
         bool playerhere = false;
         
         Random rnd = new Random();
@@ -48,14 +48,10 @@ public class HazardSpawner : MonoBehaviour
                 int spawnhere = rnd.Next(0, BoxSpawnRate);
                 if (spawnhere == 0)
                 {
-                    Vector3 boxsize = new Vector3(boxspawn.localScale.x, 0);
-                    Debug.Log(boxsize);
                     
-                    foreach (GameObject player in Players)
+                    foreach (GameObject area in Auras)
                     {
-                        if (player.GetComponent<Collider2D>().bounds.Contains(boxspawn.position + 2*boxsize) ||
-                            player.GetComponent<Collider2D>().bounds.Contains(boxspawn.position ) ||
-                            player.GetComponent<Collider2D>().bounds.Contains(boxspawn.position - 2*boxsize))
+                        if (area.GetComponent<Collider2D>().bounds.Contains(boxspawn.position))
                         {
                             playerhere = true;
                         }
@@ -76,9 +72,9 @@ public class HazardSpawner : MonoBehaviour
                 int spawnhere = rnd.Next(0, SpikeSpawnRate);
                 if (spawnhere == 0)
                 {
-                    foreach (GameObject player in Players)
+                    foreach (GameObject area in Auras)
                     {
-                        if (player.GetComponent<Collider2D>().bounds.Contains(spikespawn.position))
+                        if (area.GetComponent<Collider2D>().bounds.Contains(spikespawn.position))
                         {
                             playerhere = true;
                         }
