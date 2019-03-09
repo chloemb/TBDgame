@@ -270,14 +270,14 @@ public class PlayerController : MonoBehaviour
                 RSA = RSA.normalized;
 
                 // Fire Weapon
-                if (shoot > 0)
+                if (shoot > 0 && (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0))
                 {
                     _fw.Fire(RSA);
                     LastFired = RSA;
                 }
                 
                 // Fire offhand weapon
-                if (offhand > 0)
+                if (offhand > 0 && (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0))
                 {
                     _fw.FireOffhand(RSA);
                     LastFired = RSA;

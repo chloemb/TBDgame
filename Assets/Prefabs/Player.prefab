@@ -462,6 +462,7 @@ MonoBehaviour:
   - {fileID: 3909773694351377151, guid: ee16ab49406014f9f82874bb0f4f634d, type: 3}
   - {fileID: 3591710038527740813, guid: 88d9616a3315a43cc9e0ebbf37deb420, type: 3}
   - {fileID: 3591710038527740813, guid: be197e4c2aaf1427eb9b19221b2bb127, type: 3}
+  - {fileID: 3977474366423857869, guid: f69cbb7ffb86d40f38248c5a8f166e00, type: 3}
   RemainingUses: 0
   CurrentOffhandWeapon: 
   Speed: 15
