@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b70ebcb-d47c-471c-895e-daa76dabd5dc" name="Default Changelist" comment="">
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TBDgame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TBDgame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Sunnyland Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Sunnyland Scene.unity" afterDir="false" />
-=======
->>>>>>> Weapons
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
     </list>
@@ -125,7 +122,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <folding>
-<<<<<<< HEAD
                 <marker date="1552083810190" expanded="false" signature="6:78" ph="..." />
                 <marker date="1552083810190" expanded="true" signature="116:3398" ph="{...}" />
                 <marker date="1552083810190" expanded="true" signature="419:567" ph="{...}" />
@@ -140,18 +136,15 @@
                 <marker date="1552083810190" expanded="true" signature="2715:2859" ph="{...}" />
                 <marker date="1552083810190" expanded="true" signature="2910:3396" ph="{...}" />
                 <marker date="1552083810190" expanded="true" signature="2946:3390" ph="{...}" />
-=======
                 <marker date="1551575519082" expanded="false" signature="6:78" ph="..." />
                 <marker date="1551575519082" expanded="true" signature="116:368" ph="{...}" />
                 <marker date="1551575519082" expanded="true" signature="170:366" ph="{...}" />
                 <marker date="1551575519082" expanded="true" signature="227:360" ph="{...}" />
->>>>>>> Weapons
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs">
           <provider selected="true" editor-type-id="text-editor">
@@ -208,28 +201,12 @@
                 <marker date="1552085605155" expanded="true" signature="15997:16047" ph="{...}" />
                 <marker date="1552085605155" expanded="true" signature="16087:16131" ph="{...}" />
                 <marker date="1552085605155" expanded="true" signature="16166:16211" ph="{...}" />
-=======
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Hazards/ExplosionManager.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-              <folding>
-                <marker date="1551601939045" expanded="false" signature="6:78" ph="..." />
-                <marker date="1551601939045" expanded="true" signature="125:1324" ph="{...}" />
-                <marker date="1551601939045" expanded="true" signature="287:412" ph="{...}" />
-                <marker date="1551601939045" expanded="true" signature="466:809" ph="{...}" />
-                <marker date="1551601939045" expanded="true" signature="534:803" ph="{...}" />
-                <marker date="1551601939045" expanded="true" signature="853:1322" ph="{...}" />
-                <marker date="1551601939045" expanded="true" signature="1038:1316" ph="{...}" />
->>>>>>> Weapons
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Menu UI/GlobalControl.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
@@ -242,7 +219,6 @@
                 <marker date="1552083810188" expanded="true" signature="471:524" ph="{...}" />
                 <marker date="1552083810188" expanded="true" signature="549:699" ph="{...}" />
                 <marker date="1552083810188" expanded="true" signature="621:693" ph="{...}" />
-=======
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Hazards/DestroyHolder.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -251,7 +227,6 @@
                 <marker date="1551575519055" expanded="true" signature="122:291" ph="{...}" />
                 <marker date="1551575519055" expanded="true" signature="173:221" ph="{...}" />
                 <marker date="1551575519055" expanded="true" signature="248:289" ph="{...}" />
->>>>>>> Weapons
               </folding>
             </state>
           </provider>
@@ -336,7 +311,6 @@
             <state relative-caret-position="-76">
               <caret line="81" column="30" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
               <folding>
-<<<<<<< HEAD
                 <marker date="1552083810189" expanded="false" signature="6:78" ph="..." />
                 <marker date="1552083810189" expanded="true" signature="104:1104" ph="{...}" />
                 <marker date="1552083810189" expanded="true" signature="111:205" ph="/// Represents a what platform (e.g. OS) we're running on ... " />
@@ -345,7 +319,6 @@
                 <marker date="1552083810189" expanded="true" signature="626:1102" ph="{...}" />
                 <marker date="1552083810189" expanded="true" signature="641:803" ph="/// Determine what platform we're presently running on. ... " />
                 <marker date="1552083810189" expanded="true" signature="852:1096" ph="{...}" />
-=======
                 <marker date="1552105136651" expanded="false" signature="6:331" ph="..." />
                 <marker date="1552105136651" expanded="true" signature="372:5348" ph="{...}" />
                 <marker date="1552105136651" expanded="true" signature="902:1054" ph="{...}" />
@@ -366,7 +339,6 @@
                 <marker date="1552105136651" expanded="true" signature="4388:5346" ph="{...}" />
                 <marker date="1552105136651" expanded="true" signature="4450:5209" ph="{...}" />
                 <marker date="1552105136651" expanded="true" signature="5236:5340" ph="{...}" />
->>>>>>> Weapons
               </folding>
             </state>
           </provider>
@@ -378,7 +350,6 @@
             <state relative-caret-position="270">
               <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
               <folding>
-<<<<<<< HEAD
                 <marker date="1552083810191" expanded="false" signature="6:211" ph="..." />
                 <marker date="1552083810191" expanded="true" signature="253:1508" ph="{...}" />
                 <marker date="1552083810191" expanded="true" signature="557:811" ph="{...}" />
@@ -388,12 +359,10 @@
                 <marker date="1552083810191" expanded="true" signature="1307:1346" ph="{...}" />
                 <marker date="1552083810191" expanded="true" signature="1372:1411" ph="{...}" />
                 <marker date="1552083810191" expanded="true" signature="1445:1505" ph="{...}" />
-=======
                 <marker date="1552105136657" expanded="false" signature="6:78" ph="..." />
                 <marker date="1552105136657" expanded="true" signature="117:464" ph="{...}" />
                 <marker date="1552105136657" expanded="true" signature="240:291" ph="{...}" />
                 <marker date="1552105136657" expanded="true" signature="324:462" ph="{...}" />
->>>>>>> Weapons
               </folding>
             </state>
           </provider>
@@ -423,21 +392,6 @@
             <state relative-caret-position="255">
               <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
               <folding>
-<<<<<<< HEAD
-                <marker date="1552083810190" expanded="false" signature="6:78" ph="..." />
-                <marker date="1552083810190" expanded="true" signature="124:1561" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="344:726" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="426:478" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="546:720" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="615:710" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="789:1559" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="819:1220" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="928:1019" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="1119:1210" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="1233:1544" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="1297:1388" ph="{...}" />
-                <marker date="1552083810190" expanded="true" signature="1443:1534" ph="{...}" />
-=======
                 <marker date="1551915977249" expanded="false" signature="6:78" ph="..." />
                 <marker date="1551915977249" expanded="true" signature="116:1520" ph="{...}" />
                 <marker date="1551915977249" expanded="true" signature="288:422" ph="{...}" />
@@ -448,7 +402,6 @@
                 <marker date="1551915977249" expanded="true" signature="1041:1145" ph="{...}" />
                 <marker date="1551915977249" expanded="true" signature="1307:1512" ph="{...}" />
                 <marker date="1551915977249" expanded="true" signature="1398:1502" ph="{...}" />
->>>>>>> Weapons
               </folding>
             </state>
           </provider>
@@ -579,13 +532,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu UI/WinManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneSwitch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu UI/GlobalControl.cs" />
-<<<<<<< HEAD
-=======
-        <option value="$PROJECT_DIR$/Assets/SetTrap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/FireWeapon.cs" />
-        <option value="$PROJECT_DIR$/Assets/Grenade.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Reactor.cs" />
->>>>>>> Weapons
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" />
       </list>
     </option>
@@ -734,11 +680,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="157061000" />
-=======
     <option name="totallyTimeSpent" value="160963000" />
->>>>>>> Weapons
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -929,17 +871,6 @@
         <state relative-caret-position="555">
           <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding>
-<<<<<<< HEAD
-            <marker date="1552083810191" expanded="false" signature="6:211" ph="..." />
-            <marker date="1552083810191" expanded="true" signature="253:1508" ph="{...}" />
-            <marker date="1552083810191" expanded="true" signature="557:811" ph="{...}" />
-            <marker date="1552083810191" expanded="true" signature="874:1281" ph="{...}" />
-            <marker date="1552083810191" expanded="true" signature="1014:1144" ph="{...}" />
-            <marker date="1552083810191" expanded="true" signature="1183:1275" ph="{...}" />
-            <marker date="1552083810191" expanded="true" signature="1307:1346" ph="{...}" />
-            <marker date="1552083810191" expanded="true" signature="1372:1411" ph="{...}" />
-            <marker date="1552083810191" expanded="true" signature="1445:1505" ph="{...}" />
-=======
             <marker date="1551575519084" expanded="false" signature="6:78" ph="..." />
             <marker date="1551575519084" expanded="true" signature="119:972" ph="{...}" />
             <marker date="1551575519084" expanded="true" signature="321:378" ph="{...}" />
@@ -948,7 +879,6 @@
             <marker date="1551575519084" expanded="true" signature="570:676" ph="{...}" />
             <marker date="1551575519084" expanded="true" signature="836:889" ph="{...}" />
             <marker date="1551575519084" expanded="true" signature="929:970" ph="{...}" />
->>>>>>> Weapons
           </folding>
         </state>
       </provider>
@@ -977,22 +907,6 @@
         <state relative-caret-position="390">
           <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding>
-<<<<<<< HEAD
-            <marker date="1552083810190" expanded="false" signature="6:78" ph="..." />
-            <marker date="1552083810190" expanded="true" signature="116:3398" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="419:567" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="611:1840" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="754:1834" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="964:1541" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="1052:1527" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="1558:1824" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="1871:2449" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="2117:2245" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="2485:2687" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="2715:2859" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="2910:3396" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="2946:3390" ph="{...}" />
-=======
             <marker date="1551601939045" expanded="false" signature="6:78" ph="..." />
             <marker date="1551601939045" expanded="true" signature="125:1324" ph="{...}" />
             <marker date="1551601939045" expanded="true" signature="287:412" ph="{...}" />
@@ -1000,7 +914,6 @@
             <marker date="1551601939045" expanded="true" signature="534:803" ph="{...}" />
             <marker date="1551601939045" expanded="true" signature="853:1322" ph="{...}" />
             <marker date="1551601939045" expanded="true" signature="1038:1316" ph="{...}" />
->>>>>>> Weapons
           </folding>
         </state>
       </provider>
@@ -1009,21 +922,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
-<<<<<<< HEAD
-            <marker date="1552083810189" expanded="false" signature="6:78" ph="..." />
-            <marker date="1552083810189" expanded="true" signature="104:1104" ph="{...}" />
-            <marker date="1552083810189" expanded="true" signature="111:205" ph="/// Represents a what platform (e.g. OS) we're running on ... " />
-            <marker date="1552083810189" expanded="true" signature="234:291" ph="{...}" />
-            <marker date="1552083810189" expanded="true" signature="297:593" ph="/// Utilities for determining what platform (e.g. Mac vs Windows) we're running on. ... " />
-            <marker date="1552083810189" expanded="true" signature="626:1102" ph="{...}" />
-            <marker date="1552083810189" expanded="true" signature="641:803" ph="/// Determine what platform we're presently running on. ... " />
-            <marker date="1552083810189" expanded="true" signature="852:1096" ph="{...}" />
-=======
             <marker date="1551575519055" expanded="false" signature="6:78" ph="..." />
             <marker date="1551575519055" expanded="true" signature="122:291" ph="{...}" />
             <marker date="1551575519055" expanded="true" signature="173:221" ph="{...}" />
             <marker date="1551575519055" expanded="true" signature="248:289" ph="{...}" />
->>>>>>> Weapons
           </folding>
         </state>
       </provider>
@@ -1033,27 +935,11 @@
         <state relative-caret-position="90">
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
           <folding>
-<<<<<<< HEAD
-            <marker date="1552083810190" expanded="false" signature="6:78" ph="..." />
-            <marker date="1552083810190" expanded="true" signature="124:1561" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="344:726" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="426:478" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="546:720" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="615:710" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="789:1559" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="819:1220" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="928:1019" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="1119:1210" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="1233:1544" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="1297:1388" ph="{...}" />
-            <marker date="1552083810190" expanded="true" signature="1443:1534" ph="{...}" />
-=======
             <marker date="1551915977250" expanded="false" signature="6:78" ph="..." />
             <marker date="1551915977250" expanded="true" signature="113:539" ph="{...}" />
             <marker date="1551915977250" expanded="true" signature="200:253" ph="{...}" />
             <marker date="1551915977250" expanded="true" signature="310:424" ph="{...}" />
             <marker date="1551915977250" expanded="true" signature="460:537" ph="{...}" />
->>>>>>> Weapons
           </folding>
         </state>
       </provider>
@@ -1074,9 +960,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Menu UI/ButtonManager.cs">
-=======
     <entry file="file://$PROJECT_DIR$/Assets/Bounclet.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1091,7 +974,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Powerups/Powerup.cs">
->>>>>>> Weapons
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -1105,18 +987,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Player/Reactor.cs">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="450">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <marker date="1552083810188" expanded="true" signature="6:176" ph="..." />
-            <marker date="1552083810188" expanded="true" signature="220:701" ph="{...}" />
-            <marker date="1552083810188" expanded="true" signature="308:530" ph="{...}" />
-            <marker date="1552083810188" expanded="true" signature="344:436" ph="{...}" />
-            <marker date="1552083810188" expanded="true" signature="471:524" ph="{...}" />
-            <marker date="1552083810188" expanded="true" signature="549:699" ph="{...}" />
-            <marker date="1552083810188" expanded="true" signature="621:693" ph="{...}" />
-=======
         <state relative-caret-position="503">
           <caret line="122" column="9" selection-start-line="122" selection-start-column="9" selection-end-line="122" selection-end-column="9" />
           <folding>
@@ -1163,14 +1033,12 @@
             <marker date="1552105136651" expanded="true" signature="4388:5346" ph="{...}" />
             <marker date="1552105136651" expanded="true" signature="4450:5209" ph="{...}" />
             <marker date="1552105136651" expanded="true" signature="5236:5340" ph="{...}" />
->>>>>>> Weapons
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="217">
           <caret line="64" column="59" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
           <folding>
@@ -1224,7 +1092,6 @@
             <marker date="1552085605155" expanded="true" signature="15997:16047" ph="{...}" />
             <marker date="1552085605155" expanded="true" signature="16087:16131" ph="{...}" />
             <marker date="1552085605155" expanded="true" signature="16166:16211" ph="{...}" />
-=======
         <state relative-caret-position="363">
           <caret line="265" column="17" lean-forward="true" selection-start-line="265" selection-start-column="17" selection-end-line="265" selection-end-column="17" />
           <folding>
@@ -1274,7 +1141,6 @@
             <marker date="1552111460121" expanded="true" signature="15512:15562" ph="{...}" />
             <marker date="1552111460121" expanded="true" signature="15602:15646" ph="{...}" />
             <marker date="1552111460121" expanded="true" signature="15681:15726" ph="{...}" />
->>>>>>> Weapons
           </folding>
         </state>
       </provider>
