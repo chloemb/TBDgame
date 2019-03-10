@@ -17,30 +17,23 @@ public class Damager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && !NoDamageToSelf)
-        {   
+        if (other.gameObject.CompareTag("Player") && !NoDamageToSelf)  
             other.gameObject.GetComponent<Reactor>().React(gameObject);
-        }
 
         if (other.gameObject.name.Contains("Falling Spike"))
-        {
             other.gameObject.GetComponent<FallManager>().Fall();
-        }
 
-        if (other.gameObject.CompareTag("Player") && gameObject.name.Contains("Box Piece") && gameObject.GetComponent<BoxPiece>().playerOrigin != null)
+        if (other.gameObject.CompareTag("Player") && gameObject.name.Contains("Box Piece"))
         {
-            if (gameObject.GetComponent<BoxPiece>().playerOrigin.name != other.name)
-            {
+            if (gameObject.GetComponent<BoxPiece>().playerOrigin == null ||
+                gameObject.GetComponent<BoxPiece>().playerOrigin != null &&
+                gameObject.GetComponent<BoxPiece>().playerOrigin.name != other.name)
                 other.gameObject.GetComponent<Reactor>().React(gameObject);
-            }
         }
         
-        if (other.gameObject.CompareTag("Player") && gameObject.name.Contains("Trap") && gameObject.GetComponent<Trap>().playerOrigin != null)
-        {
-            if (gameObject.GetComponent<Trap>().playerOrigin.name != other.name)
-            {
+        if (other.gameObject.CompareTag("Player") && gameObject.name.Contains("Trap") &&
+            gameObject.GetComponent<Trap>().playerOrigin != null &&
+            gameObject.GetComponent<Trap>().playerOrigin.name != other.name)
                 other.gameObject.GetComponent<Reactor>().React(gameObject);
-            }
-        }
     }
 }

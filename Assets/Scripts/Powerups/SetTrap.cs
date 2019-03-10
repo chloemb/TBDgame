@@ -27,7 +27,7 @@ public class SetTrap : MonoBehaviour
         var origin = trapInstance.gameObject.GetComponent<Trap>().playerOrigin = gameObject;
         var trapParticleSystem = trapInstance.gameObject.GetComponent<ParticleSystem>().main;
         if (origin.name == "Player 1")
-            trapParticleSystem.startColor = new Color(0, 0, 255);
+            trapParticleSystem.startColor = new Color(93f/255f, 96f/255f, 244f/255f);
         else if (origin.name == "Player 2")
             trapParticleSystem.startColor = new Color(255, 165, 0);
 
