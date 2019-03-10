@@ -29,12 +29,14 @@ public class FireWeapon : MonoBehaviour
     [HideInInspector] public bool CurrentlyFiring;
 
     private Vector2 FireDirection;
+    public SpriteRenderer _aimindic;
 
     private void Start()
     {
         BulletInfo info = Bullets[DEFAULT_BULLET].GetComponent<BulletInfo>();
         Speed = info.Speed;
         Cooldown = info.Cooldown;
+        _aimindic = gameObject.transform.Find("Canvas").Find("AimIndicator").GetComponent<SpriteRenderer>();
     }
 
     public void Fire(Vector2 FireDirection)
@@ -113,6 +115,9 @@ public class FireWeapon : MonoBehaviour
             position = transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right);
             rotation = Quaternion.Euler(0f, 180f, Vector2.SignedAngle(FireDirection, Vector2.left));
         }
+
+//        position = _aimindic.transform.position;
+//        Debug.Log(_aimindic.transform.position);
         
         var bulletInstance = Instantiate(Bullets[BulletIndex], position, rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = CertainSpeed * FireDirection;
