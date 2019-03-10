@@ -184,8 +184,10 @@ public class PlayerController : MonoBehaviour
                     DisableControl();
                     Invoke("StopWallJumping", WallJumpLength);
                 }
+                
+                Debug.Log(_rb.velocity.magnitude);
 
-                if (_rb.velocity.magnitude == 0)
+                if (_rb.velocity.magnitude < .001f)
                 {
                     ClingPosition = _rb.position;
                     Invoke("WallSlide", ClingTime);
@@ -458,6 +460,7 @@ public class PlayerController : MonoBehaviour
 
     private void WallSlide()
     {
+        Debug.Log("checking cling with " + ClingPosition + " " + _rb.position);
         if (_rb.position == ClingPosition)
         {
             DisableControl();
