@@ -46,6 +46,7 @@ public class HealthManager : MonoBehaviour
 //        gameObject.transform.position = RespawnPoint.position;
         _rb.velocity = new Vector2(0f, 0f);
         gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
         
         // Reset health
         Health = InitialHealth;
@@ -126,6 +127,7 @@ public class HealthManager : MonoBehaviour
         InGracePeriod = false;
         _rb.gravityScale = _pc.GravityScale;
         gameObject.GetComponent<Collider2D>().enabled = true;
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
         _pc.ControlDisabled = false;
     }
 }
