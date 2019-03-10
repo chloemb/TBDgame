@@ -15,16 +15,22 @@ public class SceneButton : MonoBehaviour
     void Start()
     {
         var scene2Button = transform.Find("Buttons/Scene 2").gameObject.GetComponent<Button>();
-        scene2Button.onClick.AddListener(() => StartCoroutine(StartFade(2)));
+        scene2Button.onClick.AddListener(() => StartCoroutine(StartFade(1)));
 
         var scene3Button = transform.Find("Buttons/Scene 3").gameObject.GetComponent<Button>();
-        scene3Button.onClick.AddListener(() => StartCoroutine(StartFade(3)));
+        scene3Button.onClick.AddListener(() => StartCoroutine(StartFade(2)));
 
         var sunnyland1Button = transform.Find("Buttons/Sunnyland 1").gameObject.GetComponent<Button>();
-        sunnyland1Button.onClick.AddListener(() => StartCoroutine(StartFade(6)));
+        sunnyland1Button.onClick.AddListener(() => StartCoroutine(StartFade(5)));
 
         var sunnyland2Button = transform.Find("Buttons/Sunnyland 2").gameObject.GetComponent<Button>();
-        sunnyland2Button.onClick.AddListener(() => StartCoroutine(StartFade(7)));
+        sunnyland2Button.onClick.AddListener(() => StartCoroutine(StartFade(6)));
+
+        var boxlevelButton = transform.Find("Buttons/Box Level").gameObject.GetComponent<Button>();
+        boxlevelButton.onClick.AddListener(() => StartCoroutine(StartFade(7)));
+
+        var blocklevelButton = transform.Find("Buttons/Block Level").gameObject.GetComponent<Button>();
+        blocklevelButton.onClick.AddListener(() => StartCoroutine(StartFade(8)));
     }
 
     private IEnumerator StartFade(int stage)

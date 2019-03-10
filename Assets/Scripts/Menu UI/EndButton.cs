@@ -36,7 +36,7 @@ public class EndButton : MonoBehaviour
 
     private static void LoadGame()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
 
     private static void QuitGame()

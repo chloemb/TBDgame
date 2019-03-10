@@ -13,6 +13,7 @@ public class DestroyHolder : MonoBehaviour
 
     private void Remove()
     {
-        Destroy(gameObject);
+        if (gameObject != null)
+            Destroy(gameObject);
     }
 }

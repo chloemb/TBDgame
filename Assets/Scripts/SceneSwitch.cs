@@ -36,12 +36,12 @@ public class SceneSwitch : MonoBehaviour
         if (_kills1Happened <= 0)
         {
             //End to quit game screen
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(3);
             SaveData("Player2");
         }
         else if (_kills2Happened <= 0)
         {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(3);
             SaveData("Player1");
         }
     }
