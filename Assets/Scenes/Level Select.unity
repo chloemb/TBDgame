@@ -1062,12 +1062,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947804156}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.0222103, y: 0.0222103, z: 0.0222103}
   m_Children: []
-  m_Father: {fileID: 1036657523}
-  m_RootOrder: 4
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_VerticalAxis: P1LVertical_Windows
   m_SubmitButton: P1Jump_Windows
   m_CancelButton: P1Dash_Windows
-  m_InputActionsPerSecond: 10
+  m_InputActionsPerSecond: 3
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
 --- !u!114 &947804159
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_VerticalAxis: P1LVertical
   m_SubmitButton: P1Jump
   m_CancelButton: P1Dash
-  m_InputActionsPerSecond: 10
+  m_InputActionsPerSecond: 3
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
 --- !u!114 &947804160
@@ -1296,7 +1296,6 @@ RectTransform:
   - {fileID: 1058850023}
   - {fileID: 172199013}
   - {fileID: 44528130}
-  - {fileID: 947804157}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1675,7 +1674,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f127a0e5216824a42bfe34fcc38f0bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Music: {fileID: 0}
+  CurrentlyFading: 0
   winner: 
+  PrevScene: 
 --- !u!4 &1346553719
 Transform:
   m_ObjectHideFlags: 0

@@ -36,6 +36,7 @@ public class GlobalControl : MonoBehaviour
     void Update()
     {
         if (SceneManager.GetActiveScene().name == "Level Select")
+            Time.timeScale = 1;
             if (SceneManager.GetActiveScene().name != PrevScene)
             {
                 GetComponent<AudioSource>().volume = 0;
