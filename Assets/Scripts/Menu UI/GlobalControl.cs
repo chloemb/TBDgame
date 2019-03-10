@@ -54,12 +54,10 @@ public class GlobalControl : MonoBehaviour
                 }
             }
 
-        PrevScene = SceneManager.GetActiveScene().name;
-    }
+        if (SceneManager.GetActiveScene().name != "Level Select" && GetComponent<AudioSource>().isPlaying)
+            GetComponent<AudioSource>().volume = 1f;
 
-    public void SeenControls()
-    {
-        seenControls = true;
+        PrevScene = SceneManager.GetActiveScene().name;
     }
 
     private IEnumerator FadeOutMusic()
