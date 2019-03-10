@@ -9,11 +9,12 @@ public class IndicatorAnimationController : MonoBehaviour
 {
     private int BubbleStage, UnstBulStage;
     private Animator _bubbleanim, _bigbubbleanim, _unstbulanim;
-    private SpriteRenderer _shield;
+    private SpriteRenderer _shield, _aimindic;
 
     private FireWeapon _fw;
     private Reactor _rea;
     private HealthManager _hm;
+    private PlayerController _pc;
 
     private bool ShowingBubbles, ShowingBigBubble, ShowingUnstBul, ShowingShield;
     
@@ -23,8 +24,10 @@ public class IndicatorAnimationController : MonoBehaviour
         _fw = GetComponentInParent<FireWeapon>();
         _rea = GetComponentInParent<Reactor>();
         _hm = GetComponentInParent<HealthManager>();
+        _pc = GetComponentInParent<PlayerController>();
 
         _shield = gameObject.transform.Find("Shield").GetComponent<SpriteRenderer>();
+        _aimindic = gameObject.transform.Find("AimIndicator").GetComponent<SpriteRenderer>();
         _bubbleanim = gameObject.transform.Find("Bubbles").GetComponent<Animator>();
         _bigbubbleanim = gameObject.transform.Find("BigBubble").GetComponent<Animator>();
         _unstbulanim = gameObject.transform.Find("UnstBulIndicator").GetComponent<Animator>();
@@ -39,6 +42,7 @@ public class IndicatorAnimationController : MonoBehaviour
         int Remaining = _fw.RemainingUses;
         bool floating = _rea.Floating;
         int CurHealth = _hm.Health;
+        bool ShowAimIndic = _pc.ShowAimIndicator;
         
         if (Current == "Bubble Gun")
         {
@@ -144,6 +148,17 @@ public class IndicatorAnimationController : MonoBehaviour
         {
             _shield.enabled = false;
             ShowingShield = false;
+        }
+
+        if (ShowAimIndic)
+        {
+            _aimindic.enabled = true;
+            _aimindic.transform.eulerAngles = new Vector3(0f, 0f, Vector2.SignedAngle(Vector2.down, _pc.RSA));
+            _aimindic.transform.localPosition = new Vector3(_pc.RSA.x, _pc.RSA.y, 0) * _shield.transform.localScale.x / 2f;
+        }
+        else
+        {
+            _aimindic.enabled = false;
         }
     }
 }

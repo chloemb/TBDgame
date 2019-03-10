@@ -9,7 +9,7 @@ public class HealthManager : MonoBehaviour
     public int InitialHealth;
     public int Health;
     public float GracePeriodLength;
-    public TextMeshProUGUI HealthDisplay;
+    // public TextMeshProUGUI HealthDisplay;
     
     public bool InGracePeriod, CurrentlyInvincible;
 
@@ -49,7 +49,7 @@ public class HealthManager : MonoBehaviour
         
         // Reset health
         Health = InitialHealth;
-        UpdateHealthDisplay();
+        // UpdateHealthDisplay();
         
         // Reset controls
         _pc.SetUpControls();
@@ -95,18 +95,18 @@ public class HealthManager : MonoBehaviour
         }
 
         if (Health > InitialHealth) Health = InitialHealth;
-        UpdateHealthDisplay();
+        // UpdateHealthDisplay();
     }
 
-    public void UpdateHealthDisplay()
-    {
-        HealthDisplay.text = Health.ToString();
-    }
+//    public void UpdateHealthDisplay()
+//    {
+//        HealthDisplay.text = Health.ToString();
+//    }
 
     public void ResetHealth()
     {
         Health = InitialHealth;
-        UpdateHealthDisplay();
+        // UpdateHealthDisplay();
     }
 
     public void MakeInvincible(float seconds)

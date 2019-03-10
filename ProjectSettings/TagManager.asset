@@ -12,6 +12,7 @@ TagManager:
   - Projectiles
   - Interactable Hazards
   - Moving Floor
+  - Auras
   layers:
   - Default
   - TransparentFX

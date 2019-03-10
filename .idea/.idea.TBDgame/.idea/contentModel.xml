@@ -5,7 +5,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Bounclet.cs" t="Include" />
         <e p="Images" t="Include">
           <e p="Wooden boxes" t="Include">
             <e p="Information.txt" t="Include" />
@@ -279,6 +278,7 @@
         <e p="Scripts" t="Include">
           <e p="BoundsManager.cs" t="Include" />
           <e p="Hazards" t="Include">
+            <e p="boxAnimManager.cs" t="Include" />
             <e p="BoxPiece.cs" t="Include" />
             <e p="DestroyHolder.cs" t="Include" />
             <e p="ExplosionManager.cs" t="Include" />
@@ -291,6 +291,7 @@
             <e p="GlobalControl.cs" t="Include" />
             <e p="LevelButton.cs" t="Include" />
             <e p="MenuButton.cs" t="Include" />
+            <e p="PauseManager.cs" t="Include" />
             <e p="SceneButton.cs" t="Include" />
             <e p="WinManager.cs" t="Include" />
           </e>
@@ -307,8 +308,12 @@
             <e p="Reactor.cs" t="Include" />
           </e>
           <e p="Powerups" t="Include">
+            <e p="Bounclet.cs" t="Include" />
+            <e p="bouncletAnimController.cs" t="Include" />
             <e p="Powerup.cs" t="Include" />
             <e p="PowerupSpawner.cs" t="Include" />
+            <e p="SetTrap.cs" t="Include" />
+            <e p="Trap.cs" t="Include" />
           </e>
           <e p="Projectiles" t="Include">
             <e p="BulletInfo.cs" t="Include" />
@@ -316,7 +321,6 @@
           </e>
           <e p="SceneSwitch.cs" t="Include" />
         </e>
-        <e p="SetTrap.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Resources" t="Include">
             <e p="LineBreaking Following Characters.txt" t="Include" />
@@ -342,7 +346,6 @@
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
-        <e p="Trap.cs" t="Include" />
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
@@ -353,6 +356,6 @@
       </e>
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2018.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_TBDgame.530840483.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_TBDgame.760899367.00" t="ExcludeRecursive" />
   </component>
 </project>
