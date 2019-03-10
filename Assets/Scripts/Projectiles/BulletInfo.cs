@@ -31,7 +31,9 @@ public class BulletInfo : MonoBehaviour
                  !col.gameObject.CompareTag("Projectiles"))
         {
             if (col.gameObject.CompareTag("Interactable Hazards") && !gameObject.name.Contains("Bounclet"))
-                Destroy(gameObject);
+                DestroyBullet();
+            else if (!gameObject.name.Contains("Bounclet"))
+                DestroyBullet();
         }
     }
 

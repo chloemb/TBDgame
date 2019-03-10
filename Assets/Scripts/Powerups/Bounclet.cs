@@ -25,7 +25,7 @@ public class Bounclet : MonoBehaviour
         {
             if (col.gameObject.name.Contains("Falling Spike"))
                 col.gameObject.GetComponent<FallManager>().Fall();
-            if (col.gameObject.name.Contains("ExplodingBox"))
+            if (col.gameObject.name.Contains("Exploding Box"))
                 col.gameObject.GetComponent<ExplosionManager>().Explode(origin);
         }
     }

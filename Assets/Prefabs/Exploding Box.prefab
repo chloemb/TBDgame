@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5600950221394272615}
   - component: {fileID: 5600950221394272614}
   m_Layer: 10
-  m_Name: ExplodingBox
+  m_Name: Exploding Box
   m_TagString: Interactable Hazards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

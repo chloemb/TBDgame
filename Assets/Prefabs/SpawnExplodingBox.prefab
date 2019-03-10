@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7297452594186819575}
   m_Layer: 0
-  m_Name: Spawn
+  m_Name: SpawnExplodingBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: 5600950221394272617, guid: d1c189bca27344fb18f32e9aab6683f9,
         type: 3}
       propertyPath: m_Name
-      value: ExplodingBox
+      value: Exploding Box
       objectReference: {fileID: 0}
     - target: {fileID: 5600950221394272613, guid: d1c189bca27344fb18f32e9aab6683f9,
         type: 3}

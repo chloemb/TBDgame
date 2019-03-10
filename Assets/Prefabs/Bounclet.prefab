@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9086318384737423745}
   - component: {fileID: 632534656240413857}
   - component: {fileID: 5551089622339578300}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bounclet
   m_TagString: Projectiles
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionPrefab: {fileID: 139366, guid: be9438a28327d47b0b7c25e0afd7936e, type: 3}
-  playerOrigin: {fileID: 0}
+  origin: {fileID: 0}
   Countdown: 3
 --- !u!50 &9164993021003606424
 Rigidbody2D:

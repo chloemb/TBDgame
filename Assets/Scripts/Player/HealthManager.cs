@@ -61,6 +61,7 @@ public class HealthManager : MonoBehaviour
         
         // Start and end grace period
         InGracePeriod = true;
+        gameObject.layer = 5;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
         IEnumerator GraceIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(GracePeriodLength-.5f);
         StartCoroutine(GraceIFrames);
@@ -121,6 +122,7 @@ public class HealthManager : MonoBehaviour
     
     private void EndGracePeriod()
     {
+        gameObject.layer = 8;
         InGracePeriod = false;
         _rb.gravityScale = _pc.GravityScale;
         gameObject.GetComponent<Collider2D>().enabled = true;

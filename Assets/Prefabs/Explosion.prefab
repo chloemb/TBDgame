@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1805658410213803683}
   m_Layer: 0
   m_Name: Explosion
-  m_TagString: Untagged
+  m_TagString: Projectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.4
+  m_Radius: 1.1
 --- !u!250 &3556353721213589531
 PointEffector2D:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 3328
   m_ForceMagnitude: 2000
   m_ForceVariation: 0
   m_DistanceScale: 1

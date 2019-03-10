@@ -402,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad0995214d94884da72fb146e149249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Paused: 0
   GravityScale: 2
   Speed: 5
   JumpHeight: 6.5
@@ -469,7 +470,7 @@ MonoBehaviour:
   Cooldown: 0.5
   OffhandSpeed: 0
   OffhandCooldown: 0
-  SummonPoint: {x: 1.1, y: 0.2}
+  SummonPoint: {x: 1.2, y: 0.2}
   CurrentlyFiring: 0
 --- !u!114 &3959097550648980411
 MonoBehaviour:
