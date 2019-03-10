@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5551089622339578300}
   m_Layer: 0
   m_Name: Bounclet
-  m_TagString: Untagged
+  m_TagString: Projectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: bb761911d4c8841c8b893396a5b81549, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &9086318384737423745
 BoxCollider2D:
