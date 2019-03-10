@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public float DashLength;
     public float DashCooldown;
     public PhysicsMaterial2D NoFriction;
-    
+
 
     // player axes array.
     // Currently: [LHorizontal, LVertical, Jump, Dash, Shoot, Offhand, RHorizontal, RVertical, SetTrap, Pause]
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Vector2 PrevVelocity; // The most recent non-zero velocity
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
+    public Vector2 RSA;
     private Transform SpawnPoint;
     private PlatformType _platform;
 
@@ -54,7 +55,8 @@ public class PlayerController : MonoBehaviour
         FacingRight,
         ControlDisabled,
         TouchWallToRight,
-        TouchWallToLeft;
+        TouchWallToLeft,
+        ShowAimIndicator;
 
     private void Awake()
     {
@@ -68,13 +70,12 @@ public class PlayerController : MonoBehaviour
     public void SetUpControls()
     {
         _platform = Platform.GetPlatform();
-        
+
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _rb.gravityScale = GravityScale;
 
         switch (gameObject.name + " " + _platform.ToString())
         {
-            
             case "Player 1 Mac":
                 PlayerAxes[0] = "P1LHorizontal";
                 PlayerAxes[1] = "P1LVertical";
@@ -153,7 +154,7 @@ public class PlayerController : MonoBehaviour
         GroundedRay();
         LeftWallRay();
         RightWallRay();
-        
+
         if (!gameObject.GetComponent<HealthManager>().InGracePeriod && !Paused)
         {
             // Get Input
@@ -221,13 +222,14 @@ public class PlayerController : MonoBehaviour
                     this.GetComponent<CompositeCollider2D>().sharedMaterial = null;
                 }*/
 
-                if (!transform.parent.gameObject.name.Contains("Respawn") && (lhorizontal > 0 || lhorizontal < 0 || jump > 0))
+                if (!transform.parent.gameObject.name.Contains("Respawn") &&
+                    (lhorizontal > 0 || lhorizontal < 0 || jump > 0))
                 {
                     //Debug.Log("Off");
                     //transform.parent = SpawnPoint;
                 }
 
-                    if (lhorizontal > 0)
+                if (lhorizontal > 0)
                 {
                     FacingRight = true;
                 }
@@ -235,54 +237,65 @@ public class PlayerController : MonoBehaviour
                 {
                     FacingRight = false;
                 }
+
                 // Determine left stick angle (LSA) and snap to certain angle; if none, the direction the player is facing. Magnitude is 1.
                 Vector2 LSA = new Vector2(lhorizontal, lvertical).normalized;
                 if (LSA.magnitude == 0)
                     LSA = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
 
-                LSA.x = LSA.x >= .3f && LSA.x <= .7f ? .5f :
-                    LSA.x < .3f && LSA.x > -.3f ? 0f :
-                    LSA.x < -.3f && LSA.x >= -.7f ? -.5f :
-                    LSA.x < -.7f ? -1f : 1f;
+//                LSA.x = LSA.x >= .3f && LSA.x <= .7f ? .5f :
+//                    LSA.x < .3f && LSA.x > -.3f ? 0f :
+//                    LSA.x < -.3f && LSA.x >= -.7f ? -.5f :
+//                    LSA.x < -.7f ? -1f : 1f;
+//
+//                LSA.y = LSA.y >= .3f && LSA.y <= .7f ? .5f :
+//                    LSA.y < .3f && LSA.y > -.3f ? 0f :
+//                    LSA.y < -.3f && LSA.y >= -.7f ? -.5f :
+//                    LSA.y < -.7f ? -1f : 1f;
 
-                LSA.y = LSA.y >= .3f && LSA.y <= .7f ? .5f :
-                    LSA.y < .3f && LSA.y > -.3f ? 0f :
-                    LSA.y < -.3f && LSA.y >= -.7f ? -.5f :
-                    LSA.y < -.7f ? -1f : 1f;
+                LSA = SnapAngle(LSA).normalized;
 
-                LSA = LSA.normalized;
-                
                 // Same as LSA but for the right stick
-                Vector2 RSA = new Vector2(rhorizontal, rvertical).normalized;
+                RSA = new Vector2(rhorizontal, rvertical).normalized;
                 if (RSA.magnitude == 0)
                     RSA = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
-                
-                RSA.x = RSA.x >= .3f && RSA.x <= .7f ? .5f :
-                    RSA.x < .3f && RSA.x > -.3f ? 0f :
-                    RSA.x < -.3f && RSA.x >= -.7f ? -.5f :
-                    RSA.x < -.7f ? -1f : 1f;
 
-                RSA.y = RSA.y >= .3f && RSA.y <= .7f ? .5f :
-                    RSA.y < .3f && RSA.y > -.3f ? 0f :
-                    RSA.y < -.3f && RSA.y >= -.7f ? -.5f :
-                    RSA.y < -.7f ? -1f : 1f;
+//                RSA.x = RSA.x >= .3f && RSA.x <= .7f ? .5f :
+//                    RSA.x < .3f && RSA.x > -.3f ? 0f :
+//                    RSA.x < -.3f && RSA.x >= -.7f ? -.5f :
+//                    RSA.x < -.7f ? -1f : 1f;
+//
+//                RSA.y = RSA.y >= .3f && RSA.y <= .7f ? .5f :
+//                    RSA.y < .3f && RSA.y > -.3f ? 0f :
+//                    RSA.y < -.3f && RSA.y >= -.7f ? -.5f :
+//                    RSA.y < -.7f ? -1f : 1f;
 
-                RSA = RSA.normalized;
+                RSA = SnapAngle(RSA).normalized;
 
-                // Fire Weapon
-                if (shoot > 0 && (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0))
+                if (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0)
                 {
-                    _fw.Fire(RSA);
-                    LastFired = RSA;
+                    // Show indicator
+                    ShowAimIndicator = true;
+
+                    // Fire Weapon
+                    if (shoot > 0)
+                    {
+                        _fw.Fire(RSA);
+                        LastFired = RSA;
+                    }
+
+                    // Fire offhand weapon
+                    if (offhand > 0)
+                    {
+                        _fw.FireOffhand(RSA);
+                        LastFired = RSA;
+                    }
                 }
-                
-                // Fire offhand weapon
-                if (offhand > 0 && (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0))
+                else
                 {
-                    _fw.FireOffhand(RSA);
-                    LastFired = RSA;
+                    ShowAimIndicator = false;
                 }
-                
+
                 // Set trap
                 if (setTrap > 0 && IsGrounded)
                 {
@@ -302,7 +315,7 @@ public class PlayerController : MonoBehaviour
                     //Increase strength if the player dashed from stationary
                     if ((LSA.x.Equals(1) || LSA.x.Equals(-1)) && LSA.y.Equals(0))
                         LSA = FacingRight ? new Vector2(1.5f, 0) : new Vector2(-1.5f, 0);
-                    
+
                     Vector2 dashvel = DashStrength * LSA;
 
                     if (TouchWallToLeft || TouchWallToRight)
@@ -343,13 +356,13 @@ public class PlayerController : MonoBehaviour
         // Get leftmost and rightmost positions on player collider
         Vector2 leftbound = transform.position - new Vector3(_col.bounds.extents.x, 0);
         Vector2 rightbound = transform.position + new Vector3(_col.bounds.extents.x, 0);
-        
+
         // Raycast down from those positions
         bool GroundLeft = Physics2D.Raycast(leftbound, Vector2.down, _col.bounds.extents.y * 1.1f,
             LayerMask.GetMask("Surfaces"));
         bool GroundRight = Physics2D.Raycast(rightbound, Vector2.down, _col.bounds.extents.y * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        
+
         // If either of those raycasts hit floor, ground player. Else, unground.
         bool TouchingGround = GroundLeft || GroundRight;
 
@@ -368,12 +381,13 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
-        RaycastHit2D LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f,
+        bool LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        RaycastHit2D LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f,
+        bool LeftMid = Physics2D.Raycast(transform.position, Vector2.left, +_col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        bool TouchingLeft = (LeftDown != null && LeftDown.normal == Vector2.right) ||
-                            (LeftUp != null && LeftUp.normal == Vector2.right);
+        bool LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool TouchingLeft = LeftDown || LeftMid || LeftUp;
 
         if (TouchWallToLeft != TouchingLeft)
         {
@@ -388,17 +402,18 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
     private void RightWallRay()
     {
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
-        RaycastHit2D RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f,
+        bool RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        RaycastHit2D RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f,
+        bool RightMid = Physics2D.Raycast(transform.position, Vector2.right, _col.bounds.extents.x * 1.1f,
             LayerMask.GetMask("Surfaces"));
-        bool TouchingRight = (RightDown != null && RightDown.normal == Vector2.left) || 
-                             (RightUp != null && RightUp.normal == Vector2.left);
+        bool RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f,
+            LayerMask.GetMask("Surfaces"));
+        bool TouchingRight = RightDown || RightMid || RightUp;
 
         if (TouchWallToRight != TouchingRight)
         {
@@ -458,5 +473,20 @@ public class PlayerController : MonoBehaviour
     {
         ControlDisabled = false;
     }
-}
 
+    private Vector2 SnapAngle(Vector2 angle)
+    {
+        Vector2 returnangle;
+        returnangle.x = angle.x >= .3f && angle.x <= .7f ? .5f :
+            angle.x < .3f && angle.x > -.3f ? 0f :
+            angle.x < -.3f && angle.x >= -.7f ? -.5f :
+            angle.x < -.7f ? -1f : 1f;
+
+        returnangle.y = angle.y >= .3f && angle.y <= .7f ? .5f :
+            angle.y < .3f && angle.y > -.3f ? 0f :
+            angle.y < -.3f && angle.y >= -.7f ? -.5f :
+            angle.y < -.7f ? -1f : 1f;
+
+        return angle;
+    }
+}

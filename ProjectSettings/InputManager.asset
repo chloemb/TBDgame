@@ -138,7 +138,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 19
+    positiveButton: left shift
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -146,7 +146,7 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 2
+    type: 0
     axis: 5
     joyNum: 1
   - serializedVersion: 3
@@ -201,8 +201,8 @@ InputManager:
     m_Name: P1RHorizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -210,7 +210,7 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 2
+    type: 0
     axis: 2
     joyNum: 1
   - serializedVersion: 3
@@ -233,8 +233,8 @@ InputManager:
     m_Name: P1RVertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: up
+    positiveButton: down
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -242,7 +242,7 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 1
-    type: 2
+    type: 0
     axis: 3
     joyNum: 1
   - serializedVersion: 3
