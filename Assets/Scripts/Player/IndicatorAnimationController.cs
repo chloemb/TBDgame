@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class IndicatorAnimationController : MonoBehaviour
 {
-    private int BubbleStage, UnstBulStage;
-    private Animator _bubbleanim, _bigbubbleanim, _unstbulanim;
+    private int BubbleStage, UnstBulStage, BouncletStage;
+    private Animator _bubbleanim, _bigbubbleanim, _unstbulanim, _bouncletanim;
     private SpriteRenderer _shield, _aimindic;
 
     private FireWeapon _fw;
@@ -16,7 +16,7 @@ public class IndicatorAnimationController : MonoBehaviour
     private HealthManager _hm;
     private PlayerController _pc;
 
-    private bool ShowingBubbles, ShowingBigBubble, ShowingUnstBul, ShowingShield;
+    private bool ShowingBubbles, ShowingBigBubble, ShowingUnstBul, ShowingShield, ShowingBounclet;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class IndicatorAnimationController : MonoBehaviour
         _bubbleanim = gameObject.transform.Find("Bubbles").GetComponent<Animator>();
         _bigbubbleanim = gameObject.transform.Find("BigBubble").GetComponent<Animator>();
         _unstbulanim = gameObject.transform.Find("UnstBulIndicator").GetComponent<Animator>();
+        _bouncletanim = gameObject.transform.Find("BouncletIndicator").GetComponent<Animator>();
 
         _shield.enabled = false;
     }
@@ -51,6 +52,13 @@ public class IndicatorAnimationController : MonoBehaviour
                 _unstbulanim.ResetTrigger("Reset");
                 _unstbulanim.SetTrigger("End");
                 ShowingUnstBul = false;
+            }
+            
+            if (ShowingBounclet)
+            {
+                _bouncletanim.ResetTrigger("Reset");
+                _bouncletanim.SetTrigger("End");
+                ShowingBounclet = false;
             }
             
             _bubbleanim.ResetTrigger("End");
@@ -85,6 +93,13 @@ public class IndicatorAnimationController : MonoBehaviour
                 _bubbleanim.SetTrigger("End");
                 ShowingBubbles = false;
             }
+
+            if (ShowingBounclet)
+            {
+                _bouncletanim.ResetTrigger("Reset");
+                _bouncletanim.SetTrigger("End");
+                ShowingBounclet = false;
+            }
             
             _unstbulanim.ResetTrigger("End");
             
@@ -108,6 +123,45 @@ public class IndicatorAnimationController : MonoBehaviour
             {
                 _unstbulanim.SetTrigger("Reset");
                 UnstBulStage = Remaining;
+            }
+        } else if (Current == "Bouncing Bomb")
+        {
+            if (ShowingBubbles)
+            {
+                _bubbleanim.ResetTrigger("Reset");
+                _bubbleanim.SetTrigger("End");
+                ShowingBubbles = false;
+            }
+            
+            if (ShowingUnstBul)
+            {
+                _unstbulanim.ResetTrigger("Reset");
+                _unstbulanim.SetTrigger("End");
+                ShowingUnstBul = false;
+            }
+            
+            _bouncletanim.ResetTrigger("End");
+            
+            // When a Gunstoppable Powerup is picked up
+            if (!ShowingBounclet)
+            {
+                ShowingBounclet = true;
+                _bouncletanim.SetTrigger("Reset");
+                BouncletStage = Remaining;
+            }
+            
+            // If an unstoppabullet has been shot
+            else if (BouncletStage > Remaining)
+            {
+                _bouncletanim.SetTrigger("Decrease");
+                BouncletStage = Remaining;
+            }
+
+            // If another Gunstoppable Powerup is picked up
+            else if (BouncletStage < Remaining)
+            {
+                _bouncletanim.SetTrigger("Reset");
+                BouncletStage = Remaining;
             }
         }
         else
