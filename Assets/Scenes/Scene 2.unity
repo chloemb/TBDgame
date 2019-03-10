@@ -1750,7 +1750,7 @@ MonoBehaviour:
   - {fileID: 7012571229736731238, guid: 7e14af5a4c0c34d0984816f3f734ed79, type: 3}
   - {fileID: 3504332178910298239, guid: ff043acec30734950a313d4ffe35ca53, type: 3}
   - {fileID: 8982715482006380893, guid: d805bc5b5556744bc8ff65d7b50ed3d3, type: 3}
-  PowerupSpawnRate: 300
+  PowerupSpawnRate: 400
 --- !u!4 &554240836
 Transform:
   m_ObjectHideFlags: 0
@@ -9372,6 +9372,11 @@ PrefabInstance:
       propertyPath: StageTheme
       value: 
       objectReference: {fileID: 8300000, guid: 3df7fb6118d874a749f05b9791c55b32, type: 3}
+    - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2123044840942963505, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_SortingOrder

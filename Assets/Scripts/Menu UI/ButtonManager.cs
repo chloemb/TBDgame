@@ -37,7 +37,7 @@ public class ButtonManager : MonoBehaviour
 
     private static void StartGame()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
 
     private static void QuitGame()
