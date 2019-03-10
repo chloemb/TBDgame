@@ -826,6 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoxSpawnPoints: []
   SpikeSpawnPoints: []
+  Auras: []
   ExplodingBox: {fileID: 5600950221394272617, guid: d1c189bca27344fb18f32e9aab6683f9,
     type: 3}
   FallingSpike: {fileID: 6418930139455605932, guid: e34f07676128744bf8bf1c8c998c9401,
@@ -1793,6 +1794,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 3427608984061220199, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -1809,6 +1815,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21081729491938412, guid: 59af73a3b10423d4684059ed49d4f352,
         type: 2}
+    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1074608821}
     - target: {fileID: 3427608984061220198, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1869,16 +1885,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1074608821}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c, type: 3}
 --- !u!1 &652719269
@@ -9377,11 +9383,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2123044840942963505, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2123044840942963506, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: PlayerAxes.Array.size
@@ -9406,21 +9407,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8057615699253810725, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 556802533
-      objectReference: {fileID: 0}
-    - target: {fileID: 8057615699253810725, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8057615699253810725, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8057615699253810726, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
@@ -9477,6 +9463,46 @@ PrefabInstance:
       propertyPath: m_CompositePaths.m_Paths.Array.data[0].Array.data[3].y
       value: -0.425
       objectReference: {fileID: 0}
+    - target: {fileID: 5838819257251072072, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1074608821}
+    - target: {fileID: 5838819257251072072, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 556802533
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146509850500542982, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1074608821}
+    - target: {fileID: 6146509850500542982, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 556802533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123044840942963505, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057615699253810725, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 556802533
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057615699253810725, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057615699253810725, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2123044841111369056, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -9491,26 +9517,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5838819257251072072, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1074608821}
-    - target: {fileID: 5838819257251072072, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 556802533
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146509850500542982, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1074608821}
-    - target: {fileID: 6146509850500542982, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 556802533
       objectReference: {fileID: 0}
     - target: {fileID: 8057615699422013556, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
