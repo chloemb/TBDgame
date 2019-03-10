@@ -104,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461346604797261853}
   m_LocalRotation: {x: -0, y: 0.0000000011641532, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -50, z: 113.207565}
+  m_LocalPosition: {x: 0, y: -79, z: 113.207565}
   m_LocalScale: {x: 200, y: 200, z: 0}
   m_Children: []
   m_Father: {fileID: 4002440694910914561}
@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 5386665637125732136}
   - component: {fileID: 2016021607141861406}
   - component: {fileID: 2957885825785688194}
+  - component: {fileID: 270590045117684430}
   m_Layer: 5
   m_Name: Controller Display
   m_TagString: Untagged
@@ -260,6 +261,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &270590045117684430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485337906734531735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c688360f0a030449d7954aef9d508b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &509725931749745102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4202193345503459238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.42886, y: -62.094383, z: -4.896195}
+  m_LocalPosition: {x: 18, y: -70, z: -4.896195}
   m_LocalScale: {x: 1.2578616, y: 1.2578616, z: 1.2578616}
   m_Children:
   - {fileID: 5681690211356607140}
@@ -1534,7 +1547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4755170742242935244}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.42886, y: -62.094383, z: -4.896195}
+  m_LocalPosition: {x: 17.999998, y: -70, z: -4.896195}
   m_LocalScale: {x: 1.2578616, y: 1.2578616, z: 1.2578616}
   m_Children:
   - {fileID: 7559529565759980611}
@@ -1842,7 +1855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.63529414}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6862745}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

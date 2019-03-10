@@ -1678,6 +1678,7 @@ MonoBehaviour:
   CurrentlyFading: 0
   winner: 
   PrevScene: 
+  seenControls: 0
 --- !u!4 &1346553719
 Transform:
   m_ObjectHideFlags: 0
