@@ -15,6 +15,8 @@ public class GlobalControl : MonoBehaviour
     public string winner;
 
     public string PrevScene;
+
+    public bool seenControls = false;
     
     void Awake()
     {
@@ -27,7 +29,7 @@ public class GlobalControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
         Music = GetComponent<AudioSource>();
         Music.volume = 1f;
         Music.Play();
@@ -54,7 +56,12 @@ public class GlobalControl : MonoBehaviour
 
         PrevScene = SceneManager.GetActiveScene().name;
     }
-    
+
+    public void SeenControls()
+    {
+        seenControls = true;
+    }
+
     private IEnumerator FadeOutMusic()
     {
         Debug.Log("fading");
