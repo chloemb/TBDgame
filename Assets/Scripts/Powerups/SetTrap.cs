@@ -16,7 +16,6 @@ public class SetTrap : MonoBehaviour
         if (!_onCooldown && Uses > 0)
         {
             Uses--;
-            //Invoke("MakeTrap", SetTime); Need animation so this doesn't feel like lag
             MakeTrap();
         }
     }
@@ -25,8 +24,13 @@ public class SetTrap : MonoBehaviour
     {
         var distanceFromGround = new Vector3(0, GetComponent<Renderer>().bounds.size.y / 2.5f, 0);
         var trapInstance = Instantiate(Trap, gameObject.transform.position - distanceFromGround, transform.rotation);
-        trapInstance.gameObject.GetComponent<Trap>().playerOrigin = gameObject;
-        
+        var origin = trapInstance.gameObject.GetComponent<Trap>().playerOrigin = gameObject;
+        var trapParticleSystem = trapInstance.gameObject.GetComponent<ParticleSystem>().main;
+        if (origin.name == "Player 1")
+            trapParticleSystem.startColor = new Color(0, 0, 255);
+        else if (origin.name == "Player 2")
+            trapParticleSystem.startColor = new Color(255, 165, 0);
+
         SettingTrap = true;
         _onCooldown = true;
         Invoke("NoLongerSetting", SetTime);

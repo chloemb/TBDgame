@@ -21,7 +21,7 @@ public class ExplosionManager : MonoBehaviour
         {
             GameObject playerOrigin = col.collider.CompareTag("Projectiles") ? col.collider.GetComponent<BulletInfo>().playerOrigin : null;
             Explode(playerOrigin);
-            col.gameObject.GetComponent<HealthManager>().DamagePlayer(1);
+            //col.gameObject.GetComponent<HealthManager>().DamagePlayer(1);
         }
     }
 
@@ -34,7 +34,14 @@ public class ExplosionManager : MonoBehaviour
         {
             p.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-MaxDebrisSpeed, MaxDebrisSpeed), Random.Range(-MaxDebrisSpeed, MaxDebrisSpeed));
             if (origin != null)
+            {
                 p.GetComponent<BoxPiece>().playerOrigin = origin;
+                var boxParticleSystem = p.gameObject.GetComponent<ParticleSystem>().main;
+                if (origin.name == "Player 1")
+                    boxParticleSystem.startColor = new Color(93f/255f, 96f/255f, 244f/255f);
+                else if (origin.name == "Player 2")
+                    boxParticleSystem.startColor = new Color(255f/255f, 144f/255f, 0);
+            }
         }
     }
 }

@@ -29,6 +29,10 @@ public class FireWeapon : MonoBehaviour
     [HideInInspector] public bool CurrentlyFiring;
 
     private Vector2 FireDirection;
+    
+    // Audio
+    public AudioSource WeaponAudioSource;
+    public AudioClip FireDefault, FireBubble, FireDrill, FireGrenade;
 
     private void Start()
     {
@@ -44,6 +48,7 @@ public class FireWeapon : MonoBehaviour
             this.FireDirection = FireDirection;
             
             SummonBullet(DEFAULT_BULLET, Speed);
+            WeaponAudioSource.PlayOneShot(FireDefault);
             
             CurrentlyFiring = true;
             Invoke("NoLongerFiring", .05f);
@@ -70,14 +75,17 @@ public class FireWeapon : MonoBehaviour
                 {
                     case "Bubble Gun":
                         SummonBullet(BUBBLET, OffhandSpeed);
+                        WeaponAudioSource.PlayOneShot(FireBubble);
                         RemainingUses--;
                         break;
                     case "Gunstoppable":
                         SummonBullet(UNSTOPPABULLET, OffhandSpeed);
+                        WeaponAudioSource.PlayOneShot(FireDrill);
                         RemainingUses--;
                         break;
                     case "Bouncing Bomb":
                         SummonBullet(BOUNCLET, OffhandSpeed);
+                        WeaponAudioSource.PlayOneShot(FireGrenade);
                         RemainingUses--;
                         break;
                 }
