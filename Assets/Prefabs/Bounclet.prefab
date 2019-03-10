@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 9086318384737423745}
   - component: {fileID: 632534656240413857}
   - component: {fileID: 5551089622339578300}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bounclet
-  m_TagString: Untagged
+  m_TagString: Projectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionPrefab: {fileID: 139366, guid: be9438a28327d47b0b7c25e0afd7936e, type: 3}
-  playerOrigin: {fileID: 0}
+  origin: {fileID: 0}
   Countdown: 3
 --- !u!50 &9164993021003606424
 Rigidbody2D:
@@ -118,7 +118,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: bb761911d4c8841c8b893396a5b81549, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &9086318384737423745
 BoxCollider2D:

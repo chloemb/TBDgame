@@ -17,7 +17,7 @@ public class ExplosionManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.relativeVelocity.magnitude > MaxContactSpeed)
+        if (col.collider.CompareTag("Player") && col.relativeVelocity.magnitude > MaxContactSpeed)
         {
             GameObject playerOrigin = col.collider.CompareTag("Projectiles") ? col.collider.GetComponent<BulletInfo>().playerOrigin : null;
             Explode(playerOrigin);
