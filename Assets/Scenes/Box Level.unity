@@ -6226,6 +6226,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 965814895}
     - target: {fileID: 3427608984061220198, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6281,11 +6286,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 965814895}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c, type: 3}
 --- !u!1001 &845837535
@@ -6338,7 +6338,7 @@ PrefabInstance:
     - target: {fileID: 4002440694910914561, guid: b686b2c26c38fde43a0f008172fbe682,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4002440694910914561, guid: b686b2c26c38fde43a0f008172fbe682,
         type: 3}
@@ -15319,6 +15319,11 @@ PrefabInstance:
       propertyPath: KillsRequired
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: StageTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: e7102b0ba64e44b9dbb8f1f1993f30a7, type: 3}
     - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_IsActive
