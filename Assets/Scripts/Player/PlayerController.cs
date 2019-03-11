@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Assets.Scripts;
 
 public class PlayerController : MonoBehaviour
@@ -300,7 +301,7 @@ public class PlayerController : MonoBehaviour
                 else ShowAimIndicator = false;
 
                 // Set trap
-                if (setTrap > 0 && IsGrounded)
+                if (setTrap > 0 && IsGrounded && SceneManager.GetActiveScene().buildIndex != 7)
                 {
                     _st.Set();
                 }
