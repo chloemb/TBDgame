@@ -27,19 +27,4 @@ public class ControllerController : MonoBehaviour
             
     }
 
-    void Update()
-    {
-        if (_platform.ToString() == "Windows")
-        {
-            if (Input.GetKeyDown("joystick 1 button 0") || Input.GetKeyDown("joystick 1 button 7"))
-            {
-            }
-        } else if (_platform.ToString() == "Mac")
-        {
-            if (Input.GetKeyDown("joystick 1 button 16") || Input.GetKeyDown("joystick 1 button 9"))
-            {
-            }
-        }
-
-    }
 }

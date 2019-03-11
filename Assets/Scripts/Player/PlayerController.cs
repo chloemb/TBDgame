@@ -69,6 +69,14 @@ public class PlayerController : MonoBehaviour
         _controlsScreen = GameObject.Find("Controller Display");
     }
 
+    private void Start()
+    {
+        if (GlobalControl.Instance.seenControls)
+        {
+            Pausable = true;
+        }
+    }
+
     public void SetUpControls()
     {
         _platform = Platform.GetPlatform();
