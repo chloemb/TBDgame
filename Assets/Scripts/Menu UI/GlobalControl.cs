@@ -41,6 +41,7 @@ public class GlobalControl : MonoBehaviour
             Time.timeScale = 1;
             if (SceneManager.GetActiveScene().name != PrevScene)
             {
+                IEnumerator Fade = FadeOutMusic();
                 // GetComponent<AudioSource>().volume = 0;
                 if (SceneManager.GetActiveScene().name == "Level Select" ||
                     SceneManager.GetActiveScene().name == "End Game")
@@ -48,10 +49,14 @@ public class GlobalControl : MonoBehaviour
                     Time.timeScale = 1f;
                     if (!CurrentlyFading)
                     {
-                        IEnumerator Fade = FadeOutMusic();
                         StartCoroutine(Fade);
                     }
                 }
+                else
+                {
+                    StopCoroutine(Fade);
+                }
+               
             }
 
 //        if (SceneManager.GetActiveScene().name != "Level Select" && GetComponent<AudioSource>().isPlaying)
@@ -73,7 +78,7 @@ public class GlobalControl : MonoBehaviour
             //Debug.Log("volume is " + Music.volume);
             //Debug.Log("decreasing volume by " + StartVolume * (Time.deltaTime / 3));
             //Debug.Log(Time.deltaTime);
-            Music.volume -= StartVolume * (Time.deltaTime / 3);
+            Music.volume -= StartVolume * (Time.deltaTime / 1.5f);
             yield return null;
         }
 

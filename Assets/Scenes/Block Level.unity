@@ -6241,6 +6241,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 380
       objectReference: {fileID: 0}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: StageTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 71ee1ab295a0f43dfab295aad0ae6633, type: 3}
     - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_IsActive
