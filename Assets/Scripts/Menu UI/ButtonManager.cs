@@ -35,12 +35,12 @@ public class ButtonManager : MonoBehaviour
         StartGame();
     }
 
-    private static void StartGame()
+    public void StartGame()
     {
         SceneManager.LoadScene(4);
     }
 
-    private static void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
 
