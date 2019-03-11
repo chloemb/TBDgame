@@ -1405,6 +1405,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Controller Display
       objectReference: {fileID: 0}
+    - target: {fileID: 485337906734531735, guid: b686b2c26c38fde43a0f008172fbe682,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4002440694910914561, guid: b686b2c26c38fde43a0f008172fbe682,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2569,6 +2574,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 3427608984061220199, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3427608983634354392, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -2579,6 +2589,11 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1275211137}
     - target: {fileID: 3427608984061220198, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3328,6 +3343,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: StageTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: ad6ad3dec19154aefba127753785a64b, type: 3}
+    - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5313417676725320873, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}

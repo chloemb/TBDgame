@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour
         TouchWallToRight,
         TouchWallToLeft,
         ShowAimIndicator,
-        Pausable;
+        Pausable,
+        CanShootInWall;
 
     private void Awake()
     {
@@ -266,27 +267,28 @@ public class PlayerController : MonoBehaviour
 
                 if (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0)
                 {
-                    // Show indicator
-                    ShowAimIndicator = true;
-
-                    // Fire Weapon
-                    if (shoot > 0)
+                    if ((TouchWallToLeft && !FacingRight || TouchWallToRight && FacingRight) && CanShootInWall
+                        || !(TouchWallToLeft || TouchWallToRight))
                     {
-                        _fw.Fire(RSA);
-                        LastFired = RSA;
-                    }
+                        // Show indicator
+                        ShowAimIndicator = true;
+                        // Fire Weapon
+                        if (shoot > 0)
+                        {
+                            _fw.Fire(RSA);
+                            LastFired = RSA;
+                        }
 
-                    // Fire offhand weapon
-                    if (offhand > 0)
-                    {
-                        _fw.FireOffhand(RSA);
-                        LastFired = RSA;
+                        // Fire offhand weapon
+                        if (offhand > 0)
+                        {
+                            _fw.FireOffhand(RSA);
+                            LastFired = RSA;
+                        }
                     }
+                    else ShowAimIndicator = false;
                 }
-                else
-                {
-                    ShowAimIndicator = false;
-                }
+                else ShowAimIndicator = false;
 
                 // Set trap
                 if (setTrap > 0 && IsGrounded)
