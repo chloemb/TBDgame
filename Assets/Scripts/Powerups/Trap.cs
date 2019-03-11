@@ -9,7 +9,7 @@ public class Trap : MonoBehaviour
     
     void Awake()
     {
-        Invoke("DestroyTrap", Lifetime);
+        //Invoke("DestroyTrap", Lifetime);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,9 +18,8 @@ public class Trap : MonoBehaviour
             DestroyTrap();
     }
     
-    private void DestroyTrap()
+    public void DestroyTrap()
     {
-        if (gameObject != null)
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
