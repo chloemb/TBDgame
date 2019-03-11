@@ -652,6 +652,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  _pm: {fileID: 0}
   IsGrounded: 0
   PrevVelocity: {x: 0, y: 0}
   RSA: {x: 0, y: 0}
@@ -665,6 +666,8 @@ MonoBehaviour:
   TouchWallToRight: 0
   TouchWallToLeft: 0
   ShowAimIndicator: 0
+  Pausable: 0
+  CanShootInWall: 0
 --- !u!114 &4111441477871771400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,9 +707,9 @@ MonoBehaviour:
   CurrentlyFiring: 0
   WeaponAudioSource: {fileID: 3643730433919702431}
   FireDefault: {fileID: 8300000, guid: 6ba53cdd4b6df41789f95e65da62da69, type: 3}
-  FireBubble: {fileID: 0}
-  FireDrill: {fileID: 0}
-  FireGrenade: {fileID: 0}
+  FireBubble: {fileID: 8300000, guid: 2bd65c1eb53294ef9b8b6bf3417511a4, type: 3}
+  FireDrill: {fileID: 8300000, guid: 1ea7e17563ed0414ea1732cf1956d04e, type: 3}
+  FireGrenade: {fileID: 8300000, guid: 6ba53cdd4b6df41789f95e65da62da69, type: 3}
 --- !u!114 &3959097550648980411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,6 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnockingBack: 0
   Floating: 0
+  Hit: {fileID: 8300000, guid: 7f79857b28c5749218674d1994791213, type: 3}
 --- !u!70 &7469692517570225793
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -811,7 +815,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trap: {fileID: 3627253114998124646, guid: 1cdd22a2633fd4f27be829451cf42487, type: 3}
-  Uses: 10
   Cooldown: 2
   SetTime: 0.5
   SettingTrap: 0

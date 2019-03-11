@@ -78,17 +78,17 @@ public class FireWeapon : MonoBehaviour
                 {
                     case "Bubble Gun":
                         SummonBullet(BUBBLET, OffhandSpeed);
-                        WeaponAudioSource.PlayOneShot(FireBubble);
+                        WeaponAudioSource.PlayOneShot(FireBubble, 2f);
                         RemainingUses--;
                         break;
                     case "Gunstoppable":
                         SummonBullet(UNSTOPPABULLET, OffhandSpeed);
-                        WeaponAudioSource.PlayOneShot(FireDrill);
+                        WeaponAudioSource.PlayOneShot(FireDrill, 2f);
                         RemainingUses--;
                         break;
                     case "Bouncing Bomb":
                         SummonBullet(BOUNCLET, OffhandSpeed);
-                        WeaponAudioSource.PlayOneShot(FireGrenade);
+                        WeaponAudioSource.PlayOneShot(FireGrenade, 2f);
                         RemainingUses--;
                         break;
                 }

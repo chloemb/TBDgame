@@ -7,6 +7,7 @@ public class Bounclet : MonoBehaviour
     public GameObject ExplosionPrefab;
     public GameObject origin;
     public float Countdown;
+    public AudioClip Explosion;
 
     void Awake()
     {
@@ -16,7 +17,8 @@ public class Bounclet : MonoBehaviour
     
     private void Detonate()
     {
-        Destroy(this.gameObject);
+        AudioSource.PlayClipAtPoint(Explosion, transform.position);
+        Destroy(gameObject);
         var explosion = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity, transform.parent);
         var pos = explosion.transform.position;
         var rad = explosion.GetComponent<CircleCollider2D>().radius;

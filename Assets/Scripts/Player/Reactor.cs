@@ -16,6 +16,7 @@ public class Reactor : MonoBehaviour
     private GameObject LastImpact;
 
     public bool KnockingBack, Floating;
+    public AudioClip Hit;
 
     void Awake()
     {
@@ -27,6 +28,8 @@ public class Reactor : MonoBehaviour
     public void React(GameObject effector)
     {
         Damager effectorinfo = effector.GetComponent<Damager>();
+        
+        AudioSource.PlayClipAtPoint(Hit, transform.position, 2f);
         
         if (!_hm.CurrentlyInvincible && !_pc.CurrentlyDashing)
         {
