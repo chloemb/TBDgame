@@ -14992,6 +14992,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -200
       objectReference: {fileID: 0}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: KillsRequired
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: StageTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: e7102b0ba64e44b9dbb8f1f1993f30a7, type: 3}
+    - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1551823916123297388, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15017,21 +15032,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -3.7
       objectReference: {fileID: 0}
-    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: KillsRequired
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: StageTheme
-      value: 
-      objectReference: {fileID: 8300000, guid: e7102b0ba64e44b9dbb8f1f1993f30a7, type: 3}
-    - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5313417676725320873, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -15041,6 +15041,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452877395220784494, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123044840942963507, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5313417676725320872, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}

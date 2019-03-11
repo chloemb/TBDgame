@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour
@@ -35,6 +36,7 @@ public class HealthManager : MonoBehaviour
         _rb.velocity = new Vector2(0f, 0f);
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.transform.Find("Aura").GetComponent<Collider2D>().enabled = false;
         
         // Reset health
         Health = InitialHealth;
@@ -74,6 +76,7 @@ public class HealthManager : MonoBehaviour
     public void DamagePlayer(int dmg)
     {
         Health -= dmg;
+        GetComponent<Reactor>().Floating = false;
         if (dmg >= 0)
         {
             KBIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(LastHitIFrames);
@@ -106,6 +109,7 @@ public class HealthManager : MonoBehaviour
         _rb.gravityScale = _pc.GravityScale;
         gameObject.GetComponent<Collider2D>().enabled = true;
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        gameObject.transform.Find("Aura").GetComponent<Collider2D>().enabled = true;
         _pc.ControlDisabled = false;
     }
 }

@@ -28,7 +28,7 @@ public class Reactor : MonoBehaviour
     {
         Damager effectorinfo = effector.GetComponent<Damager>();
         
-        if (!_hm.CurrentlyInvincible && !_pc.CurrentlyDashing)
+        if (!_hm.CurrentlyInvincible)
         {
             LastImpact = effector;
             EffectStrength = effectorinfo.EffectStrength;
@@ -52,7 +52,7 @@ public class Reactor : MonoBehaviour
                         break;
                 }
             }
-            else
+            else if (!_pc.CurrentlyDashing)
             {
                 _hm.LastHitIFrames = effectorinfo.IFrames;
                 _hm.MakeInvincible(effectorinfo.IFrames);
