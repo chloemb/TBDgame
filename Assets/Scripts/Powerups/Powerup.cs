@@ -11,7 +11,7 @@ public class Powerup : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Reactor>().PickUpPowerup(gameObject);
-            AudioSource.PlayClipAtPoint(GetPowerup, transform.position, 1.5f);
+            AudioSource.PlayClipAtPoint(GetPowerup, transform.position, 1f);
             Destroy(gameObject);
         }
     }

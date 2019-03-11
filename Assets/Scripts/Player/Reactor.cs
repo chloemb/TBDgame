@@ -29,7 +29,7 @@ public class Reactor : MonoBehaviour
     {
         Damager effectorinfo = effector.GetComponent<Damager>();
         
-        AudioSource.PlayClipAtPoint(Hit, transform.position, 2f);
+        AudioSource.PlayClipAtPoint(Hit, transform.position);
         
         if (!_hm.CurrentlyInvincible && !_pc.CurrentlyDashing)
         {

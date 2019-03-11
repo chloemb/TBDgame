@@ -28,7 +28,7 @@ public class ExplosionManager : MonoBehaviour
 
     public void Explode(GameObject origin)
     {
-        AudioSource.PlayClipAtPoint(BoxExplosion, transform.position, 5f);
+        AudioSource.PlayClipAtPoint(BoxExplosion, transform.position);
         Destroy(gameObject);
         Instantiate(ExplosionPrefab, transform.position, Quaternion.identity, transform.parent);
         GameObject pieces = Instantiate(ExplodablePieces, transform.position, Quaternion.identity);
