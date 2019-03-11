@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P1RHorizontal";
                 PlayerAxes[7] = "P1RVertical";
                 PlayerAxes[8] = "P1Trap";
-                PlayerAxes[9] = "Pause";
+                PlayerAxes[9] = "P1Pause";
                 break;
             case "Player 2 Mac":
                 PlayerAxes[0] = "P2LHorizontal";
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P2RHorizontal";
                 PlayerAxes[7] = "P2RVertical";
                 PlayerAxes[8] = "P2Trap";
-                PlayerAxes[9] = "Pause";
+                PlayerAxes[9] = "P2Pause";
                 break;
             case "Player 1 Windows":
                 PlayerAxes[0] = "P1LHorizontal_Windows";
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P1RHorizontal_Windows";
                 PlayerAxes[7] = "P1RVertical_Windows";
                 PlayerAxes[8] = "P1Trap_Windows";
-                PlayerAxes[9] = "Pause_Windows";
+                PlayerAxes[9] = "P1Pause_Windows";
                 break;
             case "Player 2 Windows":
                 PlayerAxes[0] = "P2LHorizontal_Windows";
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
                 PlayerAxes[6] = "P2RHorizontal_Windows";
                 PlayerAxes[7] = "P2RVertical_Windows";
                 PlayerAxes[8] = "P2Trap_Windows";
-                PlayerAxes[9] = "Pause_Windows";
+                PlayerAxes[9] = "P2Pause_Windows";
                 break;
         }
 
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    { 
+    {
         if (_controlsScreen.transform.GetChild(0).gameObject.activeSelf)
         {
             if (Input.GetButtonDown(PlayerAxes[9]) || Input.GetButtonDown(PlayerAxes[2]))
@@ -143,6 +143,10 @@ public class PlayerController : MonoBehaviour
                 GlobalControl.Instance.GetComponent<AudioSource>().volume = 1f;
                 GlobalControl.Instance.GetComponent<AudioSource>().Play();
                 Invoke("CanPause", .05f);
+                if (gameObject.name == "Player 1")
+                    GameObject.Find("Player 2").GetComponent<PlayerController>().Invoke("CanPause", 0.05f);
+                else if (gameObject.name == "Player 2")
+                    GameObject.Find("Player 1").GetComponent<PlayerController>().Invoke("CanPause", 0.05f);
             }
         }
         else
