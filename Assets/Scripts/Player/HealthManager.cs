@@ -76,6 +76,7 @@ public class HealthManager : MonoBehaviour
     public void DamagePlayer(int dmg)
     {
         Health -= dmg;
+        GetComponent<Reactor>().Floating = false;
         if (dmg >= 0)
         {
             KBIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(LastHitIFrames);

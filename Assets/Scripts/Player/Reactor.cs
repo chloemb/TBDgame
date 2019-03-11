@@ -54,7 +54,6 @@ public class Reactor : MonoBehaviour
             }
             else if (!_pc.CurrentlyDashing)
             {
-                Floating = false;
                 _hm.LastHitIFrames = effectorinfo.IFrames;
                 _hm.MakeInvincible(effectorinfo.IFrames);
                 _hm.DamagePlayer(effectorinfo.Damage);

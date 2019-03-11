@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         CanShootInWall;
 
     private ContactFilter2D interactFilter;
+    private LayerMask AllSurfaces;
 
     private void Awake()
     {
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
         interactFilter = new ContactFilter2D();
         LayerMask mask = LayerMask.GetMask("Boxes");
         interactFilter.SetLayerMask(mask);
+        AllSurfaces = LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes");
     }
 
     public void SetUpControls()
@@ -359,10 +361,8 @@ public class PlayerController : MonoBehaviour
         Vector2 rightbound = transform.position + new Vector3(_col.bounds.extents.x, 0);
 
         // Raycast down from those positions
-        bool GroundLeft = Physics2D.Raycast(leftbound, Vector2.down, _col.bounds.extents.y * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
-        bool GroundRight = Physics2D.Raycast(rightbound, Vector2.down, _col.bounds.extents.y * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
+        bool GroundLeft = Physics2D.Raycast(leftbound, Vector2.down, _col.bounds.extents.y * 1.1f, AllSurfaces);
+        bool GroundRight = Physics2D.Raycast(rightbound, Vector2.down, _col.bounds.extents.y * 1.1f, AllSurfaces);
 
         // If either of those raycasts hit floor, ground player. Else, unground.
         bool TouchingGround = GroundLeft || GroundRight;
@@ -382,12 +382,9 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
-        bool LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
-        bool LeftMid = Physics2D.Raycast(transform.position, Vector2.left, +_col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
-        bool LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
+        bool LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f, AllSurfaces);
+        bool LeftMid = Physics2D.Raycast(transform.position, Vector2.left, +_col.bounds.extents.x * 1.1f, AllSurfaces);
+        bool LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f, AllSurfaces);
         bool TouchingLeft = LeftDown || LeftMid || LeftUp;
 
         if (TouchWallToLeft != TouchingLeft)
@@ -408,12 +405,9 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
-        bool RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
-        bool RightMid = Physics2D.Raycast(transform.position, Vector2.right, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
-        bool RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
+        bool RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f, AllSurfaces);
+        bool RightMid = Physics2D.Raycast(transform.position, Vector2.right, _col.bounds.extents.x * 1.1f, AllSurfaces);
+        bool RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f, AllSurfaces);
         bool TouchingRight = RightDown || RightMid || RightUp;
 
         if (TouchWallToRight != TouchingRight)

@@ -652,6 +652,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  _pm: {fileID: 0}
   IsGrounded: 0
   PrevVelocity: {x: 0, y: 0}
   RSA: {x: 0, y: 0}
@@ -665,6 +666,8 @@ MonoBehaviour:
   TouchWallToRight: 0
   TouchWallToLeft: 0
   ShowAimIndicator: 0
+  Pausable: 0
+  CanShootInWall: 0
 --- !u!114 &4111441477871771400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,7 +738,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.4, y: 0.88}
+  m_Size: {x: 0.43, y: 0.88}
   m_Direction: 0
 --- !u!61 &6312701655621221014
 BoxCollider2D:
@@ -811,7 +814,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trap: {fileID: 3627253114998124646, guid: 1cdd22a2633fd4f27be829451cf42487, type: 3}
-  Uses: 10
   Cooldown: 2
   SetTime: 0.5
   SettingTrap: 0
