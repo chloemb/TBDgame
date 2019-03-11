@@ -149,19 +149,23 @@ public class FireWeapon : MonoBehaviour
                 CurrentOffhandWeapon = "Bubble Gun";
                 info = Bullets[BUBBLET].GetComponent<BulletInfo>();
                 RemainingUses = 3;
+                GetComponent<PlayerController>().CanShootInWall = false;
                 break;
             case "Gunstoppable":
                 CurrentOffhandWeapon = "Gunstoppable";
                 info = Bullets[UNSTOPPABULLET].GetComponent<BulletInfo>();
                 RemainingUses = 5;
+                GetComponent<PlayerController>().CanShootInWall = true;
                 break;
             case "Bouncing Bomb":
                 CurrentOffhandWeapon = "Bouncing Bomb";
                 info = Bullets[BOUNCLET].GetComponent<BulletInfo>();
                 RemainingUses = 5;
+                GetComponent<PlayerController>().CanShootInWall = false;
                 break;
             case null:
                 CurrentOffhandWeapon = null;
+                GetComponent<PlayerController>().CanShootInWall = false;
                 break;
         }
 
