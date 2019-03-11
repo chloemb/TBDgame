@@ -41,7 +41,7 @@ public class GlobalControl : MonoBehaviour
             Time.timeScale = 1;
             if (SceneManager.GetActiveScene().name != PrevScene)
             {
-                GetComponent<AudioSource>().volume = 0;
+                // GetComponent<AudioSource>().volume = 0;
                 if (SceneManager.GetActiveScene().name == "Level Select" ||
                     SceneManager.GetActiveScene().name == "End Game")
                 {
@@ -54,8 +54,8 @@ public class GlobalControl : MonoBehaviour
                 }
             }
 
-        if (SceneManager.GetActiveScene().name != "Level Select" && GetComponent<AudioSource>().isPlaying)
-            GetComponent<AudioSource>().volume = 1f;
+//        if (SceneManager.GetActiveScene().name != "Level Select" && GetComponent<AudioSource>().isPlaying)
+//            GetComponent<AudioSource>().volume = 1f;
 
         PrevScene = SceneManager.GetActiveScene().name;
     }
@@ -65,6 +65,8 @@ public class GlobalControl : MonoBehaviour
         Debug.Log("fading");
         CurrentlyFading = true;
         float StartVolume = Music.volume;
+        
+        Debug.Log(Music.volume);
 
         while (Music.volume > 0)
         {

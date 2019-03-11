@@ -28,7 +28,6 @@ public class ControllerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(GlobalControl.Instance.GetComponent<AudioSource>().isPlaying + "Play status");
         if (_platform.ToString() == "Windows")
         {
             if (Input.GetKeyDown("joystick 1 button 0") || Input.GetKeyDown("joystick 1 button 7"))

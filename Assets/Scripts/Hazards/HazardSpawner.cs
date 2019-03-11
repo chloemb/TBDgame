@@ -81,7 +81,6 @@ public class HazardSpawner : MonoBehaviour
                     if (spawnhere == 0)
                     {
                         Vector3 spikesize = new Vector3(spikespawn.localScale.x, 0);
-                        Debug.Log(spikesize);
 
                         foreach (GameObject area in Auras)
                         {

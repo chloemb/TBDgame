@@ -9,16 +9,27 @@ public class Damager : MonoBehaviour
     public int Damage;
     public bool NoDamageToSelf;
 
+    public bool IgnorePlayerOrigin;
+
     private void Awake()
     {
         if (gameObject.name.Contains("Box Piece") || gameObject.name.Contains("Trap"))
             NoDamageToSelf = true;
+
+        IgnorePlayerOrigin = true;
+        Invoke("AffectPlayer", .1f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && !NoDamageToSelf)  
-            other.gameObject.GetComponent<Reactor>().React(gameObject);
+        if (other.gameObject.CompareTag("Player") && !NoDamageToSelf)
+        {
+            if (!(gameObject.CompareTag("Projectiles") &&
+                  other.gameObject == GetComponent<BulletInfo>().playerOrigin && IgnorePlayerOrigin))
+            {
+                other.gameObject.GetComponent<Reactor>().React(gameObject);
+            }
+        }
 
         if (other.gameObject.name.Contains("Falling Spike"))
             other.gameObject.GetComponent<FallManager>().Fall();
@@ -35,5 +46,10 @@ public class Damager : MonoBehaviour
             gameObject.GetComponent<Trap>().playerOrigin != null &&
             gameObject.GetComponent<Trap>().playerOrigin.name != other.name)
                 other.gameObject.GetComponent<Reactor>().React(gameObject);
+    }
+
+    private void AffectPlayer()
+    {
+        IgnorePlayerOrigin = false;
     }
 }

@@ -249,7 +249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f127a0e5216824a42bfe34fcc38f0bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Music: {fileID: 0}
+  CurrentlyFading: 0
   winner: 
+  PrevScene: 
+  seenControls: 0
 --- !u!4 &150448384
 Transform:
   m_ObjectHideFlags: 0
@@ -274,7 +278,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c4d5c7651b5f34fb1bed095f8ad43d6d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

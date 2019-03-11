@@ -184,8 +184,6 @@ public class PlayerController : MonoBehaviour
                     DisableControl();
                     Invoke("StopWallJumping", WallJumpLength);
                 }
-                
-                Debug.Log(_rb.velocity.magnitude);
 
                 if (_rb.velocity.magnitude < .001f)
                 {
@@ -213,24 +211,6 @@ public class PlayerController : MonoBehaviour
                 Vector2 forcetoapply = new Vector2(lhorizontal * Speed, 0) - new Vector2(_rb.velocity.x, 0);
                 _rb.AddForce(forcetoapply, ForceMode2D.Impulse);
 
-                /*if (lhorizontal > 0 || lhorizontal < 0)
-                {
-                    this.GetComponent<CompositeCollider2D>().sharedMaterial = NoFriction;
-                    this.GetComponent<CapsuleCollider2D>().sharedMaterial = NoFriction;
-                }
-                else
-                {
-                    this.GetComponent<CompositeCollider2D>().sharedMaterial = null;
-                    this.GetComponent<CompositeCollider2D>().sharedMaterial = null;
-                }*/
-
-                if (!transform.parent.gameObject.name.Contains("Respawn") &&
-                    (lhorizontal > 0 || lhorizontal < 0 || jump > 0))
-                {
-                    //Debug.Log("Off");
-                    //transform.parent = SpawnPoint;
-                }
-
                 if (lhorizontal > 0 || lhorizontal == 0 && RSA.x > 0)
                 {
                     FacingRight = true;
@@ -245,32 +225,12 @@ public class PlayerController : MonoBehaviour
                 if (LSA.magnitude == 0)
                     LSA = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
 
-//                LSA.x = LSA.x >= .3f && LSA.x <= .7f ? .5f :
-//                    LSA.x < .3f && LSA.x > -.3f ? 0f :
-//                    LSA.x < -.3f && LSA.x >= -.7f ? -.5f :
-//                    LSA.x < -.7f ? -1f : 1f;
-//
-//                LSA.y = LSA.y >= .3f && LSA.y <= .7f ? .5f :
-//                    LSA.y < .3f && LSA.y > -.3f ? 0f :
-//                    LSA.y < -.3f && LSA.y >= -.7f ? -.5f :
-//                    LSA.y < -.7f ? -1f : 1f;
-
                 LSA = SnapAngle(LSA).normalized;
 
                 // Same as LSA but for the right stick
                 RSA = new Vector2(rhorizontal, rvertical).normalized;
                 if (RSA.magnitude == 0)
                     RSA = FacingRight ? new Vector2(1f, 0f) : new Vector2(-1f, 0f);
-
-//                RSA.x = RSA.x >= .3f && RSA.x <= .7f ? .5f :
-//                    RSA.x < .3f && RSA.x > -.3f ? 0f :
-//                    RSA.x < -.3f && RSA.x >= -.7f ? -.5f :
-//                    RSA.x < -.7f ? -1f : 1f;
-//
-//                RSA.y = RSA.y >= .3f && RSA.y <= .7f ? .5f :
-//                    RSA.y < .3f && RSA.y > -.3f ? 0f :
-//                    RSA.y < -.3f && RSA.y >= -.7f ? -.5f :
-//                    RSA.y < -.7f ? -1f : 1f;
 
                 //RSA = SnapAngle(RSA).normalized;
 
@@ -460,7 +420,6 @@ public class PlayerController : MonoBehaviour
 
     private void WallSlide()
     {
-        Debug.Log("checking cling with " + ClingPosition + " " + _rb.position);
         if (_rb.position == ClingPosition)
         {
             DisableControl();

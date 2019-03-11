@@ -9,6 +9,8 @@ public class HealthManager : MonoBehaviour
     public int InitialHealth;
     public int Health;
     public float GracePeriodLength;
+    public float ExtendedGracePeriodLength;
+    
     // public TextMeshProUGUI HealthDisplay;
     
     public bool InGracePeriod, CurrentlyInvincible;
@@ -29,21 +31,7 @@ public class HealthManager : MonoBehaviour
         PlayerHolder = GameObject.Find("Players").transform;
         _rb = GetComponent<Rigidbody2D>();
         _pc = GetComponent<PlayerController>();
-        
-        // Move player to Respawn point
-//        switch (gameObject.name)
-//        {
-//            case "Player 1":
-//                RespawnPoint = GameObject.Find("P1Respawn").transform;
-//                break;
-//            case "Player 2":
-//                RespawnPoint = GameObject.Find("P2Respawn").transform;
-//                break;
-//            default:
-//                RespawnPoint = GameObject.Find("P1Respawn").transform;
-//                break;
-//        }
-//        gameObject.transform.position = RespawnPoint.position;
+
         _rb.velocity = new Vector2(0f, 0f);
         gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -54,19 +42,16 @@ public class HealthManager : MonoBehaviour
         
         // Reset controls
         _pc.SetUpControls();
-        //_pc.TouchWallToLeft = _pc.TouchWallToRight = false;
-        //_pc.RefreshCooldown();
-        
-        // Reset material
-        //GetComponent<SpriteRenderer>().material = GetComponent<AnimationController>().DefaultMaterial;
         
         // Start and end grace period
         InGracePeriod = true;
         gameObject.layer = 5;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-        IEnumerator GraceIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(GracePeriodLength-.5f);
+        IEnumerator GraceIFrames = gameObject.GetComponent<AnimationController>().IFrameAnim(GracePeriodLength
+                                                                                             + ExtendedGracePeriodLength
+                                                                                             - .5f);
         StartCoroutine(GraceIFrames);
-        MakeInvincible(GracePeriodLength);
+        MakeInvincible(GracePeriodLength + ExtendedGracePeriodLength);
         Invoke("EndGracePeriod", GracePeriodLength);
     }
 
@@ -96,18 +81,11 @@ public class HealthManager : MonoBehaviour
         }
 
         if (Health > InitialHealth) Health = InitialHealth;
-        // UpdateHealthDisplay();
     }
-
-//    public void UpdateHealthDisplay()
-//    {
-//        HealthDisplay.text = Health.ToString();
-//    }
 
     public void ResetHealth()
     {
         Health = InitialHealth;
-        // UpdateHealthDisplay();
     }
 
     public void MakeInvincible(float seconds)

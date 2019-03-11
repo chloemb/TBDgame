@@ -22,7 +22,8 @@ public class BulletInfo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.gameObject.CompareTag("Auras"))
+        if (!col.gameObject.CompareTag("Auras") && 
+            !(col.gameObject == playerOrigin && GetComponent<Damager>().IgnorePlayerOrigin))
         {
             if (gameObject.name.Contains("Unstoppabullet"))
             {

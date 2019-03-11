@@ -29,6 +29,7 @@ public class FireWeapon : MonoBehaviour
     [HideInInspector] public bool CurrentlyFiring;
 
     private Vector2 FireDirection;
+    private SpriteRenderer _aimindic;
     
     // Audio
     public AudioSource WeaponAudioSource;
@@ -39,6 +40,8 @@ public class FireWeapon : MonoBehaviour
         BulletInfo info = Bullets[DEFAULT_BULLET].GetComponent<BulletInfo>();
         Speed = info.Speed;
         Cooldown = info.Cooldown;
+        
+        _aimindic = gameObject.transform.Find("Canvas").Find("AimIndicator").GetComponent<SpriteRenderer>();
     }
 
     public void Fire(Vector2 FireDirection)
@@ -105,22 +108,17 @@ public class FireWeapon : MonoBehaviour
             SummonPoint.y * GetComponent<Collider2D>().bounds.size.y, 0);
         Vector3 position;
         Quaternion rotation;
-        
-        if (FireDirection.y > 0 && FireDirection.x == 0)
-        {
-            position = transform.position + new Vector3(0, .85f * GetComponent<Collider2D>().bounds.size.y, 0);
-            rotation = Quaternion.Euler(0f, 0f, 90f);
-        } else
-        if (FireDirection.x >= 0 && GetComponent<PlayerController>().FacingRight)
-        {
-            position = transform.position + RelativeSumPoint;
-            rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, FireDirection));
-        }
-        else
-        {
-            position = transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right);
-            rotation = Quaternion.Euler(0f, 180f, Vector2.SignedAngle(FireDirection, Vector2.left));
-        }
+        bool FacingRight = GetComponent<PlayerController>().FacingRight;
+
+        if (FireDirection.y < 0 && FireDirection.x == 0)
+            position = FacingRight
+                ? transform.position + RelativeSumPoint
+                : transform.position + Vector3.Reflect(RelativeSumPoint, Vector3.right);
+        else position = _aimindic.transform.position;
+
+        rotation = FacingRight
+            ? Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, FireDirection))
+            : Quaternion.Euler(0f, 180f, Vector2.SignedAngle(FireDirection, Vector2.left));
         
         var bulletInstance = Instantiate(Bullets[BulletIndex], position, rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = CertainSpeed * FireDirection;
