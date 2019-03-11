@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
     private Collider2D _col;
     private FireWeapon _fw;
     private SetTrap _st;
-    private Transform _pm;
+    public Transform _pm;
+    private GameObject _controlsScreen;
 
     // variables for managing movement and walls
     public bool IsGrounded;
@@ -41,7 +42,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 ClingPosition, LastDashed, PreDashVel, LastFired;
     public Vector2 RSA;
-    private Transform SpawnPoint;
     private PlatformType _platform;
 
     // various info about object
@@ -56,15 +56,16 @@ public class PlayerController : MonoBehaviour
         ControlDisabled,
         TouchWallToRight,
         TouchWallToLeft,
-        ShowAimIndicator;
+        ShowAimIndicator,
+        Pausable;
 
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
         _fw = GetComponent<FireWeapon>();
-        SpawnPoint = transform.parent;
         _st = GetComponent<SetTrap>();
         _pm = GameObject.Find("Menu").transform.Find("Pause");
+        _controlsScreen = GameObject.Find("Controller Display");
     }
 
     public void SetUpControls()
@@ -131,22 +132,39 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (Input.GetButtonDown(PlayerAxes[9]))
+    { 
+        if (_controlsScreen.transform.GetChild(0).gameObject.activeSelf)
         {
-            if (!Paused)
+            if (Input.GetButtonDown(PlayerAxes[9]) || Input.GetButtonDown(PlayerAxes[2]))
             {
-                Paused = true;
-                _pm.gameObject.SetActive(true);
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                Paused = false;
-                _pm.gameObject.SetActive(false);
+                _controlsScreen.transform.GetChild(0).gameObject.SetActive(false);
                 Time.timeScale = 1f;
+                GlobalControl.Instance.GetComponent<AudioSource>().volume = 1f;
+                GlobalControl.Instance.GetComponent<AudioSource>().Play();
+                Invoke("CanPause", .05f);
             }
         }
+        else
+        {
+            if (Input.GetButtonDown(PlayerAxes[9]) && Pausable)
+            {
+                if (!Paused)
+                {
+                    Paused = true;
+                    Pausable = false;
+                    StartCoroutine(CanPauseRoutine());
+                    _pm.gameObject.SetActive(true);
+                    Time.timeScale = 0f;
+                }
+                else
+                {
+                    Paused = false;
+                    _pm.gameObject.SetActive(false);
+                    Time.timeScale = 1f;
+                }
+            }
+        }
+        
     }
 
     void FixedUpdate()
@@ -450,5 +468,16 @@ public class PlayerController : MonoBehaviour
             angle.y < -.7f ? -1f : 1f;
 
         return angle;
+    }
+
+    private void CanPause()
+    {
+        Pausable = true;
+    }
+
+    private IEnumerator CanPauseRoutine()
+    {
+        yield return new WaitForSecondsRealtime(.05f);
+        Pausable = true;
     }
 }

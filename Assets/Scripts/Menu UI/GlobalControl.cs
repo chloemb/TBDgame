@@ -62,17 +62,17 @@ public class GlobalControl : MonoBehaviour
 
     private IEnumerator FadeOutMusic()
     {
-        Debug.Log("fading");
+        //Debug.Log("fading");
         CurrentlyFading = true;
         float StartVolume = Music.volume;
         
-        Debug.Log(Music.volume);
+        //Debug.Log(Music.volume);
 
         while (Music.volume > 0)
         {
-            Debug.Log("volume is " + Music.volume);
-            Debug.Log("decreasing volume by " + StartVolume * (Time.deltaTime / 3));
-            Debug.Log(Time.deltaTime);
+            //Debug.Log("volume is " + Music.volume);
+            //Debug.Log("decreasing volume by " + StartVolume * (Time.deltaTime / 3));
+            //Debug.Log(Time.deltaTime);
             Music.volume -= StartVolume * (Time.deltaTime / 3);
             yield return null;
         }

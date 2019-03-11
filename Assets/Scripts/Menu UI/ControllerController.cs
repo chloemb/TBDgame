@@ -7,6 +7,7 @@ public class ControllerController : MonoBehaviour
 {
     private bool hasBeenCalled;
     private PlatformType _platform;
+    private GameObject Players;
 
     // Start is called before the first frame update
     void Start()
@@ -32,20 +33,11 @@ public class ControllerController : MonoBehaviour
         {
             if (Input.GetKeyDown("joystick 1 button 0") || Input.GetKeyDown("joystick 1 button 7"))
             {
-                Debug.Log("Play");
-                Time.timeScale = 1f;
-                GlobalControl.Instance.GetComponent<AudioSource>().volume = 1f;
-                GlobalControl.Instance.GetComponent<AudioSource>().Play();
-                gameObject.SetActive(false);
             }
         } else if (_platform.ToString() == "Mac")
         {
             if (Input.GetKeyDown("joystick 1 button 16") || Input.GetKeyDown("joystick 1 button 9"))
             {
-                Time.timeScale = 1f;
-                GlobalControl.Instance.GetComponent<AudioSource>().volume = 1f;
-                GlobalControl.Instance.GetComponent<AudioSource>().Play();
-                gameObject.SetActive(false);
             }
         }
 
