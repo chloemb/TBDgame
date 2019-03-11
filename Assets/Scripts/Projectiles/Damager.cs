@@ -44,7 +44,7 @@ public class Damager : MonoBehaviour
         
         if (other.gameObject.CompareTag("Player") && gameObject.name.Contains("Trap") &&
             gameObject.GetComponent<Trap>().playerOrigin != null &&
-            gameObject.GetComponent<Trap>().playerOrigin.name != other.name)
+            gameObject.GetComponent<Trap>().playerOrigin != other.name)
                 other.gameObject.GetComponent<Reactor>().React(gameObject);
     }
 

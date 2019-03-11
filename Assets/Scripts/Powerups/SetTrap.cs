@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,24 +42,24 @@ public class SetTrap : MonoBehaviour
     private void MakeTrap(string player)
     {
         var distanceFromGround = new Vector3(0, GetComponent<Renderer>().bounds.size.y / 2.5f, 0);
-        var origin = gameObject;
+        String origin = "";
         ParticleSystem.MainModule trapParticleSystem;
         
         switch (player)
         {
             case "P1":
                 _trap = Instantiate(Trap, gameObject.transform.position - distanceFromGround, transform.rotation);
-                origin = _trap.gameObject.GetComponent<Trap>().playerOrigin = gameObject;
+                origin = _trap.gameObject.GetComponent<Trap>().playerOrigin = gameObject.name;
                 trapParticleSystem = _trap.gameObject.GetComponent<ParticleSystem>().main;
                 break;
             case "P2":
                 _trap2 = Instantiate(Trap, gameObject.transform.position - distanceFromGround, transform.rotation);
-                origin = _trap2.gameObject.GetComponent<Trap>().playerOrigin = gameObject;
+                origin = _trap2.gameObject.GetComponent<Trap>().playerOrigin = gameObject.name;
                 trapParticleSystem = _trap2.gameObject.GetComponent<ParticleSystem>().main;
                 break;
         }
         
-        switch (origin.gameObject.name)
+        switch (origin)
         {
             case "Player 1":
                 trapParticleSystem.startColor = new Color(93f / 255f, 96f / 255f, 244f / 255f);

@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    public GameObject playerOrigin;
+    public String playerOrigin;
     public float Lifetime;
     
     void Awake()
     {
-        //Invoke("DestroyTrap", Lifetime);
+        Invoke("DestroyTrap", Lifetime);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && playerOrigin.name != other.name)
+        if (other.CompareTag("Player") && playerOrigin != other.name)
             DestroyTrap();
     }
     
