@@ -22,14 +22,12 @@ public class MovingCollider : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Enter/Stay");
             col.collider.transform.SetParent(transform);
         }
     }
 
     private void OnCollisionExit2D(Collision2D col)
     {
-        Debug.Log("Exit");
         if (col.gameObject.tag == "Player" && col.gameObject.name == "Player 1")
         {
             col.collider.transform.SetParent(PlayerSpawnPoints[1]);

@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
         Pausable,
         CanShootInWall;
 
+    private ContactFilter2D interactFilter;
+
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
@@ -75,6 +77,10 @@ public class PlayerController : MonoBehaviour
         {
             Pausable = true;
         }
+        
+        interactFilter = new ContactFilter2D();
+        LayerMask mask = LayerMask.GetMask("Boxes");
+        interactFilter.SetLayerMask(mask);
     }
 
     public void SetUpControls()
@@ -266,8 +272,9 @@ public class PlayerController : MonoBehaviour
                 //RSA = SnapAngle(RSA).normalized;
 
                 if (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0)
-                {
-                    if ((TouchWallToLeft && !FacingRight || TouchWallToRight && FacingRight) && CanShootInWall
+                {      
+                    if ((TouchWallToLeft && !FacingRight || TouchWallToRight && FacingRight) && 
+                        (CanShootInWall || _rb.IsTouching(interactFilter))
                         || !(TouchWallToLeft || TouchWallToRight))
                     {
                         // Show indicator
@@ -353,9 +360,9 @@ public class PlayerController : MonoBehaviour
 
         // Raycast down from those positions
         bool GroundLeft = Physics2D.Raycast(leftbound, Vector2.down, _col.bounds.extents.y * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
         bool GroundRight = Physics2D.Raycast(rightbound, Vector2.down, _col.bounds.extents.y * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
 
         // If either of those raycasts hit floor, ground player. Else, unground.
         bool TouchingGround = GroundLeft || GroundRight;
@@ -376,11 +383,11 @@ public class PlayerController : MonoBehaviour
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
         bool LeftDown = Physics2D.Raycast(downbound, Vector2.left, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
         bool LeftMid = Physics2D.Raycast(transform.position, Vector2.left, +_col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
         bool LeftUp = Physics2D.Raycast(upbound, Vector2.left, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
         bool TouchingLeft = LeftDown || LeftMid || LeftUp;
 
         if (TouchWallToLeft != TouchingLeft)
@@ -402,11 +409,11 @@ public class PlayerController : MonoBehaviour
         Vector2 downbound = transform.position - new Vector3(0, _col.bounds.extents.y);
         Vector2 upbound = transform.position + new Vector3(0, _col.bounds.extents.y);
         bool RightDown = Physics2D.Raycast(downbound, Vector2.right, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
         bool RightMid = Physics2D.Raycast(transform.position, Vector2.right, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
         bool RightUp = Physics2D.Raycast(upbound, Vector2.right, _col.bounds.extents.x * 1.1f,
-            LayerMask.GetMask("Surfaces", "Moving Platforms"));
+            LayerMask.GetMask("Surfaces", "Moving Platforms", "Boxes"));
         bool TouchingRight = RightDown || RightMid || RightUp;
 
         if (TouchWallToRight != TouchingRight)
@@ -465,7 +472,7 @@ public class PlayerController : MonoBehaviour
 
     public void GiveBackControl()
     {
-        ControlDisabled = false;
+        if (!GetComponent<Reactor>().Floating) ControlDisabled = false;
     }
 
     private Vector2 SnapAngle(Vector2 angle)

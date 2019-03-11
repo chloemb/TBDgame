@@ -53,7 +53,6 @@ public class HazardSpawner : MonoBehaviour
                 if (spawnhere == 0)
                 {
                     Vector3 boxsize = new Vector3(boxspawn.localScale.x, 0);
-                    Debug.Log(boxsize);
 
                     foreach (GameObject area in Auras)
                     {

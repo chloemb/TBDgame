@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5600950221394272612}
   - component: {fileID: 5600950221394272615}
   - component: {fileID: 5600950221394272614}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Exploding Box
   m_TagString: Interactable Hazards
   m_Icon: {fileID: 0}
@@ -123,5 +123,5 @@ MonoBehaviour:
     type: 3}
   ExplosionPrefab: {fileID: 5655893439138462373, guid: f886f4610045a3042a7d3682d418d250,
     type: 3}
-  MaxDebrisSpeed: 20
+  MaxDebrisSpeed: 10
   MaxContactSpeed: 20
