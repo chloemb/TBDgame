@@ -8,6 +8,7 @@ public class ExplosionManager : MonoBehaviour
     public GameObject ExplosionPrefab;
     public float MaxDebrisSpeed;
     public float MaxContactSpeed;
+    public AudioClip BoxExplosion;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,6 +28,7 @@ public class ExplosionManager : MonoBehaviour
 
     public void Explode(GameObject origin)
     {
+        AudioSource.PlayClipAtPoint(BoxExplosion, transform.position);
         Destroy(gameObject);
         Instantiate(ExplosionPrefab, transform.position, Quaternion.identity, transform.parent);
         GameObject pieces = Instantiate(ExplodablePieces, transform.position, Quaternion.identity);

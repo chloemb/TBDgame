@@ -16,6 +16,7 @@ public class Reactor : MonoBehaviour
     private GameObject LastImpact;
 
     public bool KnockingBack, Floating;
+    public AudioClip Hit;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class Reactor : MonoBehaviour
         
         if (!_hm.CurrentlyInvincible)
         {
+            AudioSource.PlayClipAtPoint(Hit, transform.position);
             LastImpact = effector;
             EffectStrength = effectorinfo.EffectStrength;
             EffectLength = effectorinfo.EffectLength;
