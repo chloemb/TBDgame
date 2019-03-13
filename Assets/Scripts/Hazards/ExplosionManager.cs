@@ -22,13 +22,12 @@ public class ExplosionManager : MonoBehaviour
         {
             GameObject playerOrigin = col.collider.CompareTag("Projectiles") ? col.collider.GetComponent<BulletInfo>().playerOrigin : null;
             Explode(playerOrigin);
-            //col.gameObject.GetComponent<HealthManager>().DamagePlayer(1);
         }
     }
 
     public void Explode(GameObject origin)
     {
-        AudioSource.PlayClipAtPoint(BoxExplosion, transform.position);
+        AudioSource.PlayClipAtPoint(BoxExplosion, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 10f);
         Destroy(gameObject);
         Instantiate(ExplosionPrefab, transform.position, Quaternion.identity, transform.parent);
         GameObject pieces = Instantiate(ExplodablePieces, transform.position, Quaternion.identity);

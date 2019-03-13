@@ -22,6 +22,7 @@ public class HealthManager : MonoBehaviour
 
     [HideInInspector] public float LastHitIFrames;
     private IEnumerator KBIFrames;
+    public AudioClip RespawnSound;
     public Transform PlayerHolder;
     
     // Start is called before the first frame update
@@ -63,6 +64,7 @@ public class HealthManager : MonoBehaviour
         {
             SendMessageUpwards("Player1Killed");
             // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
+            AudioSource.PlayClipAtPoint(RespawnSound, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 10f);
             Destroy(gameObject);
         }
         else if (Health <= 0 && name == "Player 2")

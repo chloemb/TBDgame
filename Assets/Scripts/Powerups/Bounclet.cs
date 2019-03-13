@@ -17,7 +17,7 @@ public class Bounclet : MonoBehaviour
     
     private void Detonate()
     {
-        AudioSource.PlayClipAtPoint(Explosion, transform.position);
+        AudioSource.PlayClipAtPoint(Explosion, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 10f);
         Destroy(gameObject);
         var explosion = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity, transform.parent);
         var pos = explosion.transform.position;

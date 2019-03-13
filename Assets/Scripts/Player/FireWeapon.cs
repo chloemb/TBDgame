@@ -51,7 +51,7 @@ public class FireWeapon : MonoBehaviour
             this.FireDirection = FireDirection;
             
             SummonBullet(DEFAULT_BULLET, Speed);
-            WeaponAudioSource.PlayOneShot(FireDefault);
+            AudioSource.PlayClipAtPoint(FireDefault, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 20f);
             
             CurrentlyFiring = true;
             Invoke("NoLongerFiring", .05f);
@@ -78,17 +78,17 @@ public class FireWeapon : MonoBehaviour
                 {
                     case "Bubble Gun":
                         SummonBullet(BUBBLET, OffhandSpeed);
-                        WeaponAudioSource.PlayOneShot(FireBubble, 1f);
+                        WeaponAudioSource.PlayOneShot(FireBubble);
                         RemainingUses--;
                         break;
                     case "Gunstoppable":
                         SummonBullet(UNSTOPPABULLET, OffhandSpeed);
-                        WeaponAudioSource.PlayOneShot(FireDrill, 1f);
+                        WeaponAudioSource.PlayOneShot(FireDrill);
                         RemainingUses--;
                         break;
                     case "Bouncing Bomb":
                         SummonBullet(BOUNCLET, OffhandSpeed);
-                        WeaponAudioSource.PlayOneShot(FireGrenade, 1f);
+                        WeaponAudioSource.PlayOneShot(FireGrenade);
                         RemainingUses--;
                         break;
                 }
