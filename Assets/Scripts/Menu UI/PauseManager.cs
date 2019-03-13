@@ -18,10 +18,6 @@ public class PauseManager : MonoBehaviour
     {
         Pause = transform.Find("Pause").gameObject;
 
-        Player1 = GameObject.Find("Player 1");
-
-        Player2 = GameObject.Find("Player 2");
-
         var levelsButton = transform.Find("Pause/Buttons/Levels").gameObject.GetComponent<Button>();
         levelsButton.onClick.AddListener(LoadGame);
 
@@ -51,6 +47,9 @@ public class PauseManager : MonoBehaviour
 
     private void Unpause()
     {
+        Player1 = GameObject.Find("Player 1");
+        Player2 = GameObject.Find("Player 2");
+        
         Player1.GetComponent<PlayerController>().Paused = false;
         Player2.GetComponent<PlayerController>().Paused = false;
         Pause.SetActive(false);
