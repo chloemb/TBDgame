@@ -816,6 +816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trap: {fileID: 3627253114998124646, guid: 1cdd22a2633fd4f27be829451cf42487, type: 3}
+  Trap2: {fileID: 3627253114998124646, guid: 1cdd22a2633fd4f27be829451cf42487, type: 3}
   Cooldown: 2
   SetTime: 0.5
   SettingTrap: 0

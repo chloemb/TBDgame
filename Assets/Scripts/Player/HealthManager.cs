@@ -63,6 +63,11 @@ public class HealthManager : MonoBehaviour
     {
         if (Health <= 0 && name == "Player 1")
         {
+            var existingTrapsP1 = FindObjectsOfType<Trap>();
+            foreach (Trap t in existingTrapsP1)
+                if (t.playerOrigin == "Player 1")
+                    Destroy(t.gameObject);
+            
             SendMessageUpwards("Player1Killed");
             // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
             AudioSource.PlayClipAtPoint(RespawnSound, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 10f);
@@ -70,6 +75,11 @@ public class HealthManager : MonoBehaviour
         }
         else if (Health <= 0 && name == "Player 2")
         {
+            var existingTrapsP2 = FindObjectsOfType<Trap>();
+            foreach (Trap t in existingTrapsP2)
+                if (t.playerOrigin == "Player 2")
+                    Destroy(t.gameObject);
+            
             SendMessageUpwards("Player2Killed");
             // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
             AudioSource.PlayClipAtPoint(RespawnSound, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 10f);
