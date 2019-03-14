@@ -288,6 +288,7 @@
           <e p="Menu UI" t="Include">
             <e p="ButtonManager.cs" t="Include" />
             <e p="ControllerController.cs" t="Include" />
+            <e p="CreditsButton.cs" t="Include" />
             <e p="EndButton.cs" t="Include" />
             <e p="EventSystemManager.cs" t="Include" />
             <e p="GlobalControl.cs" t="Include" />

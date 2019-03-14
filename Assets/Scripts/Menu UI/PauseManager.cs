@@ -12,6 +12,8 @@ public class PauseManager : MonoBehaviour
     private GameObject Pause;
     private GameObject Player1;
     private GameObject Player2;
+    private PlayerController _pc1;
+    private PlayerController _pc2;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +51,25 @@ public class PauseManager : MonoBehaviour
     {
         Player1 = GameObject.Find("Player 1");
         Player2 = GameObject.Find("Player 2");
+
+        _pc1 = Player1.GetComponent<PlayerController>();
+        _pc2 = Player2.GetComponent<PlayerController>();
         
-        Player1.GetComponent<PlayerController>().Paused = false;
-        Player2.GetComponent<PlayerController>().Paused = false;
+        _pc1.Paused = false;
+        _pc2.Paused = false;
         Pause.SetActive(false);
+        _pc1.DisableControl();
+        _pc2.DisableControl();
+        
         Time.timeScale = 1f;
+        
+        Invoke("GiveBackControls", .15f);
+    }
+
+    private void GiveBackControls()
+    {
+        _pc1.GiveBackControl();
+        _pc2.GiveBackControl();
     }
 
     private static void LoadGame()
