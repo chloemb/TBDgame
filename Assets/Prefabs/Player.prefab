@@ -508,6 +508,7 @@ MonoBehaviour:
   CurrentlyInvincible: 0
   RespawnPoint: {fileID: 0}
   LastHitIFrames: 0
+  RespawnSound: {fileID: 8300000, guid: 4c252763483a141c2b8f44d80134f8e8, type: 3}
   PlayerHolder: {fileID: 0}
 --- !u!212 &4111441477871771404
 SpriteRenderer:
@@ -837,9 +838,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 1

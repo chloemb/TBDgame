@@ -48,11 +48,19 @@ public class SetTrap : MonoBehaviour
         switch (player)
         {
             case "P1":
+                var existingTrapsP1 = FindObjectsOfType<Trap>();
+                foreach (Trap t in existingTrapsP1)
+                    if (t.playerOrigin == "Player 1")
+                        Destroy(t.gameObject);
                 _trap = Instantiate(Trap, gameObject.transform.position - distanceFromGround, transform.rotation);
                 origin = _trap.gameObject.GetComponent<Trap>().playerOrigin = gameObject.name;
                 trapParticleSystem = _trap.gameObject.GetComponent<ParticleSystem>().main;
                 break;
             case "P2":
+                var existingTrapsP2 = FindObjectsOfType<Trap>();
+                foreach (Trap t in existingTrapsP2)
+                    if (t.playerOrigin == "Player 2")
+                        Destroy(t.gameObject);
                 _trap2 = Instantiate(Trap, gameObject.transform.position - distanceFromGround, transform.rotation);
                 origin = _trap2.gameObject.GetComponent<Trap>().playerOrigin = gameObject.name;
                 trapParticleSystem = _trap2.gameObject.GetComponent<ParticleSystem>().main;

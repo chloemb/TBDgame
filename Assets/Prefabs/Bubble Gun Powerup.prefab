@@ -123,5 +123,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.9444267
       objectReference: {fileID: 0}
+    - target: {fileID: 2520675080974750162, guid: 06e9970edb78e44b589b33a5e0fa0268,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06e9970edb78e44b589b33a5e0fa0268, type: 3}

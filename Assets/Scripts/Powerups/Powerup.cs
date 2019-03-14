@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
+    public AudioSource PowerupAudioSource;
     public AudioClip GetPowerup;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -11,8 +12,15 @@ public class Powerup : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Reactor>().PickUpPowerup(gameObject);
-            AudioSource.PlayClipAtPoint(GetPowerup, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 2f);
-            Destroy(gameObject);
+            if (!PowerupAudioSource.isPlaying)
+                PowerupAudioSource.PlayOneShot(GetPowerup);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Invoke("RemovePowerup", GetPowerup.length);  
         }
+    }
+
+    private void RemovePowerup()
+    {
+        Destroy(gameObject);
     }
 }

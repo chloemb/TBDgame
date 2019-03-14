@@ -149,6 +149,7 @@ MonoBehaviour:
   IFrames: 1
   Damage: 1
   NoDamageToSelf: 0
+  IgnorePlayerOrigin: 0
 --- !u!114 &6790501613936918430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +163,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FallSpeed: 2
+  SpikeFall: {fileID: 8300000, guid: e59b8556eb4684d9786c3b0f759bf5dc, type: 3}

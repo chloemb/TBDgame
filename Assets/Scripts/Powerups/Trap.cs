@@ -11,6 +11,7 @@ public class Trap : MonoBehaviour
     void Awake()
     {
         Invoke("DestroyTrap", Lifetime);
+        
     }
     
     private void OnTriggerEnter2D(Collider2D other)

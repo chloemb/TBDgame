@@ -32,7 +32,9 @@ public class Damager : MonoBehaviour
         }
 
         if (other.gameObject.name.Contains("Falling Spike"))
+        {
             other.gameObject.GetComponent<FallManager>().Fall();
+        }
 
         if (other.gameObject.CompareTag("Player") && gameObject.name.Contains("Box Piece"))
         {

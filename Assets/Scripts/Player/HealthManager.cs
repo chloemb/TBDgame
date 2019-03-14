@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
@@ -71,6 +72,7 @@ public class HealthManager : MonoBehaviour
         {
             SendMessageUpwards("Player2Killed");
             // Instantiate(PlayerPrefab, RespawnPoint.position, Quaternion.identity, PlayerHolder);
+            AudioSource.PlayClipAtPoint(RespawnSound, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 10f);
             Destroy(gameObject);
         }
     }

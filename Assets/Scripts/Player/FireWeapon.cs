@@ -51,7 +51,7 @@ public class FireWeapon : MonoBehaviour
             this.FireDirection = FireDirection;
             
             SummonBullet(DEFAULT_BULLET, Speed);
-            AudioSource.PlayClipAtPoint(FireDefault, 0.9f*Camera.main.transform.position + 0.1f*transform.position, 20f);
+            WeaponAudioSource.PlayOneShot(FireDefault);
             
             CurrentlyFiring = true;
             Invoke("NoLongerFiring", .05f);
