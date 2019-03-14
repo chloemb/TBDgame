@@ -275,10 +275,11 @@ public class PlayerController : MonoBehaviour
                 //RSA = SnapAngle(RSA).normalized;
 
                 if (FacingRight && RSA.x >= 0 || !FacingRight && RSA.x <= 0)
-                {      
+                {
                     if ((TouchWallToLeft && !FacingRight || TouchWallToRight && FacingRight) && 
                         (CanShootInWall || _rb.IsTouching(interactFilter))
-                        || !(TouchWallToLeft || TouchWallToRight))
+                        || !(TouchWallToLeft || TouchWallToRight)
+                        || (TouchWallToLeft && FacingRight || TouchWallToRight && !FacingRight))
                     {
                         // Show indicator
                         ShowAimIndicator = true;
