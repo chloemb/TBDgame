@@ -97,8 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionPrefab: {fileID: 139366, guid: be9438a28327d47b0b7c25e0afd7936e, type: 3}
-  origin: {fileID: 0}
+  origin: {fileID: 3977474366423857869}
   Countdown: 3
+  BouncletAudioSource: {fileID: 0}
+  Explosion: {fileID: 8300000, guid: 9467d4f7bdcfe4f7188776441ea29e12, type: 3}
 --- !u!50 &9164993021003606424
 Rigidbody2D:
   serializedVersion: 4

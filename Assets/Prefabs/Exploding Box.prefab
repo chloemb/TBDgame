@@ -125,3 +125,4 @@ MonoBehaviour:
     type: 3}
   MaxDebrisSpeed: 10
   MaxContactSpeed: 20
+  BoxExplosion: {fileID: 8300000, guid: 389fe48618bcf47d9a6159c3346fa884, type: 3}
