@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.Experimental.UIElements;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class HazardSpawner : MonoBehaviour
@@ -15,6 +16,9 @@ public class HazardSpawner : MonoBehaviour
     public GameObject ExplodingBox, FallingSpike;
 
     public int SpikeSpawnRate, BoxSpawnRate;
+    public float HazardGraceLength;
+
+    public List<bool> BoxWasHere, SpikeWasHere, BoxGrace, SpikeGrace;
 
     private void Start()
     {
@@ -25,6 +29,8 @@ public class HazardSpawner : MonoBehaviour
             if (child.gameObject.name.Contains("Spawn"))
             {
                 BoxSpawnPoints.Add(child);
+                BoxWasHere.Add(false);
+                BoxGrace.Add(false);
             }
         }
 
@@ -33,8 +39,12 @@ public class HazardSpawner : MonoBehaviour
             if (child.gameObject.name.Contains("Spawn"))
             {
                 SpikeSpawnPoints.Add(child);
+                SpikeWasHere.Add(false);
+                SpikeGrace.Add(false);
             }
         }
+
+        SpikeWasHere.Capacity = SpikeGrace.Capacity = SpikeSpawnPoints.Count;
     }
 
     private void FixedUpdate()
@@ -46,59 +56,76 @@ public class HazardSpawner : MonoBehaviour
 
         foreach (Transform boxspawn in BoxSpawnPoints)
         {
+            int i = BoxSpawnPoints.IndexOf(boxspawn);
             if (boxspawn.childCount == 0)
             {
-                int spawnhere = rnd.Next(0, BoxSpawnRate);
-
-                if (spawnhere == 0)
+                if (BoxWasHere[i])
                 {
-                    Vector3 boxsize = new Vector3(boxspawn.localScale.x, 0);
-
-                    foreach (GameObject area in Auras)
-                    {
-                        if (area.GetComponent<Collider2D>().bounds.Contains(boxspawn.position + 2 * boxsize) ||
-                            area.GetComponent<Collider2D>().bounds.Contains(boxspawn.position) ||
-                            area.GetComponent<Collider2D>().bounds.Contains(boxspawn.position - 2 * boxsize))
-                            if (area.GetComponent<Collider2D>().bounds.Contains(boxspawn.position))
-                            {
-                                playerhere = true;
-                            }
-                    }
-
-                    if (!playerhere)
-                    {
-                        Instantiate(ExplodingBox, boxspawn);
-                    }
+                    BoxGrace[i] = true;
+                    BoxWasHere[i] = false;
+                    IEnumerator NoSpawn = EndGrace("ExplodingBox", i);
+                    StartCoroutine(NoSpawn);
                 }
-            }
-
-            foreach (Transform spikespawn in SpikeSpawnPoints)
-            {
-                if (spikespawn.childCount == 0)
+                
+                if (!BoxGrace[i])
                 {
-                    int spawnhere = rnd.Next(0, SpikeSpawnRate);
+                    int spawnhere = rnd.Next(0, BoxSpawnRate);
+
                     if (spawnhere == 0)
                     {
-                        Vector3 spikesize = new Vector3(spikespawn.localScale.x, 0);
-
                         foreach (GameObject area in Auras)
                         {
-                            if (area.GetComponent<Collider2D>().bounds.Contains(spikespawn.position + 2 * spikesize) ||
-                                area.GetComponent<Collider2D>().bounds.Contains(spikespawn.position) ||
-                                area.GetComponent<Collider2D>().bounds.Contains(spikespawn.position - 2 * spikesize))
-                                if (area.GetComponent<Collider2D>().bounds.Contains(spikespawn.position))
-                                {
-                                    playerhere = true;
-                                }
+                            if (area.GetComponent<Collider2D>().bounds.Contains(boxspawn.position))
+                                playerhere = true;
                         }
 
-                        if (!playerhere)
-                        {
-                            Instantiate(FallingSpike, spikespawn);
-                        }
+                        if (!playerhere) Instantiate(ExplodingBox, boxspawn);
                     }
                 }
             }
+            else
+            {
+                BoxWasHere[i] = true;
+            }
         }
+
+        foreach (Transform spikespawn in SpikeSpawnPoints)
+        {
+            int i = SpikeSpawnPoints.IndexOf(spikespawn);
+            if (spikespawn.childCount == 0)
+            {
+                if (SpikeWasHere[i])
+                {
+                    SpikeGrace[i] = true;
+                    SpikeWasHere[i] = false;
+                    IEnumerator NoSpawn = EndGrace("FallingSpike", i);
+                    StartCoroutine(NoSpawn);
+                }
+                
+                if (!SpikeGrace[i])
+                {
+                    int spawnhere = rnd.Next(0, SpikeSpawnRate);
+                    
+                    if (spawnhere == 0)
+                    {
+                        foreach (GameObject area in Auras)
+                            if (area.GetComponent<Collider2D>().bounds.Contains(spikespawn.position))
+                                playerhere = true;
+                        if (!playerhere) Instantiate(FallingSpike, spikespawn);
+                    }
+                }
+            }
+            else
+            {
+                SpikeWasHere[i] = true;
+            }
+        }
+    }
+
+    private IEnumerator EndGrace(string hazard, int i)
+    {
+        yield return new WaitForSeconds(HazardGraceLength);
+        if (hazard == "ExplodingBox") BoxGrace[i] = false;
+        else if (hazard == "FallingSpike") BoxGrace[i] = false;
     }
 }

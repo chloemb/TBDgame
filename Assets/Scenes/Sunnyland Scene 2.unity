@@ -2414,6 +2414,9 @@ MonoBehaviour:
   - {fileID: 3504332178910298239, guid: ff043acec30734950a313d4ffe35ca53, type: 3}
   - {fileID: 8982715482006380893, guid: d805bc5b5556744bc8ff65d7b50ed3d3, type: 3}
   PowerupSpawnRate: 500
+  PowerupGraceLength: 5
+  PowerupWasHere: 
+  PowerupGrace: 
 --- !u!1 &1097376495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,11 +2592,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1275211137}
     - target: {fileID: 3427608984061220198, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2649,6 +2647,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1275211137}
     - target: {fileID: 3427608983656862953, guid: eb01dfcbf8c8a874fbec47eb9ffcd17c,
         type: 3}
       propertyPath: m_Camera
@@ -3289,6 +3292,16 @@ PrefabInstance:
       propertyPath: StageTheme
       value: 
       objectReference: {fileID: 8300000, guid: ad6ad3dec19154aefba127753785a64b, type: 3}
+    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: StageTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: ad6ad3dec19154aefba127753785a64b, type: 3}
+    - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
       propertyPath: m_IsActive
@@ -3343,16 +3356,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392521415988146300, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: StageTheme
-      value: 
-      objectReference: {fileID: 8300000, guid: ad6ad3dec19154aefba127753785a64b, type: 3}
-    - target: {fileID: 5313417677875843225, guid: 125597ba9135d45709f33813a648f99f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5313417676725320873, guid: 125597ba9135d45709f33813a648f99f,
         type: 3}
@@ -3658,6 +3661,11 @@ MonoBehaviour:
     type: 3}
   SpikeSpawnRate: 600
   BoxSpawnRate: 300
+  HazardGraceLength: 5
+  BoxWasHere: 
+  SpikeWasHere: 
+  BoxGrace: 
+  SpikeGrace: 
 --- !u!4 &2010767345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5534051030198171821, guid: 1c1158a34d3dc49f385c2d41b55e90d8,

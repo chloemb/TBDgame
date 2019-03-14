@@ -10,6 +10,9 @@ public class PowerupSpawner : MonoBehaviour
     public GameObject[] Powerups;
 
     public int PowerupSpawnRate;
+    public float PowerupGraceLength;
+
+    public List<bool> PowerupWasHere, PowerupGrace;
 
     private void Start()
     {
@@ -18,6 +21,8 @@ public class PowerupSpawner : MonoBehaviour
             if (child.gameObject.name.Contains("Spawn"))
             {
                 PowerupSpawnPoints.Add(child);
+                PowerupWasHere.Add(false);
+                PowerupGrace.Add(false);
             }
         }
     }
@@ -28,15 +33,38 @@ public class PowerupSpawner : MonoBehaviour
 
         foreach (Transform puspawn in PowerupSpawnPoints)
         {
+            int i = PowerupSpawnPoints.IndexOf(puspawn);
             if (puspawn.childCount == 0)
             {
-                int spawnhere = rnd.Next(0, PowerupSpawnRate);
-                if (spawnhere == 0)
+                if (PowerupWasHere[i])
                 {
-                    int whichpu = rnd.Next(0, Powerups.Length);
-                    Instantiate(Powerups[whichpu], puspawn);
+                    PowerupGrace[i] = true;
+                    PowerupWasHere[i] = false;
+                    IEnumerator NoSpawn = EndGrace(i);
+                    StartCoroutine(NoSpawn);
+                }
+
+                if (!PowerupGrace[i])
+                {
+                    int spawnhere = rnd.Next(0, PowerupSpawnRate);
+                    
+                    if (spawnhere == 0)
+                    {
+                        int whichpu = rnd.Next(0, Powerups.Length);
+                        Instantiate(Powerups[whichpu], puspawn);
+                    }
                 }
             }
+            else
+            {
+                PowerupWasHere[i] = true;
+            }
         }
+    }
+
+    private IEnumerator EndGrace(int i)
+    {
+        yield return new WaitForSeconds(PowerupGraceLength);
+        PowerupGrace[i] = false;
     }
 }
