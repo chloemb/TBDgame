@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MenuButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
 
     public Text theText;
@@ -15,13 +15,13 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         original = theText.color;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnSelect(BaseEventData eventData)
     {
         theText.color = new Color(255, 255, 255, 255); 
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
+    public void OnDeselect(BaseEventData eventData)
+    { 
         theText.color = original;
     }
 }
