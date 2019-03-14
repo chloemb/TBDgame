@@ -11,9 +11,21 @@ public class SceneButton : MonoBehaviour
 
     private float _fadeDelay = 1f;
 
+    private int RandNum;
+
     // Start is called before the first frame update
     void Start()
     {
+        RandNum = Random.Range(1, 7);
+        if (RandNum == 3) //make it so numbers line up correctly with actual stages
+        {
+            RandNum = 7;
+        }
+        else if (RandNum == 4)
+        {
+            RandNum = 8;
+        }
+        
         var scene2Button = transform.Find("Buttons/Scene 2").gameObject.GetComponent<Button>();
         scene2Button.onClick.AddListener(() => StartCoroutine(StartFade(1)));
 
@@ -31,6 +43,12 @@ public class SceneButton : MonoBehaviour
 
         var blocklevelButton = transform.Find("Buttons/Block Level").gameObject.GetComponent<Button>();
         blocklevelButton.onClick.AddListener(() => StartCoroutine(StartFade(8)));
+
+        var randomButton = transform.Find("Buttons/Random").gameObject.GetComponent<Button>();
+        randomButton.onClick.AddListener(() => StartCoroutine(StartFade(RandNum)));
+
+        var backButton = transform.Find("Buttons/Back").gameObject.GetComponent<Button>();
+        backButton.onClick.AddListener(() => StartCoroutine(StartFade(0)));
     }
 
     private IEnumerator StartFade(int stage)

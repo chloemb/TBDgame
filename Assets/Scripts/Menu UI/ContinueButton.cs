@@ -21,13 +21,11 @@ public class ContinueButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log("Should be white");
         theText.color = new Color(255, 255, 255, 255);
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        Debug.Log("Should be Green");
         theText.color = new Color32(18, 255, 0, 255);
     }
 }
