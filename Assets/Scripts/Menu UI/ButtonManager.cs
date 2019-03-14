@@ -14,13 +14,16 @@ public class ButtonManager : MonoBehaviour
     public void Start()
     {
         var startButton = transform.Find("Buttons/Start").gameObject.GetComponent<Button>();
-        startButton.onClick.AddListener(() => StartCoroutine(StartFade()));
+        startButton.onClick.AddListener(() => StartCoroutine(StartFade(4)));
 
         var quitButton = transform.Find("Buttons/Quit").gameObject.GetComponent<Button>();
         quitButton.onClick.AddListener(QuitGame);
+
+        var creditsButton = transform.Find("Buttons/Credits").gameObject.GetComponent<Button>();
+        creditsButton.onClick.AddListener(() => StartCoroutine(StartFade(9)));
     }
 
-    private IEnumerator StartFade()
+    private IEnumerator StartFade(int sceneNum)
     {
         var color = Color.black;
         while (_fadeDelay > 0f)
@@ -32,12 +35,12 @@ public class ButtonManager : MonoBehaviour
             yield return null;
         }
 
-        StartGame();
+        StartGame(sceneNum);
     }
 
-    public void StartGame()
+    public void StartGame(int sceneNum)
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(sceneNum);
     }
 
     public void QuitGame()
