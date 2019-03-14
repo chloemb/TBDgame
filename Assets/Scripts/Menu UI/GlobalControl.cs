@@ -20,6 +20,9 @@ public class GlobalControl : MonoBehaviour
     
     void Awake()
     {
+        Music = GetComponent<AudioSource>();
+        Music.volume = 1f;
+        Music.Play();
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -29,10 +32,6 @@ public class GlobalControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Music = GetComponent<AudioSource>();
-        Music.volume = 1f;
-        Music.Play();
     }
 
     void Update()
