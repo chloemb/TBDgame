@@ -4633,6 +4633,11 @@ MonoBehaviour:
     type: 3}
   SpikeSpawnRate: 500
   BoxSpawnRate: 500
+  HazardGraceLength: 5
+  BoxWasHere: 
+  SpikeWasHere: 
+  BoxGrace: 
+  SpikeGrace: 
 --- !u!1001 &792378036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5967,6 +5972,9 @@ MonoBehaviour:
   - {fileID: 3504332178910298239, guid: ff043acec30734950a313d4ffe35ca53, type: 3}
   - {fileID: 7629586756243544715, guid: a671fb9f8eb60447db3ff28bd0039c95, type: 3}
   PowerupSpawnRate: 500
+  PowerupGraceLength: 5
+  PowerupWasHere: 
+  PowerupGrace: 
 --- !u!4 &1343304893
 Transform:
   m_ObjectHideFlags: 0
